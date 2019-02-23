@@ -1,0 +1,24 @@
+public int getMaplewingid() {
+        int id = 0;
+        try {
+            int cid = getPlayer().getId();
+            Connection con = DatabaseConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from bank where charid=?");
+            ps.setInt(1, cid);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Maplewingcx = rs.getInt("id");
+            } else {
+                PreparedStatement psu = con.prepareStatement("insert into bank (charid, id) VALUES (?, ?)");
+                psu.setInt(1, cid);
+                psu.setInt(2, 0);
+                psu.executeUpdate();
+                psu.close();
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            _log.error("MapleWing系统获取信息发生错误", ex);
+        }
+        return id;
+    }

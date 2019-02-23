@@ -1,0 +1,69 @@
+var setupTask;
+
+function init() {
+    scheduleNew();
+}
+
+function scheduleNew() {
+    var cal = java.util.Calendar.getInstance();
+    cal.set(java.util.Calendar.HOUR, 0);
+    cal.set(java.util.Calendar.MINUTE, 0);
+    cal.set(java.util.Calendar.SECOND, 0);
+	
+    var nextTime = cal.getTimeInMillis();
+	
+    while (nextTime <= java.lang.System.currentTimeMillis()) {
+        nextTime += 1000 * 60;
+    }
+    		setupTask = em.scheduleAtTimestamp("start", nextTime);
+}
+
+function cancelSchedule() {
+	if (setupTask!=null)
+  		setupTask.cancel(true);
+}
+
+function start() {
+	var cal = java.util.Calendar.getInstance();
+	var hour = cal.get(java.util.Calendar.HOUR_OF_DAY);
+	var min = cal.get(java.util.Calendar.MINUTE);
+	var sec = cal.get(java.util.Calendar.SECOND);
+	var weekday = cal.get(java.util.Calendar.DAY_OF_WEEK);
+	var month = cal.get(java.util.Calendar.MONTH) + 1; //获得月份
+	var day = cal.get(java.util.Calendar.DATE); //获取日
+	weekday-=1;
+	scheduleNew();
+	if(hour == 19 && (min == 40) && (weekday == 6 || weekday == 5 || weekday == 0)){
+		em.broadcastServerMsg(5121028,"20分钟后将开启 < 挤牛奶活动 >，大家抓紧时间做好准备吧！",true);
+	}
+	if(hour == 19 && (min == 59) && (weekday == 6 || weekday == 5 || weekday == 0)){
+		em.broadcastServerMsg(5121028,"1分钟后将开启 < 挤牛奶活动 >，大家抓紧时间做好准备吧！",true);
+	}
+	/* if (hour == 13 && (min >= 0 && min <= 20)) {
+		//em.startSuperlabaed("每小时副本<挑战粉扎>在市场刘备处开放了,勇士们快组队征服它吧..",5121010);
+		em.broadcastServerMsg(5120074,"下午13点的无限火力关卡开始了。20分钟后将关闭了，请抓紧挑战。",true);
+	} else if (hour == 20 && (min >= 0 && min <= 20)) {
+		//em.broadcastServerMsg(5120074," < 答题 > 活动结束了，请期待下个小时50分的时候继续回来答题哦.",true);
+		em.broadcastServerMsg(5120074,"晚上20点的无限火力关卡开始了。20分钟后将关闭了，请抓紧挑战。",true);
+	}
+	} else if (min == 50) {
+		//em.broadcastServerMsg(5120074," < 答题 > 活动结束了，请期待下个小时50分的时候继续回来答题哦.",true);
+		em.broadcastServerMsg(5120074,"每小时50分钟的答题在市场<诸葛孔明>开始了。5分钟后关闭。",true);
+	}
+	} else if (min == 55) {
+		em.broadcastServerMsg(5120074," < 答题 > 活动结束了，请期待下个小时50分的时候继续回来答题哦.",true);
+		//em.broadcastServerMsg(5120074,"每小时50分钟的答题在市场<诸葛孔明>开始了。5分钟后关闭。",true);
+	}  */
+	if (min == 50) {
+		//em.startSuperlabaed("每小时副本<挑战粉扎>在市场刘备处开放了,勇士们快组队征服它吧..",5121010);
+		em.broadcastServerMsg(5120023,"每小时50分时的 < 答题 > 在市场诸葛孔明处开放了,小伙伴们抓紧时间做作业吧..",true);
+	} else if (min == 56) {
+		em.broadcastServerMsg(5120023," < 答题 > 活动结束了，请期待下个小时50分的时候继续回来答题哦.",true);
+	}
+	if ((month == 3) && (day == 21 || day == 27) && (hour == 20 && hour == 21) && min == 35) {
+		em.broadcastServerMsg(5120074,"裂空之鹰开服红包开抢啦，只有5分钟时间，速速前往领取！",true);
+		em.broadcastServerMsg("裂空之鹰开服红包开抢啦，只有5分钟时间，速速前往领取！");
+			
+	}
+   // java.lang.System.out.println(month+"-"+day+" "+hour+":"+min+" LABA WORK");
+}

@@ -1,0 +1,9 @@
+function start() {
+        //im.gainItem(2432668, -1);
+		//im.gainPet(5000038, "我是充值奖励", 1, 0, 100, 100, 0x211);
+		 im.gainNX(1, 3000000);
+		 im.gainNX(2, 3000000);
+		im.sendOk("#e恭喜您获得 #r测试点卷#k 。这个箱子可以无限开，但是不要开多了，用完再拿，不然会导致很卡。");
+		im.worldSpouseMessage(0x20,"『测试礼包』：恭喜玩家 "+ im.getChar().getName() +" 领取了测试点卷奖励");
+		im.dispose(); 
+}

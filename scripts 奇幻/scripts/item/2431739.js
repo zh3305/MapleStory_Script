@@ -1,0 +1,7 @@
+function start() {
+         im.gainItem(2431739, -1);
+         im.gainNX(2,1000);
+         im.sendOk("恭喜您获得 #r1000#k 低用卷。");
+     	 im.worldSpouseMessage(0x20,"[在线奖励] ：恭喜玩家 "+ im.getChar().getName() +" 在线满680分钟，领取[抵用券1000商品券]获得1000抵用。");
+         im.dispose(); 
+}

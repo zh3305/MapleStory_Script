@@ -1,0 +1,19 @@
+function start() {
+if (cm.getLevel()<160) {
+cm.sendOk('等级不够');
+cm.dispose();
+return ;
+}
+	if (cm.getBossLog("射手跳跳")<=0)
+	{
+		cm.gainItem(4310129, 10);
+		cm.gainNX(30000);
+		cm.sendOk("恭喜你获得了10个#v4310129##b#t4310129##k以及#r30000#k点卷");
+		cm.setBossLog("射手跳跳");
+		cm.dispose();
+	} else {
+		cm.sendOk("你今天已经领取过奖励了哦~每天只有一次领奖机会，可不要太贪心呢！");
+		cm.dispose();
+	}
+}
+

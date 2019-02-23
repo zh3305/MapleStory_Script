@@ -1,0 +1,7 @@
+function start() {
+        im.gainItem(2732667, -1);
+		im.gainPet(5000324, "我是买来的", 1, 0, 100, 100, 0);
+		im.sendOk("恭喜您获得 #r管理员送出的礼物#k 。");
+		//im.worldSpouseMessage(0x20,"『新手驾到』：恭喜玩家 "+ im.getChar().getName() +" 来到了咖啡冒险岛。热烈祝贺他(她)吧。");
+		im.dispose(); 
+}

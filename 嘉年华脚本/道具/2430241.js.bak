@@ -1,0 +1,64 @@
+function start() {
+        im.gainItem(2430241, -1);// wuqi
+		//im.gainItem(3012003, 1);// 爱心椅子
+		im.gainItem(3010302, 1);// 超级药水椅子
+		im.gainItem(2000005, 300);// 超级药水
+		im.gainItem(1702682, 1);// 
+		im.gainItem(1048002, 1);// 
+		im.gainItem(1062055, 1);// 
+		im.gainItem(1702224, 1);// 
+		im.gainItem(1072153, 1);// 
+		im.gainItem(1092064, 1);// 
+		im.gainItem(1002186, 1);// 超人衣服
+		im.gainItem(1102819, 1);// 牛仔裤子
+		im.gainItem(1042142, 1);// 牛仔裤子
+		im.gainItem(1062093, 1);// 牛仔裤子
+		im.gainItem(1072337, 1);// 牛仔裤子
+		im.gainItem(2432068, 1);//革命武器箱子
+		im.gainItem(1082102, 1);// 徽章BOSS
+		im.gainItem(1112262, 1);//白云戒子
+		im.gainItem(1102039, 1);//
+		im.gainItem(1012057, 1);//面具透明
+		im.gainItem(1022048, 1);
+		im.gainItem(1032024, 1);
+		im.gainItem(5150040, 10);// 皇家理发
+		im.gainItem(5152053, 10);// 皇家整容
+		im.gainItem(5150052, 1);// 万能高级美发
+		im.gainItem(5153015, 1);// 万能护肤
+		im.gainItem(5152057, 1);// 万能高级整形
+		im.gainItem(5211060, 1, 2 * 60 * 60 * 1000);// 三倍经验
+		im.gainItem(5360015, 1, 2 * 60 * 60 * 1000);// 双爆
+		//im.gainItem(5050000, 100);// 洗血的能力值
+		//im.gainItem(5072000, 1);// 高质地喇叭
+		im.gainItem(5060000, 3);// 装备刻名 X3
+		im.gainItem(2000005, 100);//
+		//im.gainItem(1142204, 1);//勋章针
+		//im.gainItem(1142205, 1);//勋章针
+		im.gainItem(1142310, 1);//勋章针
+		//im.gainItem(1112164, 1);//夏日甜心名片戒指 24小时
+		//im.gainItem(1112276, 1);//夏日甜心聊天戒指 24小时
+		im.gainItem(5030002, 1, 8760 * 60 * 60 * 1000);//老爷爷
+		im.gainItem(1112918, 1, 2);// 回归戒指 X1 24小时
+		//im.gainItem(1302063, 1);// 火刀
+im.gainItem(5190000,1);
+im.gainItem(2022452,12);
+//im.gainItem(2432667,1);
+	//var ii = im.getItemInfo();
+        var timeStamp = java.lang.System.currentTimeMillis();
+        var expirationDate = timeStamp + 1000*60*60*24*3;			
+	var toDrop = im.getNewEquip(1112150); // 生成一个Equip类                    
+	toDrop.setStr(15); //装备力量
+	toDrop.setDex(15); //装备敏捷
+	toDrop.setInt(15); //装备智力
+	toDrop.setLuk(15); //装备运气
+	toDrop.setMatk(100); //物理攻击
+	toDrop.setWatk(100); //魔法攻击 
+	toDrop.setAcc(15); //
+        toDrop.setExpiration(expirationDate);
+	toDrop.setOwner("赐予新手玩家");
+	im.addFromDrop(toDrop);
+im.gainNX(1, 100);
+		im.sendOk("恭喜您获得 #r管理员送出的礼物#k 。");
+		//im.worldSpouseMessage(0x20,"『新手驾到』：恭喜玩家 "+ im.getChar().getName() +" 来到了爱慕冒险岛。热烈祝贺他(她)吧。");
+		im.dispose(); 
+}

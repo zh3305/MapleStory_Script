@@ -1,0 +1,42 @@
+var status = -1;
+
+function action(mode, type, selection) {
+    if (mode == 1) {
+	status++;
+    } else {
+	status--;
+    }
+    if (cm.getPlayer().getMapId() == 925100700) {
+	cm.removeAll(4001117);
+	cm.removeAll(4031437);
+	cm.removeAll(4001120);
+	cm.removeAll(4001121);
+	cm.removeAll(4001122);
+	cm.removeAll(4001260);
+	cm.warp(251010404,0);
+	cm.dispose();
+	return;
+    }
+    switch(cm.getPlayer().getMapId()) {
+	case 925100000:
+	   cm.sendNext("我们这里是海盗船！我们要消灭所有的怪物保护它。\r\n#b请收集#b老海盗箱子的禁戒之枪#k7个。");
+	   cm.dispose();
+	   break;
+	case 925100100:
+	   cm.sendNext("我们这里是海盗船！我们要消灭所有的怪物保护它。\r\n#b请收集#b初级、#b中级、高级、海盗身份#k各20个。");
+	   cm.dispose();
+	   break;
+	case 925100400:
+	   cm.sendNext("我们这里是海盗船！我们要消灭所有的怪物保护它。\r\n#b请收集#b骷髅钥匙#k20个,并关闭所有大门。");
+	   cm.dispose();
+	   break;
+	case 925100500:
+	   if (cm.getMap().getAllMonstersThreadsafe().size() == 0) {
+		cm.warpParty(925100600);
+	   } else {
+	   	cm.sendNext("请消灭，老海盗船长！");
+	   }
+	   cm.dispose();
+	   break;
+    }
+}

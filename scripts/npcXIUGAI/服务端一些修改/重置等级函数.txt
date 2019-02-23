@@ -1,0 +1,54 @@
+
+
+构造1:
+
+MapleCharacter.java   部分：
+在 private int[] remainingSp = new int[10]; 下加
+
+private int[] remainingLevel = new int[10];
+
+
+for (int i = 0; i < this.remainingLevel.length; i++) {
+            this.remainingLevel[i] = 0;
+        }
+
+ret.remainingLevel = ct.remainingLevel;
+
+在String[] sp = rs.getString("sp").split(","); 下加
+
+String[] level = rs.getString("level").split(",");
+for (int i = 0; i < ret.remainingLevel.length; i++) {
+                ret.remainingLevel[i] = Integer.parseInt(level[i]);
+            }
+
+
+public void resetLevel(int level) {
+        for (int i = 0; i < this.remainingLevel.length; i++) {
+            this.remainingLevel[i] = level;
+        }
+        this.client.getSession().write(MaplePacketCreator.updateLevel(this, false));
+    }
+
+
+public void gainLevel(short level) {
+        this.remainingLevel = (short) (this.remainingLevel + level);
+        updateSingleStat(MapleStat.等级, this.remainingLevel);
+    }
+
+
+MaplePacketCreator.java    部分：
+
+public static byte[] updateLevel(MapleCharacter chr, boolean itemReaction) {
+        return updateLevel(chr, itemReaction, false); 
+    }
+    
+    
+    private static byte[] updateLevel(MapleCharacter chr, boolean itemReaction, boolean b) {
+        return updateLevel(chr, itemReaction, false); 
+    }
+
+构造2:
+public void gainAp(short ap) {
+        this.remainingAp = (short) (this.remainingAp + ap);
+        updateSingleStat(MapleStat.AVAILABLEAP, this.remainingAp);
+    }

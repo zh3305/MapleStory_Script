@@ -1,0 +1,33 @@
+        public void zidonglaba(String Text)
+        {
+            if (Text.isEmpty())
+		{
+			chr.dropMessage("[注意]文字过长，不能发送，最长为20个字！");
+			return;
+		}
+		for (Iterator n$ = ChannelServer.getAllInstances().iterator(); n$.hasNext();)
+		{
+			ChannelServer cservs = (ChannelServer)n$.next();
+			Iterator i$ = cservs.getPlayerStorage().getAllCharacters().iterator();
+			while (i$.hasNext())
+			{
+				MapleCharacter players = (MapleCharacter)i$.next();
+                                if (getHour() >= 0 || getHour() >= 5 || getHour() >= 10 || getHour() >=15 || getHour() >= 20)
+                                    Text = "Maplewings冒险岛活动多多精彩多多.Maplewings冒险岛祝大家游戏愉快!";
+                                        players.getClient().getSession().write(MaplePacketCreator.startMapEffect((new StringBuilder()).append("Maplewings管理员").append(":").append(Text).toString(), 5120000, true));
+                                if (getHour() >= 1 || getHour() >= 6 || getHour() >= 11 || getHour() >=16 || getHour() >= 21)
+                                    Text = "让我们一起拒绝外挂,一起携手打造美好的冒险环境!";
+                                        players.getClient().getSession().write(MaplePacketCreator.startMapEffect((new StringBuilder()).append("Maplewings管理员").append(":").append(Text).toString(), 5120007, true));
+                                if (getHour() >= 2 || getHour() >= 7 || getHour() >= 12 || getHour() >= 17 || getHour() >= 22)
+                                    Text = "祝大家能够在Maplewings冒险岛里玩的开心,好友成群!";
+                                        players.getClient().getSession().write(MaplePacketCreator.startMapEffect((new StringBuilder()).append("Maplewings管理员").append(":").append(Text).toString(), 5120009, true));
+                                if (getHour() >= 3 || getHour() >= 8 || getHour() >= 13 || getHour() >= 18 || getHour() >= 23)
+                                    Text = "Maplewings冒险岛有你们的支持,我们会做得更好!";
+                                        players.getClient().getSession().write(MaplePacketCreator.startMapEffect((new StringBuilder()).append("Maplewings管理员").append(":").append(Text).toString(), 5120005, true));
+                                if (getHour() >= 4 || getHour() >= 9 || getHour() >= 14 || getHour() >= 19 || getHour() >= 24)
+                                    Text = "欢迎来到Maplewings冒险岛,2线为全线PK频道,PK死后要掉装备和钱钱哟!";
+                                        players.getClient().getSession().write(MaplePacketCreator.startMapEffect((new StringBuilder()).append("Maplewings管理员").append(":").append(Text).toString(), 5120015, true));
+			}
+		}
+
+	}

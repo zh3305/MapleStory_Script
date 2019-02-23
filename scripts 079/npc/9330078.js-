@@ -1,0 +1,196 @@
+//5元修改   QQ:601143764
+//时间：2011.06.17
+//装备强化系统
+//70%成功，30%消失
+importPackage(java.util);
+importPackage(net.sf.odinms.client);
+importPackage(net.sf.odinms.server);
+
+var status = 0;
+var chance1 = Math.floor(Math.random()*200+1);
+var chance2 = Math.floor(Math.random()*50);
+var chance3 = (Math.floor(Math.random()*20)+1);
+var chance4 = Math.floor(Math.random()*2+1);
+var chance = Math.floor(Math.random()*20+1); 
+var itemamount = Math.floor(Math.random()*50+1);
+function start() {
+status = -1;
+action(1, 0, 0);
+}
+
+function action(mode, type, selection) {
+if (mode == -1) {
+cm.dispose();
+} else {
+if (status >= 2 && mode == 0) {
+cm.sendOk("你的运气应该是不错的,下次好运~!");
+cm.dispose();
+return;
+}
+if (mode == 1)
+status++;
+else
+status--;
+if (status == 0) {
+if (cm.haveItem(2340000) && cm.haveItem(4002001) && cm.haveItem(4031454)) { 
+           cm.sendSimple("#r5元冒险岛#k,物品强化装备系统\r\n#d成功率 = 70% 失败率 = 30%#k[强化一次消耗#r2元宝#k]\r\n\r\n#b强化效果：装备全属上升5~99点属性[包括攻击]#k\r\n本功能会自动选择装备栏的第一件装备强化!\r\n\r\n请勿把点装，坐骑等装备放在装备栏的第一位，否则后果自负\r\n#b强化会失败后装备会消失，请考虑清楚后再强化的装备!#k\r\n\r\n#L1#★★★★★★★★★★#b开始强化#k★★★★★★★★★"); 
+} else {
+cm.sendOk("#r5元冒险岛#k,装备强化系统\r\n#d成功率 = 70% 失败率 = 30%#k[强化一次消耗2元宝]\r\n你没有强化需要的物品：#v2340000# #v4002001# #v4031454#\r\n请先收集完毕再来强化~~");
+cm.dispose();
+}
+        }else if (status == 1){ 
+if(cm.getChar().getInventory(MapleInventoryType.EQUIP).getItem(1)==null){
+cm.sendOk("你的装备栏第一格没有装备，不能进行此操作!..");
+cm.dispose();
+return;
+}
+if(cm.getChar().getInventory(MapleInventoryType.EQUIP).getItem(1).getUpgradeSlots()<= 0){
+cm.sendOk("你的装备升级次数不足，不能进行此操作!..");
+cm.dispose();
+return;
+}
+			cm.gainItem(2340000, -1);
+			cm.gainItem(4002001, -1);
+			cm.gainItem(4031454, -1);
+if ((chance >= 1) && (chance <= 20)) {
+var item = cm.getChar().getInventory(MapleInventoryType.EQUIP).getItem(1).copy();
+var statup = new java.util.ArrayList();
+item.setStr(item.getStr() + 5);
+item.setDex(item.getDex() + 5);
+item.setInt(item.getInt() + 5);
+item.setLuk(item.getLuk() + 5);
+item.setwatk(item.getwatk() + 5);
+item.setmatk(item.getmatk() + 5);
+item.setwdef(item.getwdef() + 5);
+item.setmdef(item.getmdef() + 5);
+item.setUpgradeSlots((item.getUpgradeSlots() - 1));
+MapleInventoryManipulator.removeFromSlot(cm.getC(), MapleInventoryType.EQUIP, 1, 1, true);
+MapleInventoryManipulator.addFromDrop(cm.getChar().getClient(), item);
+			cm.gainItem(2340000, -1);
+			cm.gainItem(4002001, -1);
+			cm.gainItem(4031454, -1);
+cm.sendOk("#b恭喜你成功拉!快快看你的包裹吧!");
+cm.dispose();
+			}
+			else if ((chance >= 21) && (chance <= 40)) {
+var item = cm.getChar().getInventory(MapleInventoryType.EQUIP).getItem(1).copy();
+var statup = new java.util.ArrayList();
+item.setStr(item.getStr() + 5);
+item.setDex(item.getDex() + 5);
+item.setInt(item.getInt() + 5);
+item.setLuk(item.getLuk() + 5);
+item.setwatk(item.getwatk() + 5);
+item.setmatk(item.getmatk() + 5);
+item.setwdef(item.getwdef() + 5);
+item.setmdef(item.getmdef() + 5);
+item.setUpgradeSlots((item.getUpgradeSlots() - 1));
+MapleInventoryManipulator.removeFromSlot(cm.getC(), MapleInventoryType.EQUIP, 1, 1, true);
+MapleInventoryManipulator.addFromDrop(cm.getChar().getClient(), item);
+cm.sendOk("#b恭喜你成功拉!快快看你的包裹吧!\r\n装备属性全体上升5点！！");
+cm.dispose();
+			}
+			else if ((chance >= 41) && (chance <= 50)) {
+var item = cm.getChar().getInventory(MapleInventoryType.EQUIP).getItem(1).copy();
+var statup = new java.util.ArrayList();
+item.setStr(item.getStr() + 15);
+item.setDex(item.getDex() + 15);
+item.setInt(item.getInt() + 15);
+item.setLuk(item.getLuk() + 15);
+item.setwatk(item.getwatk() + 15);
+item.setmatk(item.getmatk() + 15);
+item.setwdef(item.getwdef() + 15);
+item.setmdef(item.getmdef() + 15);
+item.setUpgradeSlots((item.getUpgradeSlots() - 1));
+MapleInventoryManipulator.removeFromSlot(cm.getC(), MapleInventoryType.EQUIP, 1, 1, true);
+MapleInventoryManipulator.addFromDrop(cm.getChar().getClient(), item);
+cm.sendOk("#b恭喜你成功拉!快快看你的包裹吧!\r\n装备属性全体上升15点！！");
+cm.dispose();
+			}
+			else if ((chance >= 51) && (chance <= 60)) {
+var item = cm.getChar().getInventory(MapleInventoryType.EQUIP).getItem(1).copy();
+var statup = new java.util.ArrayList();
+item.setStr(item.getStr() + 35);
+item.setDex(item.getDex() + 35);
+item.setInt(item.getInt() + 35);
+item.setLuk(item.getLuk() + 35);
+item.setwatk(item.getwatk() + 35);
+item.setmatk(item.getmatk() + 35);
+item.setwdef(item.getwdef() + 35);
+item.setmdef(item.getmdef() + 35);
+item.setUpgradeSlots((item.getUpgradeSlots() - 1));
+MapleInventoryManipulator.removeFromSlot(cm.getC(), MapleInventoryType.EQUIP, 1, 1, true);
+MapleInventoryManipulator.addFromDrop(cm.getChar().getClient(), item);
+cm.sendOk("#b恭喜你成功拉!快快看你的包裹吧!\r\n装备属性全体上升35点！！");
+cm.dispose();
+			}
+			else if ((chance >= 61) && (chance <= 70)) {
+var item = cm.getChar().getInventory(MapleInventoryType.EQUIP).getItem(1).copy();
+var statup = new java.util.ArrayList();
+item.setStr(item.getStr() + 55);
+item.setDex(item.getDex() + 55);
+item.setInt(item.getInt() + 55);
+item.setLuk(item.getLuk() + 55);
+item.setwatk(item.getwatk() + 55);
+item.setmatk(item.getmatk() + 55);
+item.setwdef(item.getwdef() + 55);
+item.setmdef(item.getmdef() + 55);
+item.setUpgradeSlots((item.getUpgradeSlots() - 1));
+MapleInventoryManipulator.removeFromSlot(cm.getC(), MapleInventoryType.EQUIP, 1, 1, true);
+MapleInventoryManipulator.addFromDrop(cm.getChar().getClient(), item);
+cm.sendOk("#b恭喜你成功拉!快快看你的包裹吧!\r\n装备属性全体上升55点！！");
+cm.dispose();
+			}
+			else if ((chance >= 71) && (chance <= 80)) { 
+var item = cm.getChar().getInventory(MapleInventoryType.EQUIP).getItem(1).copy();
+var statup = new java.util.ArrayList();
+item.setStr(item.getStr() + 75);
+item.setDex(item.getDex() + 75);
+item.setInt(item.getInt() + 75);
+item.setLuk(item.getLuk() + 75);
+item.setwatk(item.getwatk() + 75);
+item.setmatk(item.getmatk() + 75);
+item.setwdef(item.getwdef() + 75);
+item.setmdef(item.getmdef() + 75);
+item.setUpgradeSlots((item.getUpgradeSlots() - 1));
+MapleInventoryManipulator.removeFromSlot(cm.getC(), MapleInventoryType.EQUIP, 1, 1, true);
+MapleInventoryManipulator.addFromDrop(cm.getChar().getClient(), item);
+cm.sendOk("#b恭喜你成功拉!快快看你的包裹吧!\r\n装备属性全体上升75点！！");
+cm.dispose();
+			}
+			else if ((chance >= 81) && (chance <= 90)) { 
+var item = cm.getChar().getInventory(MapleInventoryType.EQUIP).getItem(1).copy();
+var statup = new java.util.ArrayList();
+item.setStr(item.getStr() + 99);
+item.setDex(item.getDex() + 99);
+item.setInt(item.getInt() + 99);
+item.setLuk(item.getLuk() + 99);
+item.setwatk(item.getwatk() + 99);
+item.setmatk(item.getmatk() + 99);
+item.setwdef(item.getwdef() + 99);
+item.setmdef(item.getmdef() + 99);
+item.setUpgradeSlots((item.getUpgradeSlots() - 1));
+MapleInventoryManipulator.removeFromSlot(cm.getC(), MapleInventoryType.EQUIP, 1, 1, true);
+MapleInventoryManipulator.addFromDrop(cm.getChar().getClient(), item);
+cm.sendOk("#b恭喜你成功拉!快快看你的包裹吧!\r\n装备属性全体上升99点！！");
+cm.dispose();
+			}
+			else if ((chance >= 91) && (chance <= 100)) { 
+MapleInventoryManipulator.removeFromSlot(cm.getP(), MapleInventoryType.EQUIP, 1, 1, true);
+cm.sendOk("强化失败.装备消失.哎~~可怜的孩子,下次再努力吧~");
+cm.dispose();
+			}
+			else if ((chance >= 101) && (chance <= 110)) { 
+MapleInventoryManipulator.removeFromSlot(cm.getP(), MapleInventoryType.EQUIP, 1, 1, true);
+cm.sendOk("强化失败.装备消失.哎~~可怜的孩子,下次再努力吧~");
+cm.dispose();
+			}
+			else if ((chance >= 111) && (chance <= 120)) { 
+MapleInventoryManipulator.removeFromSlot(cm.getP(), MapleInventoryType.EQUIP, 1, 1, true);
+cm.sendOk("强化失败.装备消失.哎~~可怜的孩子,下次再努力吧~");
+cm.dispose();
+			}
+
+			cm.dispose();
+		}
+	}
+}

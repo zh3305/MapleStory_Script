@@ -1,0 +1,3 @@
+这些NPC是经过整理可以用于下面函数的NPC图片列表，代码就是文件名
+
+cm.getNpcNotice(npcid, "message", time)

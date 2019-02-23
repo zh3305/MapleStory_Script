@@ -1,0 +1,35 @@
+/*
+ * 商城NPC
+ */
+﻿var status;
+
+function start() {
+    status = -1;
+    cm.sendSimpleS("请选择需要的功能：\r\n\r\n#L2##b打开#b拍卖NPC#k#l\r\n", 2);
+}
+
+function action(mode, type, selection) {
+
+    if (mode == 0) {
+        cm.dispose();
+        return;
+    } else if (mode == 1) {
+        status++;
+    } else {
+        status--;
+    }
+
+    switch (selection) {
+        case 1: //
+            cm.dispose();//这是结束脚本，请按照实际情况使用
+            cm.enterCS();
+            break;
+        case 2:
+            cm.dispose();//这是结束脚本，请按照实际情况使用
+            cm.openNpc(9310362);
+            break;
+        case 3:
+            cm.dispose();
+            break;
+    }
+}

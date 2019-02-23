@@ -1,0 +1,4 @@
+function start() {
+	im.openNpc(9390324_1);
+        im.dispose(); 
+}

@@ -1,0 +1,66 @@
+﻿var status = 0;
+var bossid = "补偿礼包";
+var ca = java.util.Calendar.getInstance();
+var year = ca.get(java.util.Calendar.YEAR); //获得年份
+var month = ca.get(java.util.Calendar.MONTH) + 1; //获得月份
+var day = ca.get(java.util.Calendar.DATE); //获取日
+var hour = ca.get(java.util.Calendar.HOUR_OF_DAY); //获得小时
+var minute = ca.get(java.util.Calendar.MINUTE); //获得分钟
+var second = ca.get(java.util.Calendar.SECOND); //获得秒
+var weekday = ca.get(java.util.Calendar.DAY_OF_WEEK);
+function start() {
+    status = -1;
+    action(1, 0, 0);
+}
+
+function action(mode, type, selection) {
+    if (status == 0 && mode == 0) {
+        cm.dispose();
+        return;
+    }
+    if (mode == 1) {
+        status++;
+    } else {
+        status--;
+    }
+    if (status == 0) {
+		var text = "";
+                        if(minute >= 0 && minute <= 59){
+			text += "#b兔花花补偿礼包，做为老玩家我们将给予补偿作为奖励。#n\r\n#e#d要求：只要等级达到#r200#d级!\r\n";
+			text+="#r#L1#领取补偿礼包#l\r\n";
+			//text+="#b#L2#领取360分钟奖励【15000点卷和15000抵用券】#l";
+			cm.sendSimple(text);
+		} else {
+			cm.sendOk("#b兔花花补偿礼包，做为老玩家我们将给予补偿作为奖励。#n\r\n#r只要等级到达需要200级!\r\n领取#b#e10个#d超级神奇魔方#b，#b10个#d大师附加神奇魔方#n，#r300000#n#b点卷，#v2431725#5个。");
+			cm.dispose();
+		}
+	} else if (status == 1) {
+		typed = selection;
+		cm.sendYesNo("是否现在就领取补偿礼包，每个账号只能领取一次，并且角色等级需要大于等于200级。");
+	} else if (status == 2) {
+		
+		var needtime = 200;
+		
+		//if (cm.getOnlineTime()>=0) {
+                if (cm.getChar().getLevel()>=[needtime]) {
+			if (cm.getPQLog("补偿礼包20", 1) == 0) {
+				//cm.setPQLog(bossid+typed, -2);
+				cm.gainItem(5062009, 10);
+				cm.gainItem(5062500, 10);
+				cm.gainItem(2431725, 5);//热力四射礼物盒
+				cm.gainNX(300000);
+				//cm.gainNX(2, 300000);
+                                cm.setPQLog("补偿礼包20", 1);
+				cm.sendOk("#b领取成功！您获得了10个#d超级神奇魔方#b，#b10个#d大师附加神奇魔方#n，#r300000#n点卷，#v2431725#5个。");
+cm.worldSpouseMessage(0x15,"[补偿公告] 玩家"+ cm.getChar().getName() +" 领取10个超级神奇魔方，10个大师附加神奇魔方，300000点卷，热力四射礼物盒5个。");				cm.dispose(); 
+			} else {
+				cm.sendOk("领取失败，您已经领取过了");
+				cm.dispose();
+			}
+		} else {
+                        cm.sendOk("您的等级没达到160级,无法领取补偿！");
+			//cm.sendOk("您的在线时间不足"+cm.getOnlineTime()+"分钟！");
+			cm.dispose();
+		}
+	}
+}

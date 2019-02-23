@@ -1,0 +1,240 @@
+
+               case 2028009://高级装备强化卷轴3个交换券
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028009);
+                    break;
+                 case 2028010://高级装备强化卷轴2个交换券
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028010);
+                    break;
+                 case 2028011://装备强化卷轴3个交换券
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028011);
+                    break;
+                case 2028012://装备强化卷轴2个交换券
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028012);
+                    break;
+                 case 2028013://高级潜能附加卷轴3个交换券
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028013);
+                    break;
+                 case 2028014://高级潜能附加卷轴2个交换券
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028014);
+                    break;
+                case 2028015://潜能附加卷轴3个交换券
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028015);
+                    break;
+                case 2028016://潜能附加卷轴2个交换券
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028016);
+                    break;
+                case 2028063://胡萝卜椅子交换券
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028063);
+                    break;
+                case 2028064://温度计交换券
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028064);
+                    break;
+                case 2028065://祝福卷轴交换券
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028065);
+                    break;
+
+
+
+
+               case 2022670://黑龙箱子
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2022670);
+                    break;
+                case 2022671://彪鲁的礼物箱 
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2022671);
+                    break;
+                case 2022678://黑龙箱子
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2022678);
+                    break;
+                    
+                case 2022719://阿尼的箱子
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2022719);
+                    break;
+                case 2022723://拯救克里塞的报答
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2022723);
+                    break;
+                case 2022735://新世界纪念礼物箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2022735);
+                    break;
+                    
+                case 2022736://新世界纪念特别礼物箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2022736);
+                    break;
+                case 2022737://新世界纪念礼物箱3
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2022737);
+                    break;
+                case 2022738://回归玩家活动纪念礼物箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2022738);
+                    break;
+                case 2022748://问答明星K入场礼物箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2022748);
+                    break;
+                case 2022788://闪烁的阿尼箱子
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2022788);
+                    break;
+                case 2028000://枫叶武器箱1代
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028000);
+                    break;
+                case 2028001://枫叶武器箱2代
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028001);
+                    break;
+                case 2028002://枫叶武器箱3代
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028002);
+                    break;
+                case 2028003://枫叶武器箱4代
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028003);
+                    break;
+                case 2028004://7周年礼物箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028004);
+                    break;
+                case 2028008://紫色假面舞会面具交换券
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028008);
+                    break;
+                case 2028018://矿工的矿石袋
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028018);
+                    break;
+                case 2028019://鉴定师的宝石袋
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028019);
+                    break;
+                case 2028020://梅逊的水晶袋
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028020);
+                    break;
+                case 2028024://月饼礼物套装
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028024);
+                    break;
+                    
+                case 2028030://进阶黑龙箱子
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028030);
+                    break;
+                case 2028031://进阶黑龙箱子
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028031);
+                    break;
+                case 2028033://薛西斯的战士武器箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028033);
+                    break;
+                case 2028034://薛西斯的魔法师武器箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028034);
+                    break;
+                case 2028035://薛西斯的弓箭手武器箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028035);
+                    break;
+                case 2028036://薛西斯的飞侠武器箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028036);
+                    break;
+                
+                case 2028037://薛西斯的海盗武器箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028037);
+                    break;
+                case 2028040://恶魔骰子
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028040);
+                    break;
+                case 2028041://美味的果实
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028041);
+                    break;
+                case 2028042://更美味的果实
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028042);
+                    break;
+                case 2028043://非常美味的果实
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028043);
+                    break;
+                case 2028044://闪亮的钻石
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028044);
+                    break;
+                    
+                case 2028045://更闪亮的钻石
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028045);
+                    break;
+                case 2028046://非常闪亮的钻石
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028046);
+                    break;
+                case 2028047://兔子礼物箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028047);
+                    break;
+                 //case 2028048://未知金币包
+                 //   NPCScriptManager.getInstance().startItem(c, 9010000, 2028048);
+                 //   break;
+                case 2028049://爽口的果实
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028049);
+                    break;
+                case 2028050://更爽口的果实
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028050);
+                    break;
+                    
+                case 2028051://非常爽口的果实
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028051);
+                    break;
+                case 2028052://华丽的钻石
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028052);
+                    break;
+                case 2028053://更华丽的钻石
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028053);
+                    break;
+                case 2028054://非常华丽的钻石
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028054);
+                    break;
+                case 2028055://甜美的果实
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028055);
+                    break;
+                case 2028056://更甜美的果实
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028056);
+                    break;
+                    
+                case 2028057://非常甜美的果实
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028057);
+                    break;
+                case 2028058://灿烂的钻石
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028058);
+                    break;
+                case 2028059://更灿烂的钻石
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028059);
+                    break;
+                case 2028060://非常灿烂的钻石
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028060);
+                    break;
+                case 2028061://不可思议的卷轴卷
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028061);
+                    break;
+                case 2028062://不可思议的配方卷
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028062);
+                    break;
+                    
+                case 2028066://斯塔切的药草袋
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028066);
+                    break;
+                case 2028067://诺布的矿物袋
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028067);
+                    break;
+                case 2028068://福满新年礼物
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028068);
+                    break;
+                case 2028069://可爱的福满月妙
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028069);
+                    break;
+                case 2028073://堆砖块大师箱子
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028073);
+                    break;
+                case 2028074://出席报到箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028074);
+                    break;
+                    
+                case 2028075://2012遗物大会礼物箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028075);
+                    break;
+                case 2028076://神秘遗物箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028076);
+                    break;
+                case 2028079://休彼德蔓的药草袋
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028079);
+                    break;
+                case 2028080://休彼德蔓的矿物袋
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028080);
+                    break;
+                case 2028083://3000天纪念礼物箱
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2028083);
+                    break;
+
+                case 2240014://银翼戒指2克拉
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2240014);
+                    break;
+                case 2240015:///银翼戒指3克拉
+                    NPCScriptManager.getInstance().startItem(c, 9010000, 2240015);
+                    break;

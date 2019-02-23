@@ -1,0 +1,32 @@
+
+
+public void MakeGMItem (byte slot, MapleCharacter player) {
+MapleInventory equip = player.getInventory(MapleInventoryType.EQUIP);
+Equip eu = (Equip) equip.getItem(slot);
+int item = equip.getItem(slot).getItemId();
+MapleJob job = eu.getJob();
+short hand = eu.getHands();
+byte level = eu.getLevel();
+Equip nItem = new Equip(item, equip.getNextFreeSlot());
+nItem.setStr((short) 32000); // STR
+nItem.setDex((short) 32000); // DEX
+nItem.setInt((short) 32000); // INT
+nItem.setLuk((short) 32000); //LUK
+nItem.setHp((short) 32000); // HP
+nItem.setMp((short) 32000); // MP
+nItem.setWatk((short) 32000); //WATK
+nItem.setMatk((short) 32000); //MATK
+nItem.setWdef((short) 32000); //WDEF
+nItem.setMdef((short) 32000); //MDEF
+nItem.setAcc((short) 32000); // ACC
+nItem.setAvoid((short) 32000); // AVOID
+nItem.setSpeed((short) 40); // SPEED ( 140% is max speed )
+nItem.setJump((short) 30); //JUMP ( 130% is max jump )
+nItem.setUpgradeSlots((byte) 10); // 可升级次??
+nItem.setJob(job);
+nItem.setHands(hand);
+nItem.setLevel(level);
+nItem.setRingId(-1);
+player.getInventory(MapleInventoryType.EQUIP).addFromDB(nItem);
+equip.removeItem(slot);  // 原始物品删除
+}

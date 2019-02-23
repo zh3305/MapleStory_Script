@@ -1,0 +1,150 @@
+/*
+ 夕阳制作★China冒险岛
+ 完成时间：2015年4月28日 16:34:19
+ 脚本功能：商城系统
+ */
+
+var a = 0;
+var icon = "#fUI/Basic.img/BtMin2/normal/0#";
+var iconX = "#fEffect/CharacterEff/1112905/0/1#";
+var iconStar = "#fEffect/CharacterEff/1112904/2/1#";
+var icon2 = "#fEffect/CharacterEff/1082565/4/0#";
+var icon3 = "#fUI/UIWindow/Quest/icon6/7#";
+var iconEvent = "#fUI/UIToolTip.img/Item/Equip/Star/Star#";
+var vvv = "#fUI/UIWindow.img/Quest/icon8/0#";
+var List = Array(
+		
+		//校园助手
+        Array(icon3+"#r#e 赞助理财#l", 17, 1, 9310144),
+		Array(icon3+"#r 游戏充值#l", 1000,1,1),
+		Array(icon3+"#r 充值奖励#l",  8, 1, 9310144),
+		Array("  "+icon3+"#r#e 元宝兑换  #l", 101, 2, 9310144),
+        Array(icon3+"#r 银行存款  #l", 14, 2 , 9900003), 
+		Array(icon3+"#r 开店取货#l", 0, 2 , 9030000),
+		Array("#d───────────────────────", 1, 2, 0),
+		Array("  "+vvv+"#b 普通椅子 #l", 1, 3,3000021),
+		Array(vvv+"#b 神奇骑宠   #l", 2, 3,3000021),
+        Array(vvv+"#b 炫酷玩具  #l", 3, 3,3000021),
+		Array("  "+vvv+"#b 特效戒指 #l", 4, 3,3000021),
+		Array(vvv+"#b 道具魔方   #l", 5, 3,3000021),
+        Array(vvv+"#b 闪耀点装#l", 0, 3, 2120017),
+        Array("  "+vvv+"#d 稀有椅子 #l", 7, 3,3000021),
+		Array(vvv+"#d 极品首饰   #l", 8, 3,3000021),
+        Array(vvv+"#d 极品点装  #l", 9, 3,3000021),
+		Array("  "+vvv+"#d 极品卷轴 #l", 10, 4,3000021),
+		Array(vvv+"#d 三倍双暴   #l", 21, 4,3000021),
+        Array(vvv+"#d 法弗武器#l", 6, 4,3000021),
+		Array("  "+vvv+"#d 伤害皮肤 #l", 13, 4,3000021),
+		Array(vvv+"#d 绝版点装   #l", 14, 4,3000021),
+        Array(vvv+"#d 敬请期待  #l", 15, 4,3000021),
+
+        //Array("  "+vvv+"#d 贝勒套装 #l", 19, 4,3000021),
+		//Array(vvv+"#d 暴君套装   #l", 20, 4,3000021),
+        //Array(vvv+"#d 超神套装   #l", 10, 4 , 9010022),
+		Array("#d─────────────────────────\r\n", 1, 4, 0)
+
+		
+);
+
+var text;
+//是否活动，名字，模式，类别
+
+function start() {
+    a = -1;
+    action(1, 0, 0);
+}
+
+function action(mode, type, selection) {
+    if (mode == -1) {
+        cm.dispose();
+    } else {
+        if (mode == 1)
+            a++;
+        else
+            a--;
+        if (a == -1) {
+            cm.dispose();
+        } else if (a == 0) {
+			var myRmb = getMyRmb();
+			text = "";
+text += "     #fUI/UIWindow2.img/QuestAlarm/BtQ/normal/0# 元宝：#r"+myRmb+"#n#k      #fUI/UIWindow2.img/QuestAlarm/BtQ/normal/0# 点卷：#r" + cm.getPlayer().getCSPoints(1) + " #k\r\n     #fUI/UIWindow2.img/QuestAlarm/BtQ/normal/0# 国庆币：#r"+cm.getItemQuantity(4000463) + " #k";			for (var i = 0; i < 5; i++) {
+                ListFor(i);
+            }
+			text += "\r\n#e#g\t\t  "+icon2+" China冒险岛祝您游戏愉快 "+ icon2 +"#n#k\r\n";
+            cm.sendSimple(text)
+        } else if (a == 1) {
+            var mode_ = List[selection][1];
+            
+			var npcid = 9900003;
+			if (List[selection][3] != null)
+				npcid = List[selection][3];
+			if (npcid == 0) {
+				a=-1;
+				cm.sendSimple("哎哟，你点到我咪咪了。");
+			} else if (npcid == 1) {
+				cm.dispose();
+				cm.openWeb("http://my1.libaopay.com/buy/?wid=62259");
+			} else {
+				cm.dispose();
+            	cm.openNpc(npcid, mode_);
+			}
+		}//a
+    }//mode
+}//f
+
+
+function ListFor(type) {
+    switch (type) {
+        case 1://游戏乐园
+            text += "\r\n"+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+iconX+"#k";
+            break;
+		case 2:
+			text+=  "#n";
+			break;
+		case 3:
+			text+=  "#n";
+			break;
+    }
+    var x = 0;
+    for (var i = 0; i < List.length; i++) {
+        if (List[i][2] == type) {
+			if (List[i][2]==1) 
+				text+="  ";
+			if (List[i][2]==2)
+				y = 3;
+			else 
+				y = 2;
+			if (x==1 && List[i][2]>2) {
+				text+=" ";
+			}
+            if (x == y) {
+                text += "#L" + i + "#" + List[i][0] + "#l\r\n";
+                x = 0;
+            } else {
+                text += "#L" + i + "#" + List[i][0] + "#l";
+                x++;
+            }
+			if (x==1 && List[i][2]>2) {
+				text+=" ";
+			}
+        }
+    }
+	//text+="#e\r\n";
+}
+
+function getMyRmb() {
+	var myRmb;
+	var conn = cm.getConnection();
+	var sql = "select rmb from accounts where id = ?;";
+	var pstmt = conn.prepareStatement(sql);
+	pstmt.setString(1, cm.getPlayer().getAccountID());
+	var myRmbSql = pstmt.executeQuery();
+	if (myRmbSql.next()) {
+		myRmb = myRmbSql.getString("rmb");
+	} else {
+		myRmb = 0;
+	}
+	myRmbSql.close();
+	pstmt.close();
+	return myRmb;
+}

@@ -1,0 +1,136 @@
+
+    public void gainMeso(int gain) {
+        this.c.getPlayer().gainMeso(gain, true, true);
+    }
+
+    public void gainExp(int gain) {
+        this.c.getPlayer().gainExp(gain, true, true, true);
+    }
+
+    public void gainExpR(int gain) {
+        this.c.getPlayer().gainExp(gain * this.c.getChannelServer().getExpRate(), true, true, true);
+    }
+
+
+
+cm.getChar().getAccountID()==1  //取得玩家 账号 ID
+
+cm.gainItem(item2,1); //给予 玩家 物品
+
+cm.changeJob(231);   //改变 玩家 职业
+
+cm.getVipname()    //取得 玩家 VIP 称号
+
+cm.getJob() == 220  //取得职业代码
+
+
+
+cm.removeNpc(270050100, 2141000);  //移除NPC的方法函数
+             地图ID     NPC ID 
+
+cm.resetAPSP;   //重置AP和SP函数
+
+cm.spawnMob(8840010, 0, -181);    //定点召唤怪物函数
+       召唤的怪物ID，x坐标  ，Y坐标
+
+// 执行NPC召唤脚本。。（打jio出囧）
+var status = -1;
+
+function start() {
+    cm.askAcceptDecline("你们谁来打败我？或者你们是反黑魔法师联盟的人？不管你是谁…没有必要再谈下去,\r\n来吧!你们这些傻瓜!");
+}
+
+
+function action(mode, type, selection) {
+    if (mode == 1 && cm.getMap().getAllMonstersThreadsafe().size() == 0) {
+	cm.removeNpc(cm.getMapId(), 2161000);//移除NPC 地图cm.getMapId() 上的NPC 2161000
+	cm.spawnMob(8840010, 0, -181);  // 在 坐标 x :0  y : -181  召唤 狮子王 8840010
+	if (!cm.getPlayer().isGM()) {
+		cm.getMap().startSpeedRun();
+	}
+    }
+    cm.dispose();
+}
+
+
+
+
+
+  cm.getSpace(4) < 5  // 判断  背包 其他  的空格是否小于5
+  
+  cm.getSpace(3) < 5  // 判断  背包 设置  的空格是否小于5
+
+  cm.getSpace(2) < 5  // 判断  背包 消耗  的空格是否小于5
+
+  cm.getSpace(1) < 5  // 判断  背包 装备  的空格是否小于5
+
+  cm.getSpace(5) < 5  // 判断  背包 特殊  的空格是否小于5
+
+if (cm.getSpace(4) < 5) {
+ cm.sendOk("你的背包“其它”空间不足!请至少有5个空间以上.");
+
+ 
+    /**
+     * 根据地图ID获取该地图上的玩家数量
+     *
+     * @param mapid 地图ID
+     * @return
+     */
+    public int getPlayerCount(int mapid) {
+        retturn this.c.getChannelServer().getMapFactory().getMap(mapid).getCharactersSize();
+    }
+
+
+/**
+     * 根据地图ID获取该地图的怪物数量
+     *
+     * @param mapid 地图ID
+     * @return
+     */
+    public int getMonsterCount(int mapid) {
+        return this.c.getChannelServer().getMapFactory().getMap(mapid).getNumMonsters();
+    }
+
+
+
+
+
+
+ 
+//查看 角色是否 装备了ID为 itemid  的装备
+
+   public boolean hasEquipped(int itemid) {
+        return this.inventory[MapleInventoryType.EQUIPPED.ordinal()].countById(itemid) >= 1;
+    }
+
+
+
+//查看 角色 物品数据 是否存在 ID为 Itemid  的物品
+
+    public boolean haveItem(int itemid, int quantity, boolean checkEquipped, boolean greaterOrEquals) {
+        MapleInventoryType type = GameConstants.getInventoryType(itemid);
+        int possesed = this.inventory[type.ordinal()].countById(itemid);
+        if ((checkEquipped) && (type == MapleInventoryType.EQUIP)) {
+            possesed += this.inventory[MapleInventoryType.EQUIPPED.ordinal()].countById(itemid);
+        }
+        if (greaterOrEquals) {
+            return possesed >= quantity;
+        }
+        return possesed == quantity;
+    }
+
+    //quantity  为数量
+    public boolean haveItem(int itemid, int quantity) {
+        return haveItem(itemid, quantity, true, true);
+    }
+
+    public boolean haveItem(int itemid) {
+        return haveItem(itemid, 1, true, true);
+    }
+
+// 取得 角色 物品代码 为 itemid 的数量
+    public int getItemQuantity(int itemid) {
+        return this.c.getPlayer().getItemQuantity(itemid);
+    }
+
+

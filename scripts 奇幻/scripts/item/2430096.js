@@ -1,0 +1,23 @@
+function start() {
+    im.gainItem(2430096,-1 ,1);
+	var ii = im.getItemInfo();					
+	var toDrop = ii.randomizeStats(ii.getEquipById(1332225)).copy(); // 生成一个Equip类                    
+	//toDrop.setEnhance(30); //装备星
+	toDrop.setStr(9999); //装备力量
+	toDrop.setDex(9999); //装备敏捷
+	toDrop.setInt(9999); //装备智力
+	toDrop.setLuk(9999); //装备运气
+	toDrop.setMatk(9999); //物理攻击
+	toDrop.setWatk(9999); //魔法攻击 
+	//toDrop.setSpeed(999); //移动速度
+	//toDrop.setJump(999); //跳跃
+	toDrop.setAcc(9999); //命中
+	//var timeStamp = java.lang.System.currentTimeMillis();
+	//var expirationDate = timeStamp+7*86400*1000;
+	//toDrop.setExpiration(expirationDate);
+	toDrop.setOwner("China冒险岛");
+	im.addFromDrop(im.getC(), toDrop, false);
+    im.sendOk("恭喜您获得 #r管理员送出的礼物#k 。");
+	im.worldSpouseMessage(0x1,"[岛内新闻]：玩家 "+ im.getChar().getName() +" 来到China冒险岛！");
+	im.dispose(); 
+}

@@ -1,0 +1,22 @@
+function start() {
+    im.gainItem(2430226, -1);
+	var ii = im.getItemInfo();					
+	var toDrop = ii.randomizeStats(ii.getEquipById(1102630)).copy(); // 生成一个Equip类                    
+	toDrop.setStr(15); //装备力量
+	toDrop.setDex(15); //装备敏捷
+	toDrop.setInt(15); //装备智力
+	toDrop.setLuk(15); //装备运气
+	toDrop.setMatk(15); //物理攻击
+	toDrop.setWatk(15); //魔法攻击 
+	toDrop.setSpeed(15); //移动速度
+	toDrop.setJump(15); //跳跃
+	toDrop.setAcc(15); //
+	var timeStamp = java.lang.System.currentTimeMillis();
+	var expirationDate = timeStamp+7*86400*1000;
+	toDrop.setExpiration(expirationDate);
+	toDrop.setOwner("神级觉醒");
+	im.addFromDrop(im.getC(), toDrop, false);
+	im.channelMessage(0x18, "『充值奖励』" + " : " + "玩家 " + im.getChar().getName() + " 从限量大乱斗礼包中获得了 神级觉醒 浪漫四翼天使 7天权 一个");
+	im.sendOk("成功获得 #r浪漫四翼天使 7天权#k 一个。7天内充值累计满3000元，可兑换永久#b#v1102624##t1102624#或#v1102572##t1102572#。");
+	im.dispose(); 
+}

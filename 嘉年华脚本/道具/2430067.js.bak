@@ -1,0 +1,11 @@
+﻿function start() {
+    if (im.getSpace(2)>=5) {
+       im.gainItem(2434020,-1);
+       im.gainItem(2048724,5);
+       im.sendOk("恭喜获得#r#e5#k#n个#v2048724#，请保持消耗5个空格再使用!");
+       im.dispose();
+} else {
+     im.sendOk("请检查消耗栏是否有5个格子以上");
+    }
+    im.dispose();
+}

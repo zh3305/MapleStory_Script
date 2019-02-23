@@ -1,0 +1,11 @@
+﻿function start() {
+    if (im.getSpace(2)>=5) {
+       im.gainItem(2434026,-1);
+       im.gainItem(2048721,5);
+       im.sendOk("恭喜获得#r#e10#k#n个#v2048721#，请保持消耗10个空格在使用!");
+       im.dispose();
+} else {
+     im.sendOk("请保留消耗栏里只有有5个格子以上");
+    }
+    im.dispose();
+}

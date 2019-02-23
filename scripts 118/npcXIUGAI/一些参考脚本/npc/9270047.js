@@ -1,0 +1,10 @@
+function start() {
+    cm.sendYesNo("ÄãÏë³öÈ¥Âð£¿");
+}
+
+function action(mode, type, selection) {
+    if (mode == 1) {
+        cm.warp(551030100);
+    }
+    cm.dispose();
+}

@@ -1,0 +1,26 @@
+function start() {
+    if (im.getSpace(2) < 1 && im.getSpace(1) < 10 && im.getSpace(5) < 3) {
+        im.sendOk("请让你背包装备栏腾出10个空格。");
+		im.dispose();
+    } else {
+        im.gainItem(2430241,-1)
+        im.gainItem(2000005, 300);//超级药水
+        im.gainItem(1012057, 1 ,7);//透明面具
+        im.gainItem(1022048, 1 ,7);//透明眼饰
+        im.gainItem(1002186, 1 ,7);//透明帽
+        im.gainItem(1072153, 1 ,7);//透明鞋
+        im.gainItem(1082102, 1 ,7);//透明手套
+		cm.gainItem(1032024, 1 ,7);//透明耳环
+        im.gainItem(1042096, 1);//超人T恤
+        im.gainItem(1062098, 1);//水叮当牛仔裤
+        im.gainItem(5151036, 1);//万能高级染发卡	
+        im.gainItem(5152057, 1);//万能高级整形卡	
+        im.gainItem(5150052, 1);//万能高级美发卡	
+        im.gainItem(1112116, 1);//白云名片戒指	
+        im.gainItem(1112226, 1);//白云聊天戒指	
+        im.gainItem(1142263, 1);//可爱的新手	
+        im.gainItem(3700012, 1);//我最可爱	
+        im.sendOk("请打开装备栏、消耗栏、特殊栏查收。");
+		im.dispose();
+    }
+}

@@ -1,0 +1,2408 @@
+首先 打开   MapleCharacter.java 在最后 的一个 ｝ 添加 一面语句：
+
+----------------------分割线------------------------------
+
+
+
+    public String 取得委托任务名称(int ms, int ids) {
+        String mm = "该委托任务名称不存在 ID：" + ids;
+        try {
+            Connection con = DatabaseConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from maplewingwt where id = ?");
+          //  ps.setInt(1, this.id);
+            ps.setInt(1, ids);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                if (ms == 1) {
+                mm = rs.getString("name");
+                } else {
+                    mm = rs.getString("neirong");
+                }
+            }
+        } catch (SQLException ex) {
+            log.error("取得委托任务名称 wt信息发生错误", ex);
+
+        }
+        return mm;
+    }
+    
+    
+     public int 取得委托任务信息(String te, int ids) {
+        int tp = -2;
+        
+        try {
+            Connection con = DatabaseConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from maplewingwt where id = ?");
+          //  ps.setInt(1, this.id);
+            ps.setInt(1, ids);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                switch (te) {
+                    case "id":
+                        tp = rs.getInt("id");
+                        break;
+                    case "fnpc":
+                        tp = rs.getInt("fnpc");
+                        break;
+                    case "nid":
+                        tp = rs.getInt("nid");
+                        break;
+                    case "nlevel":
+                        tp = rs.getInt("nlevel");
+                        break;
+                    case "njob":
+                        tp = rs.getInt("njob");
+                        break;
+                    case "nchongxiu":
+                        tp = rs.getInt("nchongxiu");
+                        break;
+                    case "nguild":
+                        tp = rs.getInt("nguild");
+                        break;
+                    case "mob":
+                        tp = rs.getInt("mob");
+                        break;
+                    case "nmob":
+                        tp = rs.getInt("nmob");
+                        break;
+                    case "item":
+                        tp = rs.getInt("item");
+                        break;
+                    case "nitem":
+                        tp = rs.getInt("nitem");
+                        break;
+                    case "npc":
+                        tp = rs.getInt("npc");
+                        break;
+                    case "map":
+                        tp = rs.getInt("map");
+                        break;
+                    case "reward1maple":
+                        tp = rs.getInt("reward1maple");
+                        break;
+                    case "reward2mapley":
+                        tp = rs.getInt("reward2mapley");
+                        break;
+                    case "reward3wmose":
+                        tp = rs.getInt("reward3wmose");
+                        break;
+                        
+                    case "reward4emose":
+                        tp = rs.getInt("reward4emose");
+                        break;
+                    case "reward5nx":
+                        tp = rs.getInt("reward5nx");
+                        break;
+                        
+                   case "rewarditem":
+                        tp = rs.getInt("rewarditem");
+                        break;
+                        
+                    case "itemsl":
+                        tp = rs.getInt("itemsl");
+                        break;
+                    case "maxcishu":
+                        tp = rs.getInt("maxcishu");
+                        break;
+                    case "exp":
+                        tp = rs.getInt("exp");
+                        break;
+                    case "meso":
+                        tp = rs.getInt("meso");
+                        break;
+                    case "level":
+                        tp = rs.getInt("level");
+                        break;
+                    case "hastrue":
+                        tp = rs.getInt("hastrue");
+                        break;
+                        
+                        
+                    default:
+                        tp = -5;
+                        break;
+                }
+            
+            }
+        } catch (SQLException ex) {
+            tp = -9;
+           // log.error("获取Maplewing wt信息发生错误", ex);
+            return tp;//-2
+        }
+        return tp;
+    }
+     
+     public int 取得玩家委托任务信息(String te) {
+         return 取得玩家委托任务信息(te, this.id);
+     }
+     
+     public String 取得委托玩家名称() {
+         return 取得委托玩家名称(this.id);
+     }
+     
+     public String 取得委托玩家名称(int ids) {
+         String mms = "未知";
+        try {
+         Connection con = DatabaseConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from maplewingplayerwt where id = ?");
+          //  ps.setInt(1, this.id);
+            ps.setInt(1, ids);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                mms = rs.getString("name");
+            }
+            
+        } catch (SQLException ex) {
+            log.error("获取Maplewing wt信息发生错误", ex);
+        }
+            
+         return mms;
+                 
+     }
+     
+     public int 取得玩家委托任务信息(String te, int ids) {
+        int tp = -2;
+        
+        try {
+            Connection con = DatabaseConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from maplewingplayerwt where id = ?");
+          //  ps.setInt(1, this.id);
+            ps.setInt(1, ids);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                switch (te) {
+                    case "id":
+                        tp = rs.getInt("id");
+                        break;
+                    case "renwu1":
+                        tp = rs.getInt("renwu1");
+                        break;
+                    case "mobid1":
+                        tp = rs.getInt("mobid1");
+                        break;
+                    case "mob1":
+                        tp = rs.getInt("mob1");
+                        break;
+                    case "renwu2":
+                        tp = rs.getInt("renwu2");
+                        break;
+                    case "mobid2":
+                        tp = rs.getInt("mobid2");
+                        break;
+                    case "mob2":
+                        tp = rs.getInt("mob2");
+                        break;
+                    case "renwu3":
+                        tp = rs.getInt("renwu3");
+                        break;
+                    case "mobid3":
+                        tp = rs.getInt("mobid3");
+                        break;
+                    case "mob3":
+                        tp = rs.getInt("mob3");
+                        break;
+                    case "renwu4":
+                        tp = rs.getInt("renwu4");
+                        break;
+                    case "mobid4":
+                        tp = rs.getInt("mobid4");
+                        break;
+                    case "mob4":
+                        tp = rs.getInt("mob4");
+                        break;
+                    case "renwu5":
+                        tp = rs.getInt("renwu5");
+                        break;
+                        
+                    case "mobid5":
+                        tp = rs.getInt("mobid5");
+                        break;
+                    case "mob5":
+                        tp = rs.getInt("mob5");
+                        break;
+                        
+                   case "renwu6":
+                        tp = rs.getInt("renwu6");
+                        break;
+                    case "mobid6":
+                        tp = rs.getInt("mobid6");
+                        break;
+                    case "mob6":
+                        tp = rs.getInt("mob6");
+                        break;
+                    case "renwu7":
+                        tp = rs.getInt("renwu7");
+                        break;
+                    case "mobid7":
+                        tp = rs.getInt("mobid7");
+                        break;
+                    case "mob7":
+                        tp = rs.getInt("mob7");
+                        break;
+                    case "renwu8":
+                        tp = rs.getInt("renwu8");
+                        break;
+                    case "mobid8":
+                        tp = rs.getInt("mobid8");
+                        break;
+                    case "mob8":
+                        tp = rs.getInt("mob8");
+                        break;
+                    case "renwu9":
+                        tp = rs.getInt("renwu9");
+                        break;
+                        
+                    case "mobid9":
+                        tp = rs.getInt("mobid9");
+                        break;
+                    case "mob9":
+                        tp = rs.getInt("mob9");
+                        break;
+                        
+                    default:
+                        tp = -5;
+                        break;
+                }
+            }  else {
+                if (ids == this.id) {
+                PreparedStatement psu = con.prepareStatement("insert into maplewingplayerwt (id, name, renwu1, mobid1, mob1, renwu2, mobid2, mob2, renwu3, mobid3, mob3, renwu4, mobid4, mob4, renwu5, mobid5, mob5, renwu6, mobid6, mob6, renwu7, mobid7, mob7, renwu8, mobid8, mob8, renwu9, mobid9, mob9) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                psu.setInt(1, this.id);
+                psu.setString(2, this.name);
+                psu.setInt(3, 0);//1
+                psu.setInt(4, 0);
+                psu.setInt(5, 0);
+                psu.setInt(6, 0);//2
+                psu.setInt(7, 0);
+                psu.setInt(8, 0);
+                psu.setInt(9, 0);//3
+                psu.setInt(10, 0);
+                psu.setInt(11, 0);
+                psu.setInt(12, -1);//4
+                psu.setInt(13, 0);
+                psu.setInt(14, 0);
+                psu.setInt(15, -1);//5
+                psu.setInt(16, 0);
+                psu.setInt(17, 0);
+                psu.setInt(18, -1);//6
+                psu.setInt(19, 0);
+                psu.setInt(20, 0);
+                psu.setInt(21, -1);//7
+                psu.setInt(22, 0);
+                psu.setInt(23, 0);
+                psu.setInt(24, -1);//8
+                psu.setInt(25, 0);
+                psu.setInt(26, 0);
+                psu.setInt(27, -1);//9
+                psu.setInt(28, 0);
+                psu.setInt(29, 0);
+                psu.executeUpdate();
+                psu.close();
+            } else {
+                dropMessage(5, "所输入的账户ID不存在.");
+                return tp;
+                }
+            ps.close();
+            rs.close();
+            }
+            
+            
+        } catch (SQLException ex) {
+            log.error("获取Maplewing wt信息发生错误", ex);
+            return tp;//-2
+        }
+        return tp;
+    }
+    
+     public void 设置委托任务名称(String das, int ids) {
+
+         try {
+            Connection con = DatabaseConnection.getConnection();
+            PreparedStatement ps1 = con.prepareStatement("UPDATE maplewingwt SET name = ? where id = ?");
+            ps1.setString(1, das);
+            ps1.setInt(2, ids);
+            ps1.executeUpdate();
+            ps1.close();
+          
+         } catch (SQLException ex) {
+            log.error(" 设置委托任务名称 发生错误，请检查MapleCharacter里的  设置委托任务信息.", ex);
+        }
+         
+
+     }
+    
+     public int 设置委托任务信息(String te, int das, int ids) {
+        int tp = -1;
+        
+        if (das < 2147483640) {
+        try {
+            Connection con = DatabaseConnection.getConnection();
+
+                switch (te) {
+                    case "nid":
+                        PreparedStatement ps1 = con.prepareStatement("UPDATE maplewingwt SET nid = ? where id = ?");
+                        ps1.setInt(1, das);
+                        ps1.setInt(2, ids);
+                        ps1.executeUpdate();
+                        ps1.close();
+                        break;
+                    case "fnpc":
+                        PreparedStatement ps2 = con.prepareStatement("UPDATE maplewingwt SET fnpc = ? where id = ?");
+                        ps2.setInt(1, das);
+                        ps2.setInt(2, ids);
+                        ps2.executeUpdate();
+                        ps2.close();
+                        break;
+                    case "nlevel":
+                        PreparedStatement ps3 = con.prepareStatement("UPDATE maplewingwt SET nlevel = ? where id = ?");
+                        ps3.setInt(1, das);
+                        ps3.setInt(2, ids);
+                        ps3.executeUpdate();
+                        ps3.close();
+                        break;
+                    case "njob":
+                        PreparedStatement ps4 = con.prepareStatement("UPDATE maplewingwt SET njob = ? where id = ?");
+                        ps4.setInt(1, das);
+                        ps4.setInt(2, ids);
+                        ps4.executeUpdate();
+                        ps4.close();
+                        break;
+                    case "nchongxiu":
+                        PreparedStatement ps5 = con.prepareStatement("UPDATE maplewingwt SET nchongxiu = ? where id = ?");
+                        ps5.setInt(1, das);
+                        ps5.setInt(2, ids);
+                        ps5.executeUpdate();
+                        ps5.close();
+                        break;
+                    case "nguild":
+                        PreparedStatement ps6 = con.prepareStatement("UPDATE maplewingwt SET nguild = ? where id = ?");
+                        ps6.setInt(1, das);
+                        ps6.setInt(2, ids);
+                        ps6.executeUpdate();
+                        ps6.close();
+                        break;
+                    case "mob":
+                        PreparedStatement ps7 = con.prepareStatement("UPDATE maplewingwt SET mob = ? where id = ?");
+                        ps7.setInt(1, das);
+                        ps7.setInt(2, ids);
+                        ps7.executeUpdate();
+                        ps7.close();
+                        break;
+                    case "nmob":
+                        PreparedStatement ps8 = con.prepareStatement("UPDATE maplewingwt SET nmob = ? where id = ?");
+                        ps8.setInt(1, das);
+                        ps8.setInt(2, ids);
+                        ps8.executeUpdate();
+                        ps8.close();
+                        break;
+                    case "item":
+                        PreparedStatement ps9 = con.prepareStatement("UPDATE maplewingwt SET item = ? where id = ?");
+                        ps9.setInt(1, das);
+                        ps9.setInt(2, ids);
+                        ps9.executeUpdate();
+                        ps9.close();
+                        break;
+                    case "npc":
+                        PreparedStatement ps10 = con.prepareStatement("UPDATE maplewingwt SET npc = ? where id = ?");
+                        ps10.setInt(1, das);
+                        ps10.setInt(2, ids);
+                        ps10.executeUpdate();
+                        ps10.close();
+                        break;
+                    case "map":
+                        PreparedStatement ps11 = con.prepareStatement("UPDATE maplewingwt SET map = ? where id = ?");
+                        ps11.setInt(1, das);
+                        ps11.setInt(2, ids);
+                        ps11.executeUpdate();
+                        ps11.close();
+                        break;
+                    case "reward1maple":
+                        PreparedStatement ps12 = con.prepareStatement("UPDATE maplewingwt SET reward1maple = ? where id = ?");
+                        ps12.setInt(1, das);
+                        ps12.setInt(2, ids);
+                        ps12.executeUpdate();
+                        ps12.close();
+                        break;
+                    case "reward2mapley":
+                        PreparedStatement ps13 = con.prepareStatement("UPDATE maplewingwt SET reward2mapley = ? where id = ?");
+                        ps13.setInt(1, das);
+                        ps13.setInt(2, ids);
+                        ps13.executeUpdate();
+                        ps13.close();
+                        break;
+                    case "reward3wmose":
+                        PreparedStatement ps14 = con.prepareStatement("UPDATE maplewingwt SET reward3wmose = ? where id = ?");
+                        ps14.setInt(1, das);
+                        ps14.setInt(2, ids);
+                        ps14.executeUpdate();
+                        ps14.close();
+                        break;
+                    case "reward4emose":
+                        PreparedStatement ps15 = con.prepareStatement("UPDATE maplewingwt SET reward4emose = ? where id = ?");
+                        ps15.setInt(1, das);
+                        ps15.setInt(2, ids);
+                        ps15.executeUpdate();
+                        ps15.close();
+                        break;
+                    case "reward5nx":
+                        PreparedStatement ps16 = con.prepareStatement("UPDATE maplewingwt SET reward5nx = ? where id = ?");
+                        ps16.setInt(1, das);
+                        ps16.setInt(2, ids);
+                        ps16.executeUpdate();
+                        ps16.close();
+                        break;
+                    case "rewarditem":
+                        PreparedStatement ps17 = con.prepareStatement("UPDATE maplewingwt SET rewarditem = ? where id = ?");
+                        ps17.setInt(1, das);
+                        ps17.setInt(2, ids);
+                        ps17.executeUpdate();
+                        ps17.close();
+                        break;
+                    case "itemsl":
+                        PreparedStatement ps18 = con.prepareStatement("UPDATE maplewingwt SET itemsl = ? where id = ?");
+                        ps18.setInt(1, das);
+                        ps18.setInt(2, ids);
+                        ps18.executeUpdate();
+                        ps18.close();
+                        break;
+                    case "maxcishu":
+                        PreparedStatement ps19 = con.prepareStatement("UPDATE maplewingwt SET maxcishu = ? where id = ?");
+                        ps19.setInt(1, das);
+                        ps19.setInt(2, ids);
+                        ps19.executeUpdate();
+                        ps19.close();
+                        break;
+                    case "exp":
+                        PreparedStatement ps20 = con.prepareStatement("UPDATE maplewingwt SET exp = ? where id = ?");
+                        ps20.setInt(1, das);
+                        ps20.setInt(2, ids);
+                        ps20.executeUpdate();
+                        ps20.close();
+                        break;
+                    case "meso":
+                        PreparedStatement ps21 = con.prepareStatement("UPDATE maplewingwt SET meso = ? where id = ?");
+                        ps21.setInt(1, das);
+                        ps21.setInt(2, ids);
+                        ps21.executeUpdate();
+                        ps21.close();
+                        break;
+                    case "level":
+                        PreparedStatement ps22 = con.prepareStatement("UPDATE maplewingwt SET level = ? where id = ?");
+                        ps22.setInt(1, das);
+                        ps22.setInt(2, ids);
+                        ps22.executeUpdate();
+                        ps22.close();
+                        break;
+                    case "hastrue":
+                        PreparedStatement ps23 = con.prepareStatement("UPDATE maplewingwt SET hastrue = ? where id = ?");
+                        ps23.setInt(1, das);
+                        ps23.setInt(2, ids);
+                        ps23.executeUpdate();
+                        ps23.close();
+                        break;
+                    default:
+                        dropMessage(5, "setMaplewing选择类型错误，maplewingwt .");
+                        tp = 0;
+                        break;
+                }
+
+        } catch (SQLException ex) {
+            log.error(" 设置委托任务信息 发生错误，请检查MapleCharacter里的  设置委托任务信息.", ex);
+            return tp;
+        }
+     } else {
+            dropMessage(5, "所选择设置类型的值的总和超出2147483640 无法设置.请更设置类型.");
+            return tp;
+        }
+        
+        if (getCheatTracker().canSaveDB()) {
+             //   c.getPlayer().dropMessage(5, "开始保存角色数据...");
+                saveToDB(false, false);
+             //   c.getPlayer().dropMessage(5, "保存角色数据完成...");
+            }
+        
+        return tp;
+    }
+     
+     public int 设置玩家委托任务信息(String te, int das) {
+         return 设置玩家委托任务信息(te, das, this.id);
+     }
+     
+     
+     public int 设置玩家委托任务信息(String te, int das, int ids) {
+        int tp = -1;
+        
+        if (das < 2147483640) {
+        try {
+            Connection con = DatabaseConnection.getConnection();
+
+                switch (te) {
+                    case "nid":
+                        PreparedStatement ps1 = con.prepareStatement("UPDATE maplewingplayerwt SET nid = ? where id = ?");
+                        ps1.setInt(1, das);
+                        ps1.setInt(2, ids);
+                        ps1.executeUpdate();
+                        ps1.close();
+                        break;
+                    case "name":
+                        PreparedStatement ps2 = con.prepareStatement("UPDATE maplewingplayerwt SET name = ? where id = ?");
+                        ps2.setString(1, this.name);
+                        ps2.setInt(2, ids);
+                        ps2.executeUpdate();
+                        ps2.close();
+                        break;
+                    case "renwu1":
+                        PreparedStatement ps3 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu1 = ? where id = ?");
+                        ps3.setInt(1, das);
+                        ps3.setInt(2, ids);
+                        ps3.executeUpdate();
+                        ps3.close();
+                        break;
+                    case "mobid1":
+                        PreparedStatement ps4 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid1 = ? where id = ?");
+                        ps4.setInt(1, das);
+                        ps4.setInt(2, ids);
+                        ps4.executeUpdate();
+                        ps4.close();
+                        break;
+                    case "mob1":
+                        PreparedStatement ps5 = con.prepareStatement("UPDATE maplewingplayerwt SET mob1 = ? where id = ?");
+                        ps5.setInt(1, das);
+                        ps5.setInt(2, ids);
+                        ps5.executeUpdate();
+                        ps5.close();
+                        break;
+                    case "renwu2":
+                        PreparedStatement ps6 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu2 = ? where id = ?");
+                        ps6.setInt(1, das);
+                        ps6.setInt(2, ids);
+                        ps6.executeUpdate();
+                        ps6.close();
+                        break;
+                    case "mobid2":
+                        PreparedStatement ps7 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid2 = ? where id = ?");
+                        ps7.setInt(1, das);
+                        ps7.setInt(2, ids);
+                        ps7.executeUpdate();
+                        ps7.close();
+                        break;
+                    case "mob2":
+                        PreparedStatement ps8 = con.prepareStatement("UPDATE maplewingplayerwt SET mob2 = ? where id = ?");
+                        ps8.setInt(1, das);
+                        ps8.setInt(2, ids);
+                        ps8.executeUpdate();
+                        ps8.close();
+                        break;
+                    case "renwu3":
+                        PreparedStatement ps9 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu3 = ? where id = ?");
+                        ps9.setInt(1, das);
+                        ps9.setInt(2, ids);
+                        ps9.executeUpdate();
+                        ps9.close();
+                        break;
+                    case "mobid3":
+                        PreparedStatement ps10 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid3 = ? where id = ?");
+                        ps10.setInt(1, das);
+                        ps10.setInt(2, ids);
+                        ps10.executeUpdate();
+                        ps10.close();
+                        break;
+                    case "mob3":
+                        PreparedStatement ps11 = con.prepareStatement("UPDATE maplewingplayerwt SET mob3 = ? where id = ?");
+                        ps11.setInt(1, das);
+                        ps11.setInt(2, ids);
+                        ps11.executeUpdate();
+                        ps11.close();
+                        break;
+                    case "renwu4":
+                        PreparedStatement ps12 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu4 = ? where id = ?");
+                        ps12.setInt(1, das);
+                        ps12.setInt(2, ids);
+                        ps12.executeUpdate();
+                        ps12.close();
+                        break;
+                    case "mobid4":
+                        PreparedStatement ps13 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid4 = ? where id = ?");
+                        ps13.setInt(1, das);
+                        ps13.setInt(2, ids);
+                        ps13.executeUpdate();
+                        ps13.close();
+                        break;
+                    case "mob4":
+                        PreparedStatement ps14 = con.prepareStatement("UPDATE maplewingplayerwt SET mob4 = ? where id = ?");
+                        ps14.setInt(1, das);
+                        ps14.setInt(2, ids);
+                        ps14.executeUpdate();
+                        ps14.close();
+                        break;
+                    case "renwu5":
+                        PreparedStatement ps15 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu5 = ? where id = ?");
+                        ps15.setInt(1, das);
+                        ps15.setInt(2, ids);
+                        ps15.executeUpdate();
+                        ps15.close();
+                        break;
+                    case "mobid5":
+                        PreparedStatement ps16 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid5 = ? where id = ?");
+                        ps16.setInt(1, das);
+                        ps16.setInt(2, ids);
+                        ps16.executeUpdate();
+                        ps16.close();
+                        break;
+                    case "mob5":
+                        PreparedStatement ps17 = con.prepareStatement("UPDATE maplewingplayerwt SET mob5 = ? where id = ?");
+                        ps17.setInt(1, das);
+                        ps17.setInt(2, ids);
+                        ps17.executeUpdate();
+                        ps17.close();
+                        break;
+                    case "renwu6":
+                        PreparedStatement ps18 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu6 = ? where id = ?");
+                        ps18.setInt(1, das);
+                        ps18.setInt(2, ids);
+                        ps18.executeUpdate();
+                        ps18.close();
+                        break;
+                    case "mobid6":
+                        PreparedStatement ps19 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid6 = ? where id = ?");
+                        ps19.setInt(1, das);
+                        ps19.setInt(2, ids);
+                        ps19.executeUpdate();
+                        ps19.close();
+                        break;
+                    case "mob6":
+                        PreparedStatement ps20 = con.prepareStatement("UPDATE maplewingplayerwt SET mob6 = ? where id = ?");
+                        ps20.setInt(1, das);
+                        ps20.setInt(2, ids);
+                        ps20.executeUpdate();
+                        ps20.close();
+                        break;
+                    case "renwu7":
+                        PreparedStatement ps21 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu7 = ? where id = ?");
+                        ps21.setInt(1, das);
+                        ps21.setInt(2, ids);
+                        ps21.executeUpdate();
+                        ps21.close();
+                        break;
+                    case "mobid7":
+                        PreparedStatement ps22 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid7 = ? where id = ?");
+                        ps22.setInt(1, das);
+                        ps22.setInt(2, ids);
+                        ps22.executeUpdate();
+                        ps22.close();
+                        break;
+                    case "mob7":
+                        PreparedStatement ps23 = con.prepareStatement("UPDATE maplewingplayerwt SET mob7 = ? where id = ?");
+                        ps23.setInt(1, das);
+                        ps23.setInt(2, ids);
+                        ps23.executeUpdate();
+                        ps23.close();
+                        break;
+                    case "renwu8":
+                        PreparedStatement ps24 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu8 = ? where id = ?");
+                        ps24.setInt(1, das);
+                        ps24.setInt(2, ids);
+                        ps24.executeUpdate();
+                        ps24.close();
+                        break;
+                    case "mobid8":
+                        PreparedStatement ps25 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid8 = ? where id = ?");
+                        ps25.setInt(1, das);
+                        ps25.setInt(2, ids);
+                        ps25.executeUpdate();
+                        ps25.close();
+                        break;
+                    case "mob8":
+                        PreparedStatement ps26 = con.prepareStatement("UPDATE maplewingplayerwt SET mob8 = ? where id = ?");
+                        ps26.setInt(1, das);
+                        ps26.setInt(2, ids);
+                        ps26.executeUpdate();
+                        ps26.close();
+                        break;
+                    case "renwu9":
+                        PreparedStatement ps27 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu9 = ? where id = ?");
+                        ps27.setInt(1, das);
+                        ps27.setInt(2, ids);
+                        ps27.executeUpdate();
+                        ps27.close();
+                        break;
+                    case "mobid9":
+                        PreparedStatement ps28 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid9 = ? where id = ?");
+                        ps28.setInt(1, das);
+                        ps28.setInt(2, ids);
+                        ps28.executeUpdate();
+                        ps28.close();
+                        break;
+                    case "mob9":
+                        PreparedStatement ps29 = con.prepareStatement("UPDATE maplewingplayerwt SET mob9 = ? where id = ?");
+                        ps29.setInt(1, das);
+                        ps29.setInt(2, ids);
+                        ps29.executeUpdate();
+                        ps29.close();
+                        break;
+                        
+                    default:
+                        dropMessage(5, "设置玩家委托任务信息 选择类型错误，maplewingplayerwt .");
+                        tp = 0;
+                        break;
+                }
+                if (das > 0) {
+                String mds = "设置 " + 取得玩家委托任务名称(te) + " " + das + " ";
+                dropMessage(-5, mds);
+                dropMessage(-1, mds);
+                }
+
+        } catch (SQLException ex) {
+            log.error(" 设置玩家委托任务信息 发生错误，请检查MapleCharacter里的  设置玩家委托任务信息.", ex);
+            return tp;
+        }
+     } else {
+            dropMessage(5, "所选择设置类型的值的总和超出2147483640 无法设置.请更设置类型.");
+            return tp;
+        }
+        
+        if (getCheatTracker().canSaveDB()) {
+             //   c.getPlayer().dropMessage(5, "开始保存角色数据...");
+                saveToDB(false, false);
+             //   c.getPlayer().dropMessage(5, "保存角色数据完成...");
+            }
+        
+        return tp;
+    }
+     
+     
+     
+     public void 增加玩家委托任务信息(String te, int tas) {
+          增加玩家委托任务信息(te, tas, this.id);
+     }
+     
+     public void 增加玩家委托任务信息(String te, int tas, int ids) {
+     //   int tp = -1;
+        int mobss = 0;
+        int das = 取得玩家委托任务信息(te, ids);
+        int ads = das + tas;
+        if (ads < 2147483640) {
+        try {
+            Connection con = DatabaseConnection.getConnection();
+
+                switch (te) {
+                    case "nid":
+                        PreparedStatement ps1 = con.prepareStatement("UPDATE maplewingplayerwt SET nid = ? where id = ?");
+                        ps1.setInt(1, ads);
+                        ps1.setInt(2, ids);
+                        ps1.executeUpdate();
+                        ps1.close();
+                        break;
+                    case "name":
+                        PreparedStatement ps2 = con.prepareStatement("UPDATE maplewingplayerwt SET name = ? where id = ?");
+                        ps2.setString(1, this.name);
+                        ps2.setInt(2, ids);
+                        ps2.executeUpdate();
+                        ps2.close();
+                        break;
+                    case "renwu1":
+                        PreparedStatement ps3 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu1 = ? where id = ?");
+                        ps3.setInt(1, ads);
+                        ps3.setInt(2, ids);
+                        ps3.executeUpdate();
+                        ps3.close();
+                        break;
+                    case "mobid1":
+                        PreparedStatement ps4 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid1 = ? where id = ?");
+                        ps4.setInt(1, ads);
+                        ps4.setInt(2, ids);
+                        ps4.executeUpdate();
+                        ps4.close();
+                        break;
+                    case "mob1":
+                        PreparedStatement ps5 = con.prepareStatement("UPDATE maplewingplayerwt SET mob1 = ? where id = ?");
+                        ps5.setInt(1, ads);
+                        ps5.setInt(2, ids);
+                        ps5.executeUpdate();
+                        ps5.close();
+                        mobss = 1;
+                        break;
+                    case "renwu2":
+                        PreparedStatement ps6 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu2 = ? where id = ?");
+                        ps6.setInt(1, ads);
+                        ps6.setInt(2, ids);
+                        ps6.executeUpdate();
+                        ps6.close();
+                        break;
+                    case "mobid2":
+                        PreparedStatement ps7 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid2 = ? where id = ?");
+                        ps7.setInt(1, ads);
+                        ps7.setInt(2, ids);
+                        ps7.executeUpdate();
+                        ps7.close();
+                        break;
+                    case "mob2":
+                        PreparedStatement ps8 = con.prepareStatement("UPDATE maplewingplayerwt SET mob2 = ? where id = ?");
+                        ps8.setInt(1, ads);
+                        ps8.setInt(2, ids);
+                        ps8.executeUpdate();
+                        ps8.close();
+                        mobss = 1;
+                        break;
+                    case "renwu3":
+                        PreparedStatement ps9 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu3 = ? where id = ?");
+                        ps9.setInt(1, ads);
+                        ps9.setInt(2, ids);
+                        ps9.executeUpdate();
+                        ps9.close();
+                        break;
+                    case "mobid3":
+                        PreparedStatement ps10 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid3 = ? where id = ?");
+                        ps10.setInt(1, ads);
+                        ps10.setInt(2, ids);
+                        ps10.executeUpdate();
+                        ps10.close();
+                        break;
+                    case "mob3":
+                        PreparedStatement ps11 = con.prepareStatement("UPDATE maplewingplayerwt SET mob3 = ? where id = ?");
+                        ps11.setInt(1, ads);
+                        ps11.setInt(2, ids);
+                        ps11.executeUpdate();
+                        ps11.close();
+                        mobss = 1;
+                        break;
+                    case "renwu4":
+                        PreparedStatement ps12 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu4 = ? where id = ?");
+                        ps12.setInt(1, ads);
+                        ps12.setInt(2, ids);
+                        ps12.executeUpdate();
+                        ps12.close();
+                        break;
+                    case "mobid4":
+                        PreparedStatement ps13 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid4 = ? where id = ?");
+                        ps13.setInt(1, ads);
+                        ps13.setInt(2, ids);
+                        ps13.executeUpdate();
+                        ps13.close();
+                        break;
+                    case "mob4":
+                        PreparedStatement ps14 = con.prepareStatement("UPDATE maplewingplayerwt SET mob4 = ? where id = ?");
+                        ps14.setInt(1, ads);
+                        ps14.setInt(2, ids);
+                        ps14.executeUpdate();
+                        ps14.close();
+                        mobss = 1;
+                        break;
+                    case "renwu5":
+                        PreparedStatement ps15 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu5 = ? where id = ?");
+                        ps15.setInt(1, ads);
+                        ps15.setInt(2, ids);
+                        ps15.executeUpdate();
+                        ps15.close();
+                        break;
+                    case "mobid5":
+                        PreparedStatement ps16 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid5 = ? where id = ?");
+                        ps16.setInt(1, ads);
+                        ps16.setInt(2, ids);
+                        ps16.executeUpdate();
+                        ps16.close();
+                        break;
+                    case "mob5":
+                        PreparedStatement ps17 = con.prepareStatement("UPDATE maplewingplayerwt SET mob5 = ? where id = ?");
+                        ps17.setInt(1, ads);
+                        ps17.setInt(2, ids);
+                        ps17.executeUpdate();
+                        ps17.close();
+                        mobss = 1;
+                        break;
+                    case "renwu6":
+                        PreparedStatement ps18 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu6 = ? where id = ?");
+                        ps18.setInt(1, ads);
+                        ps18.setInt(2, ids);
+                        ps18.executeUpdate();
+                        ps18.close();
+                        break;
+                    case "mobid6":
+                        PreparedStatement ps19 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid6 = ? where id = ?");
+                        ps19.setInt(1, ads);
+                        ps19.setInt(2, ids);
+                        ps19.executeUpdate();
+                        ps19.close();
+                        break;
+                    case "mob6":
+                        PreparedStatement ps20 = con.prepareStatement("UPDATE maplewingplayerwt SET mob6 = ? where id = ?");
+                        ps20.setInt(1, ads);
+                        ps20.setInt(2, ids);
+                        ps20.executeUpdate();
+                        ps20.close();
+                        mobss = 1;
+                        break;
+                    case "renwu7":
+                        PreparedStatement ps21 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu7 = ? where id = ?");
+                        ps21.setInt(1, ads);
+                        ps21.setInt(2, ids);
+                        ps21.executeUpdate();
+                        ps21.close();
+                        break;
+                    case "mobid7":
+                        PreparedStatement ps22 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid7 = ? where id = ?");
+                        ps22.setInt(1, ads);
+                        ps22.setInt(2, ids);
+                        ps22.executeUpdate();
+                        ps22.close();
+                        break;
+                    case "mob7":
+                        PreparedStatement ps23 = con.prepareStatement("UPDATE maplewingplayerwt SET mob7 = ? where id = ?");
+                        ps23.setInt(1, ads);
+                        ps23.setInt(2, ids);
+                        ps23.executeUpdate();
+                        ps23.close();
+                        mobss = 1;
+                        break;
+                    case "renwu8":
+                        PreparedStatement ps24 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu8 = ? where id = ?");
+                        ps24.setInt(1, ads);
+                        ps24.setInt(2, ids);
+                        ps24.executeUpdate();
+                        ps24.close();
+                        break;
+                    case "mobid8":
+                        PreparedStatement ps25 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid8 = ? where id = ?");
+                        ps25.setInt(1, ads);
+                        ps25.setInt(2, ids);
+                        ps25.executeUpdate();
+                        ps25.close();
+                        break;
+                    case "mob8":
+                        PreparedStatement ps26 = con.prepareStatement("UPDATE maplewingplayerwt SET mob8 = ? where id = ?");
+                        ps26.setInt(1, ads);
+                        ps26.setInt(2, ids);
+                        ps26.executeUpdate();
+                        ps26.close();
+                        mobss = 1;
+                        break;
+                    case "renwu9":
+                        PreparedStatement ps27 = con.prepareStatement("UPDATE maplewingplayerwt SET renwu9 = ? where id = ?");
+                        ps27.setInt(1, ads);
+                        ps27.setInt(2, ids);
+                        ps27.executeUpdate();
+                        ps27.close();
+                        break;
+                    case "mobid9":
+                        PreparedStatement ps28 = con.prepareStatement("UPDATE maplewingplayerwt SET mobid9 = ? where id = ?");
+                        ps28.setInt(1, ads);
+                        ps28.setInt(2, ids);
+                        ps28.executeUpdate();
+                        ps28.close();
+                        break;
+                    case "mob9":
+                        PreparedStatement ps29 = con.prepareStatement("UPDATE maplewingplayerwt SET mob9 = ? where id = ?");
+                        ps29.setInt(1, ads);
+                        ps29.setInt(2, ids);
+                        ps29.executeUpdate();
+                        ps29.close();
+                        mobss = 1;
+                        break;
+                        
+                    default:
+                        dropMessage(5, " 增加玩家委托任务信息 选择类型错误，请联系Maplewing修复.");
+                 //       tp = 0;
+                        break;
+                }
+                if ((das >= 0)&& (ids == this.id)) {
+                String mds = " " + 取得玩家委托任务名称(te) + " " + tas + " ";
+                if (mobss == 1) {
+                    mds = " " + 取得玩家委托任务名称(te) + " " + 取得玩家委托任务信息(te) + " ";
+                }
+                dropMessage(-11, mds);
+                dropMessage(-1, mds);
+                }
+
+        } catch (SQLException ex) {
+            log.error("增加玩家委托任务信息  信息发生错误，请检查MapleCharacter里的  增加玩家委托任务信息.", ex);
+        //    return tp;
+        }
+     } else {
+            dropMessage(5, " 增加玩家委托任务信息 所选择存入类型的余额和存入量的总和超出2147483640 无法再继续存入.请更换存入类型.");
+         //   return tp;
+        }
+        
+        if (getCheatTracker().canSaveDB()) {
+             //   c.getPlayer().dropMessage(5, "开始保存角色数据...");
+                saveToDB(false, false);
+             //   c.getPlayer().dropMessage(5, "保存角色数据完成...");
+            }
+        
+       // return tp;
+    }
+     
+     
+     public String 取得玩家委托任务名称(String lvs) {
+        
+        String names = null;
+        switch (lvs) {
+            case "id":
+                names = "代号ID";
+                break;
+            case "name":
+                names = this.name;
+                break;
+            case "renwu1":
+                names = "委托任务1";
+                break;
+            case "mobid1":
+                names = "消灭委托1任务怪物";
+                break;
+            case "mob1":
+                names = "消灭委托1任务怪物数量";
+                break;
+            case "renwu2":
+                names = "委托任务2";
+                break;
+            case "mobid2":
+                names = "消灭委托2任务怪物";
+                break;
+            case "mob2":
+                names = "消灭委托2任务怪物数量";
+                break;
+            case "renwu3":
+                names = "委托任务3";
+                break;
+            case "mobid3":
+                names = "消灭委托3任务怪物";
+                break;
+            case "mob3":
+                names = "消灭委托3任务怪物数量";
+                break;
+            case "renwu4":
+                names = "委托任务4";
+                break;
+            case "mobid4":
+                names = "消灭委托4任务怪物";
+                break;
+            case "mob4":
+                names = "消灭委托4任务怪物数量";
+                break;
+            case "renwu5":
+                names = "委托任务4";
+                break;
+            case "mobid5":
+                names = "消灭委托5任务怪物";
+                break;
+            case "mob5":
+                names = "消灭委托5任务怪物数量";
+                break;
+            case "renwu6":
+                names = "委托任务6";
+                break;
+            case "mobid6":
+                names = "消灭委托6任务怪物";
+                break;
+            case "mob6":
+                names = "消灭委托6任务怪物数量";
+                break;
+            case "renwu7":
+                names = "委托任务7";
+                break;
+            case "mobid7":
+                names = "消灭委托7任务怪物";
+                break;
+            case "mob7":
+                names = "消灭委托7任务怪物数量";
+                break;
+            case "renwu8":
+                names = "委托任务8";
+                break;
+            case "mobid8":
+                names = "消灭委托8任务怪物";
+                break;
+            case "mob8":
+                names = "消灭委托8任务怪物数量";
+                break;
+            case "renwu9":
+                names = "委托任务9";
+                break;
+            case "mobid9":
+                names = "消灭委托9任务怪物";
+                break;
+            case "mob9":
+                names = "消灭委托9任务怪物数量";
+                break;
+                
+        }
+        return names;
+    }
+     
+     
+     public void 发布玩家的委托任务(int ids, String names, String neirong, int mob, int nmob, int item, int nitem, int reward1wmose, int exps, int level) {
+         
+        
+        try {
+            Connection con = DatabaseConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from maplewingwt where id = ?");
+            ps.setInt(1, ids);
+            ResultSet rs = ps.executeQuery();
+            
+            if (!rs.next()) {
+                
+                PreparedStatement psu = con.prepareStatement("insert into maplewingwt (id, name, neirong, fnpc, nid, nlevel, njob, nchongxiu, nguild, mob, nmob, item, nitem, npc, map, reward1maple, reward2mapley, reward3wmose, reward4emose, reward5nx, rewarditem, itemsl, meso, exp, maxcishu, level, hastrue) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                psu.setInt(1, ids + 1000);
+                psu.setString(2, names);
+                psu.setString(3, neirong);
+                psu.setInt(4, this.id);
+                psu.setInt(5, 0);//nid
+                psu.setInt(6, 0);//nlevel
+                psu.setInt(7, 0);//njob
+                psu.setInt(8, 0);//nchongxiu
+                psu.setInt(9, 0);//nguild
+                psu.setInt(10, mob);//mob
+                psu.setInt(11, nmob);//nmob
+                psu.setInt(12, 0);//item
+                psu.setInt(13, 0);//nitem
+                psu.setInt(14, 90000086);//npc
+                psu.setInt(15, 0);//map
+                psu.setInt(16, reward1wmose);//reward1
+                psu.setInt(17, 0);//reward2
+                psu.setInt(18, 0);//reward3
+                psu.setInt(19, 0);//reward4
+                psu.setInt(20, 0);//reward5
+                psu.setInt(21, 0);//rewarditem
+                psu.setInt(22, 0);//itemsl
+                psu.setInt(23, 0);//meso
+                psu.setInt(24, exps);//exp
+                psu.setInt(25, 0);//maxcishu
+                psu.setInt(26, level);//level
+                psu.setInt(27, 0);//true == 0 false = 1 
+                psu.executeUpdate();
+                psu.close();
+
+            ps.close();
+            rs.close();
+           }
+        } catch (SQLException ex) {
+            log.error("设置新委托任务 信息发生错误", ex);
+        }
+    }
+     
+     public int 取得玩家可接委托任务数量() {
+         
+         int viplv = getMaplewing("cardlevel");
+         int renwu1 = 取得玩家委托任务信息("renwu1");
+         int renwu2 = 取得玩家委托任务信息("renwu2");
+         int renwu3 = 取得玩家委托任务信息("renwu3");
+         int renwu4 = 取得玩家委托任务信息("renwu4");
+         int renwu5 = 取得玩家委托任务信息("renwu5");
+         int renwu6 = 取得玩家委托任务信息("renwu6");
+         int renwu7 = 取得玩家委托任务信息("renwu7");
+         int renwu8 = 取得玩家委托任务信息("renwu8");
+         int renwu9 = 取得玩家委托任务信息("renwu9");
+         
+         if ((viplv >= 4) && (renwu4 == -1)) {
+             设置玩家委托任务信息("renwu4", 0);
+         }
+         if ((viplv >= 5) && (renwu5 == -1)) {
+             设置玩家委托任务信息("renwu5", 0);
+         }
+         if ((viplv >= 6) && (renwu6 == -1)) {
+             设置玩家委托任务信息("renwu6", 0);
+         }
+         if ((viplv >= 7) && (renwu7 == -1)) {
+             设置玩家委托任务信息("renwu7", 0);
+         }
+         if ((viplv >= 8) && (renwu8 == -1)) {
+             设置玩家委托任务信息("renwu8", 0);
+         }
+         if ((viplv >= 9) && (renwu9 == -1)) {
+             设置玩家委托任务信息("renwu9", 0);
+         }
+         
+         int 数量 = 0;
+         
+         if (renwu1 == 0) {
+             数量++;
+         }
+         if (renwu2 == 0) {
+             数量++;
+         }
+         if (renwu3 == 0) {
+             数量++;
+         }
+         if (renwu4 == 0) {
+             数量++;
+         }
+         if (renwu5 == 0) {
+             数量++;
+         }
+         if (renwu6 == 0) {
+             数量++;
+         }
+         if (renwu7 == 0) {
+             数量++;
+         }
+         if (renwu8 == 0) {
+             数量++;
+         }
+         if (renwu9 == 0) {
+             数量++;
+         }
+         
+         return 数量;
+         
+     }
+     
+     public int 取得玩家可接委托任务最大数量() {
+         
+         int 总数量数量 = 3;
+         int viplv = getMaplewing("cardlevel");
+         if (viplv <= 9) {
+             总数量数量 = viplv;
+         } else {
+             总数量数量 = 9;
+         }
+         
+         return 总数量数量;
+         
+     }
+
+
+---------------------分割线------------------------------------
+
+
+
+接着 打开 MapleMap.java 搜索 ：switch (chr.getMapId() % 1000 / 100) { 
+
+往下面看 找到 下面这段代码
+
+---------------分割线------------------------------
+
+
+            switch (chr.getMapId() % 1000 / 100) {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    chr.getClient().getSession().write(UIPacket.MapEff("monsterPark/clear"));
+                    break;
+                case 5:
+                    if (chr.getMapId() / 1000000 == 952) {
+                        chr.getClient().getSession().write(UIPacket.MapEff("monsterPark/clearF"));
+                    } else {
+                        chr.getClient().getSession().write(UIPacket.MapEff("monsterPark/clear"));
+                    }
+                    break;
+                case 6:
+                    chr.getClient().getSession().write(UIPacket.MapEff("monsterPark/clearF"));
+            }
+        }
+
+
+---------------分割线------------------------------
+
+在这段代码 的 最后一个 ｝（就是那句 case 6: 下面的那2个 ｝ 下面） 加入下面的代码 ： 
+
+
+
+---------------分割线------------------------------
+
+
+
+        //委托任务 消灭指定怪物
+        if (Boolean.parseBoolean(ServerProperties.getProperty("world.委托任务"))) {
+            
+        int rw1 = chr.取得玩家委托任务信息("renwu1");
+        int mob1 = chr.取得玩家委托任务信息("mobid1");
+        boolean nmob1 = chr.取得玩家委托任务信息("mob1") < chr.取得委托任务信息("nmob", rw1);
+        
+        if ((mob1 == mobid) && (mob1 > 0) && (nmob1 == true) && ((this.mapid == chr.取得委托任务信息("map", rw1)) || (chr.取得委托任务信息("map", rw1) == 0))) {
+            chr.增加玩家委托任务信息("mob1", 1);
+        } else {
+            if (nmob1 == false && rw1 > 0 && mob1 > 0) {
+                chr.dropMessage(-11, "委托任务1需要打猎的怪物数量已经完成！");
+            }
+            int rw2 = chr.取得玩家委托任务信息("renwu2");
+            int mob2 = chr.取得玩家委托任务信息("mobid2");
+            boolean nmob2 = chr.取得玩家委托任务信息("mob2") < chr.取得委托任务信息("nmob", rw2);
+            if ((mob2 == mobid) && (mob2 > 0) && (nmob2 == true) && ((this.mapid == chr.取得委托任务信息("map", rw2)) || (chr.取得委托任务信息("map", rw2) == 0))) {
+                chr.增加玩家委托任务信息("mob2", 1);
+            } else {
+                if (nmob2 == false && rw2 > 0 && mob2 > 0) {
+                   chr.dropMessage(-11, "委托任务2需要打猎的怪物数量已经完成！");
+                }
+                int rw3 = chr.取得玩家委托任务信息("renwu3");
+                int mob3 = chr.取得玩家委托任务信息("mobid3");
+                boolean nmob3 = chr.取得玩家委托任务信息("mob3") < chr.取得委托任务信息("nmob", rw3);
+                if ((mob3 == mobid) && (mob3 > 0) && (nmob3 == true) && ((this.mapid == chr.取得委托任务信息("map", rw3)) || (chr.取得委托任务信息("map", rw3) == 0))) {
+                    chr.增加玩家委托任务信息("mob3", 1);
+                } else {
+                    if (nmob3 == false && rw3 > 0 && mob3 > 0) {
+                       chr.dropMessage(-11, "委托任务3需要打猎的怪物数量已经完成！");
+                    }
+                    int rw4 = chr.取得玩家委托任务信息("renwu4");
+                    int mob4 = chr.取得玩家委托任务信息("mobid4");
+                    boolean nmob4 = chr.取得玩家委托任务信息("mob4") < chr.取得委托任务信息("nmob", rw4);
+                    if ((mob4 == mobid) && (mob4 > 0) && (nmob4 == true) && ((this.mapid == chr.取得委托任务信息("map", rw4)) || (chr.取得委托任务信息("map", rw4) == 0))) {
+                        chr.增加玩家委托任务信息("mob4", 1);
+                    } else {
+                        if (nmob4 == false && rw4 > 0 && mob4 > 0) {
+                           chr.dropMessage(-11, "委托任务4需要打猎的怪物数量已经完成！");
+                        }
+                        int rw5 = chr.取得玩家委托任务信息("renwu5");
+                        int mob5 = chr.取得玩家委托任务信息("mobid5");
+                        boolean nmob5 = chr.取得玩家委托任务信息("mob5") < chr.取得委托任务信息("nmob", rw5);
+                        if ((mob5 == mobid) && (mob5 > 0) && (nmob5 == true) && ((this.mapid == chr.取得委托任务信息("map", rw5)) || (chr.取得委托任务信息("map", rw5) == 0))) {
+                             chr.增加玩家委托任务信息("mob5", 1);
+                        } else {
+                            if (nmob5 == false && rw5 > 0 && mob5 > 0) {
+                               chr.dropMessage(-11, "委托任务5需要打猎的怪物数量已经完成！");
+                            }
+                            int rw6 = chr.取得玩家委托任务信息("renwu6");
+                            int mob6 = chr.取得玩家委托任务信息("mobid6");
+                            boolean nmob6 = chr.取得玩家委托任务信息("mob6") < chr.取得委托任务信息("nmob", rw6);
+                            if ((mob6 == mobid) && (mob6 > 0) && (nmob6 == true) && ((this.mapid == chr.取得委托任务信息("map", rw6)) || (chr.取得委托任务信息("map", rw6) == 0))) {
+                                chr.增加玩家委托任务信息("mob6", 1);
+                            } else {
+                                if (nmob6 == false && rw6 > 0 && mob6 > 0) {
+                                    chr.dropMessage(-11, "委托任务6需要打猎的怪物数量已经完成！");
+                                }
+                                int rw7 = chr.取得玩家委托任务信息("renwu7");
+                                int mob7 = chr.取得玩家委托任务信息("mobid7");
+                                boolean nmob7 = chr.取得玩家委托任务信息("mob7") < chr.取得委托任务信息("nmob", rw7);
+                                if ((mob7 == mobid) && (mob7 > 0) && (nmob7 == true) && ((this.mapid == chr.取得委托任务信息("map", rw7)) || (chr.取得委托任务信息("map", rw7) == 0))) {
+                                     chr.增加玩家委托任务信息("mob7", 1);
+                                } else {
+                                    if (nmob7 == false && rw7 > 0 && mob7 > 0) {
+                                       chr.dropMessage(-11, "委托任务7需要打猎的怪物数量已经完成！");
+                                    }
+                                    int rw8 = chr.取得玩家委托任务信息("renwu8");
+                                    int mob8 = chr.取得玩家委托任务信息("mobid8");
+                                    boolean nmob8 = chr.取得玩家委托任务信息("mob8") < chr.取得委托任务信息("nmob", rw8);
+                                    if ((mob8 == mobid) && (mob8 > 0) && (nmob8 == true) && ((this.mapid == chr.取得委托任务信息("map", rw8)) || (chr.取得委托任务信息("map", rw8) == 0))) {
+                                         chr.增加玩家委托任务信息("mob8", 1);
+                                    } else {
+                                        if (nmob8 == false && rw8 > 0 && mob8 > 0) {
+                                           chr.dropMessage(-11, "委托任务8需要打猎的怪物数量已经完成！");
+                                        }
+                                        int rw9 = chr.取得玩家委托任务信息("renwu9");
+                                        int mob9 = chr.取得玩家委托任务信息("mobid9");
+                                        boolean nmob9 = chr.取得玩家委托任务信息("mob9") < chr.取得委托任务信息("nmob", rw9);
+                                        if ((mob9 == mobid) && (mob9 > 0) && (nmob9 == true) && ((this.mapid == chr.取得委托任务信息("map", rw9)) || (chr.取得委托任务信息("map", rw9) == 0))) {
+                                            chr.增加玩家委托任务信息("mob9", 1);
+                                        } else {
+                                            if (nmob9 == false && rw9 > 0 && mob9 > 0) {
+                                               chr.dropMessage(-11, "委托任务9需要打猎的怪物数量已经完成！");
+                                            }
+                                        }//mob9
+                                        
+                                    }//mob8
+                                    
+                                }//mob7
+                                
+                            }//mob6
+                            
+                        }//mob5
+                        
+                    }//mob4
+                    
+                }//mob3
+
+            }//mob2
+            
+        }//mob1
+
+
+
+---------------------分割线------------------------------------
+
+再找到 AbstractPlayerInteraction.java  在最后一个 ｝ 后面加入 下面的代码：
+
+---------------------分割线------------------------------------
+
+
+    
+    public String 取得玩家委托任务名称(String lvs) {
+        return this.c.getPlayer().取得玩家委托任务名称(lvs);
+    }
+    
+    public void 增加玩家委托任务信息(String te, int tas, int ids) {
+         this.c.getPlayer().增加玩家委托任务信息(te, tas, ids);
+    }
+    
+    public void 增加玩家委托任务信息(String te, int tas) {
+          this.c.getPlayer().增加玩家委托任务信息(te, tas);
+     }
+    
+    public int 设置玩家委托任务信息(String te, int das) {
+         return this.c.getPlayer().设置玩家委托任务信息(te, das);
+     }
+     
+     
+     public int 设置玩家委托任务信息(String te, int das, int ids) {
+         return this.c.getPlayer().设置玩家委托任务信息(te, das, ids);
+     }
+     
+     public int 设置委托任务信息(String te, int das, int ids) {
+         return this.c.getPlayer().设置委托任务信息(te, das, ids);
+     }
+     
+     public int 取得玩家委托任务信息(String te, int ids) {
+         return this.c.getPlayer().取得玩家委托任务信息(te, ids);
+     }
+     
+     public int 取得玩家委托任务信息(String te) {
+         return this.c.getPlayer().取得玩家委托任务信息(te);
+     }
+     
+     public String 取得委托玩家名称() {
+         return this.c.getPlayer().取得委托玩家名称();
+     }
+     
+     public String 取得委托玩家名称(int ids) {
+         return this.c.getPlayer().取得委托玩家名称(ids);
+     }
+     
+     public int 取得委托任务信息(String te, int ids) {
+         return this.c.getPlayer().取得委托任务信息(te, ids);
+     }
+     
+     public String 取得委托任务名称(int te, int ids) {
+         return this.c.getPlayer().取得委托任务名称(te, ids);
+     }
+     
+     public int 取得玩家可接委托任务数量() {
+         return this.c.getPlayer().取得玩家可接委托任务数量();
+     }
+     
+     public int 取得玩家可接委托任务最大数量() {
+         return this.c.getPlayer().取得玩家可接委托任务最大数量();
+     }
+     
+     public String 委托信息(int te, int 模式) {
+         
+         if (te < 1 || te > 9) {
+             te =1;
+         }
+         int wt = 1;
+         int kmob = -1;
+         
+         switch (te) {
+             case 1:
+                 wt = 取得玩家委托任务信息("renwu1");
+                 kmob  = 取得玩家委托任务信息("mob1");
+                 break;
+             case 2:
+                 wt = 取得玩家委托任务信息("renwu2");
+                 kmob  = 取得玩家委托任务信息("mob2");
+                 break;
+             case 3:
+                 wt = 取得玩家委托任务信息("renwu3");
+                 kmob  = 取得玩家委托任务信息("mob3");
+                 break;
+             case 4:
+                 wt = 取得玩家委托任务信息("renwu4");
+                 kmob  = 取得玩家委托任务信息("mob4");
+                 break;
+             case 5:
+                 wt = 取得玩家委托任务信息("renwu5");
+                 kmob  = 取得玩家委托任务信息("mob5");
+                 break;
+             case 6:
+                 wt = 取得玩家委托任务信息("renwu6");
+                 kmob  = 取得玩家委托任务信息("mob6");
+                 break;
+             case 7:
+                 wt = 取得玩家委托任务信息("renwu7");
+                 kmob  = 取得玩家委托任务信息("mob7");
+                 break;
+             case 8:
+                 wt = 取得玩家委托任务信息("renwu8");
+                 kmob  = 取得玩家委托任务信息("mob8");
+                 break;
+             case 9:
+                 wt = 取得玩家委托任务信息("renwu9");
+                 kmob  = 取得玩家委托任务信息("mob9");
+                 break;
+         }
+         
+         String name = 取得委托任务名称(1, wt);
+         String neirong = 取得委托任务名称(2, wt);
+         int fnpc = 取得委托任务信息("fnpc", wt);
+         int npc = 取得委托任务信息("npc", wt);
+         int maple = 取得委托任务信息("reward1maple", wt);
+         int mapley = 取得委托任务信息("reward2mapley", wt);
+         int wmose = 取得委托任务信息("reward3wmose", wt);
+         int emose = 取得委托任务信息("reward4emose", wt);
+         int nx = 取得委托任务信息("reward5nx", wt);
+         int rewarditem = 取得委托任务信息("rewarditem", wt);
+         int itemsl = 取得委托任务信息("itemsl", wt);
+         int exp = 取得委托任务信息("exp", wt);
+         int meso = 取得委托任务信息("meso", wt);
+         
+         int map  = 取得委托任务信息("map", wt);
+         int mob = 取得委托任务信息("mob", wt);
+         int nmob = 取得委托任务信息("nmob", wt);
+         
+         int item = 取得委托任务信息("item", wt);
+         int nitem = 取得委托任务信息("nitem", wt);
+         int hitem = c.getPlayer().getItemQuantity(item);
+         
+         StringBuilder ms = new StringBuilder().append("#r┈┈┈━═☆#i4251202##r  委托任务信息  #i4251202# #r☆═━┈┈┈\r\n#r");
+         if (wt > 0) {
+         if (模式 == 1) {
+             ms.append(getVipname()).append("  #d以下是您领取的委托任务 #r#e").append(te).append("#n#d 详细信息：\r\n");
+         } else {
+             ms.append("#d看看下面的委托任务 #r#e").append(te).append("#n#d 的详细信息吧，得赶紧完成呐！\r\n");
+         }
+         ms.append("#b委托任务编号：#e#r").append(wt).append("#n  #b委托任务名称： #g☆ #r").append(name).append(" #g☆\r\n");
+         ms.append("#b任务发布").append((fnpc < 1000000) ? "玩家": "NPC").append("：#r").append((fnpc < 1000000) ? 取得委托玩家名称(fnpc): "#p" + fnpc + "#").append("#b  委托任务交付NPC：#r").append("#p").append(npc).append("#\r\n");
+         ms.append("#g☆#b任务简介#g☆  \r\n#d").append(neirong).append("\r\n");
+         ms.append("#b需要物品：  #r").append(((item > 1000000) ? "#i" + item + ":#  #b数量：#r" + nitem + "    #b已拥有数量：#r" + hitem :" 无")).append("\r\n");
+         ms.append("#b目标怪物：  #r").append(((mob >= 100000) ? "#o" + mob + ":#  #b数量：#r" + nmob + "    #b已打猎数量：#r" + kmob:" 无")).append("\r\n");
+         ms.append("#b执行地点：  #r").append((map > 0 ? "#m" + map + "#":" 任意地点")).append("    #b地点编号：#r").append(map).append("\r\n  ");
+         ms.append("#g☆#b任务奖励#g☆  \r\n#d贡献点：").append((maple > 0 ? " #r#e" + maple + "#n": " 无")).append("  #d活跃点：").append((mapley > 0 ? " #e#r" + mapley + "#n": " 无")).append("  #d万级余额：").append((wmose > 0 ? " #e#r" + wmose + "#n": " 无")).append("\r\n#d亿级余额：").append((emose > 0 ? " #e#r" + emose + "#n" : " 无")).append("  #d点卷：").append((nx > 0 ? " #e#r" + nx + "#n" : " 无")).append("  #d奖励物品：").append((rewarditem > 0 ? " #i" + rewarditem + ":# 数量 #e#r" + itemsl + "#n": " 无")).append("\r\n").append("\r\n#d经验：#r#e").append(exp).append("#n  #d金币：#e#r").append(meso).append("#n\r\n");
+         if ((hitem >= nitem) && (kmob >= nmob)) {
+             ms.append("#d您已经完成了委托任务： #r").append(name).append("  #b赶快去找NPC：#r#p").append(npc).append("# #b领取奖励吧！\r\n");
+         }
+         
+         } else if (wt != -1) {
+             ms.append("\r\n#b对不起，你的委托任务 #e#r").append(te).append("#n  #b还未记录有委托任务哦！\r\n赶快去领取多几个任务吧！");
+         } else {
+             ms.append("\r\n#b对不起，你的委托任务 #e#r").append(te).append("#n  #b还未开放哦！\r\n等您的岛民等级达到 #e#r").append(te).append("#n #b系统将会自动帮您解锁！\r\n目前您的岛民等级为：#e#r").append(getMaplewing("cardlevel")).append("#n#d\r\n如果不行，就躲到委托任务那里看看！领取几个委托任务！");
+         }
+         
+         return ms.toString();
+         
+     }
+     
+     public int getHours() {
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        return hour;
+    }
+
+     
+     public String 发布系统委托信息s(int 数量) {
+         if (数量 > 25) {
+             数量 = 25;
+         } else if (数量 < 10) {
+             数量 = 11;
+         }
+         int mms = 1;
+         if ((getHours() > 12) && (getHours() < 18)) {
+             mms = (int)(Math.random()*5);
+         } else if ((getHours() >= 18) && (getHours() < 24)) {
+             mms = (int)(Math.random()*10);
+         } else {
+             mms = (int)(Math.random()*3);
+         }
+         
+                 
+         int level = getMaplewing("cardlevel");
+         StringBuilder ms = new StringBuilder().append("#r┈┈┈━═☆#i4251202##r  系统委托任务  #i4251202# #r☆═━┈┈┈\r\n#r");
+         ms.append(getVipname()).append(" 您好！ #d以下是截至 #r").append(FileoutputUtil.CurrentReadable_Time()).append("#d\r\n发布的委托任务信息：\r\n");
+     //    ms.append("--------------------系统委托任务--------------------");
+         int dds = 1;
+         switch (mms) {
+             case 2:
+                 dds = 20;
+                 break;
+             case 3:
+                 dds = 30;
+                 break;
+             case 4:
+                 dds = 40;
+                 break;
+             case 5:
+                 dds = 50;
+                 break;
+             case 6:
+                 dds = 60;
+                 break;
+             case 7:
+                 dds = 70;
+                 break;
+             case 8:
+                 dds = 80;
+                 break;
+             case 9:
+                 dds = 90;
+                 break;    
+         }
+         
+         for (int dd = dds;dd <= (数量 + dds); dd++) {
+             if (取得委托任务信息("id", dd) != -2) {
+                 if ((取得委托任务信息("maxcishu", dd) > 0) && (level >= 取得委托任务信息("level", dd)) && (取得委托任务信息("hastrue", dd) == 0)) {
+                 ms.append("#L").append(dd).append("##g☆#b编号 #e#r").append(dd).append("#n#b#g☆#b  #r").append(取得委托任务名称(1, dd)).append("#l\r\n");
+             //    ms.append("#b委托任务内容：#r").append(取得委托任务名称(2, dd)).append("\r\n");
+
+                 }
+             }
+         }
+         /*
+         if (数量 > 0) {
+             
+             dds = 1000;
+             for (int dd = dds;dd <= (数量 + 1000); dd++) {
+              //   ms.append("------------------玩家发布的委托任务------------------");
+                 if ((取得委托任务信息("maxcishu", dd) > 0) && (level >= 取得委托任务信息("level", dd)) && (取得委托任务信息("hastrue", dd) == 0)) {
+                     ms.append("#L").append(dd).append("##g☆#b编号 #e#r").append(dd).append("#n#b#g☆#b  #r").append(取得委托任务名称(1, dd)).append("#l\r\n");
+              //       ms.append("#b委托任务内容：#r").append(取得委托任务名称(2, dd)).append("\r\n");
+                 }
+                 
+             }
+         
+         }
+         * 
+         */
+         
+         return ms.toString();
+     }
+     
+     
+     public String 发布系统委托信息(int 数量) {
+         if (数量 > 25) {
+             数量 = 25;
+         } else if (数量 < 10) {
+             数量 = 11;
+         }
+         int level = getMaplewing("cardlevel");
+         StringBuilder ms = new StringBuilder().append("#r┈┈┈━═☆#i4251202##r  系统委托任务  #i4251202# #r☆═━┈┈┈\r\n#r");
+         ms.append(getVipname()).append(" 您好！ #d以下是截至 #r").append(FileoutputUtil.CurrentReadable_Time()).append("#d\r\n发布的委托任务信息：\r\n");
+     //    ms.append("--------------------系统委托任务--------------------");
+         
+         for (int dd = 1;dd <= 数量; dd++) {
+             if (取得委托任务信息("id", dd) != -2) {
+                 if ((取得委托任务信息("maxcishu", dd) > 0) && (level >= 取得委托任务信息("level", dd)) && (取得委托任务信息("hastrue", dd) == 0)) {
+                 ms.append("#L").append(dd).append("##g☆#b编号 #e#r").append(dd).append("#n#b#g☆#b  #r").append(取得委托任务名称(1, dd)).append("#l\r\n");
+             //    ms.append("#b委托任务内容：#r").append(取得委托任务名称(2, dd)).append("\r\n");
+
+                 }
+             }
+         }
+         return ms.toString();
+     }
+     
+      public String 发布玩家委托信息(int 数量) {
+         if (数量 > 25) {
+             数量 = 25;
+         } else if (数量 < 10) {
+             数量 = 11;
+         }
+         int level = getMaplewing("cardlevel");
+         StringBuilder ms = new StringBuilder().append("#r┈┈┈━═☆#i4251202##r  玩家委托任务  #i4251202# #r☆═━┈┈┈\r\n#r");
+         ms.append(getVipname()).append(" 您好！ #d以下是截至 #r").append(FileoutputUtil.CurrentReadable_Time()).append("#d\r\n发布的委托任务信息：\r\n");
+     //    ms.append("--------------------系统委托任务--------------------");
+         
+         for (int dd = 1000;dd <= (数量 + 1000); dd++) {
+             if (取得委托任务信息("id", dd) != -2) {
+                 if ((取得委托任务信息("maxcishu", dd) > 0) && (level >= 取得委托任务信息("level", dd)) && (取得委托任务信息("hastrue", dd) == 0)) {
+                 ms.append("#L").append(dd).append("##g☆#b编号 #e#r").append(dd).append("#n#b#g☆#b  #r").append(取得委托任务名称(1, dd)).append("#l\r\n");
+             //    ms.append("#b委托任务内容：#r").append(取得委托任务名称(2, dd)).append("\r\n");
+
+                 }
+             }
+         }
+         return ms.toString();
+     }
+      
+      /**
+     * 根据职业ID获取职业名
+     *
+     * @param id 职业ID
+     * @returnf委托信息
+     */
+    public String getJobNameByIds(int id) {
+        return MapleCarnivalChallenge.getJobNameByIdNull(id);
+    }
+    
+    public String 领取委托任务(int 编号) {
+        int renwu1 = 取得玩家委托任务信息("renwu1");
+        int renwu2 = 取得玩家委托任务信息("renwu2");
+        int renwu3 = 取得玩家委托任务信息("renwu3");
+        int renwu4 = 取得玩家委托任务信息("renwu4");
+        int renwu5 = 取得玩家委托任务信息("renwu5");
+        int renwu6 = 取得玩家委托任务信息("renwu6");
+        int renwu7 = 取得玩家委托任务信息("renwu7");
+        int renwu8 = 取得玩家委托任务信息("renwu8");
+        int renwu9 = 取得玩家委托任务信息("renwu9");
+        
+        int mob = 取得委托任务信息("mob", 编号);
+    //    int nmob = 取得委托任务信息("nmob", 编号);
+        int maxcishu = 取得委托任务信息("maxcishu", 编号);
+        
+        boolean 成功设置 = false;
+        if (renwu1 == 0) {
+            设置玩家委托任务信息("renwu1", 编号);
+            if (mob > 0) {
+            设置玩家委托任务信息("mobid1", mob);
+            设置玩家委托任务信息("mob1", 0);
+            }
+            设置委托任务信息("maxcishu", maxcishu - 1, 编号);
+            成功设置 = true;
+        } else if (renwu2 == 0) {
+            设置玩家委托任务信息("renwu2", 编号);
+            if (mob > 0) {
+            设置玩家委托任务信息("mobid2", mob);
+            设置玩家委托任务信息("mob2", 0);
+            }
+            设置委托任务信息("maxcishu", maxcishu - 1, 编号);
+            成功设置 = true;
+        } else if (renwu3 == 0) {
+            设置玩家委托任务信息("renwu3", 编号);
+            if (mob > 0) {
+            设置玩家委托任务信息("mobid3", mob);
+            设置玩家委托任务信息("mob3", 0);
+            }
+            设置委托任务信息("maxcishu", maxcishu - 1, 编号);
+            成功设置 = true;
+        } else if (renwu4 == 0) {
+            设置玩家委托任务信息("renwu4", 编号);
+            if (mob > 0) {
+            设置玩家委托任务信息("mobid4", mob);
+            设置玩家委托任务信息("mob4", 0);
+            }
+            设置委托任务信息("maxcishu", maxcishu - 1, 编号);
+            成功设置 = true;
+        } else if (renwu5 == 0) {
+            设置玩家委托任务信息("renwu5", 编号);
+            if (mob > 0) {
+            设置玩家委托任务信息("mobid5", mob);
+            设置玩家委托任务信息("mob5", 0);
+            }
+            设置委托任务信息("maxcishu", maxcishu - 1, 编号);
+            成功设置 = true;
+        } else if (renwu6 == 0) {
+            设置玩家委托任务信息("renwu6", 编号);
+            if (mob > 0) {
+            设置玩家委托任务信息("mobid6", mob);
+            设置玩家委托任务信息("mob6", 0);
+            }
+            设置委托任务信息("maxcishu", maxcishu - 1, 编号);
+            成功设置 = true;
+        } else if (renwu7 == 0) {
+            设置玩家委托任务信息("renwu7", 编号);
+            if (mob > 0) {
+            设置玩家委托任务信息("mobid7", mob);
+            设置玩家委托任务信息("mob7", 0);
+            }
+            设置委托任务信息("maxcishu", maxcishu - 1, 编号);
+            成功设置 = true;
+        } else if (renwu8 == 0) {
+            设置玩家委托任务信息("renwu8", 编号);
+            if (mob > 0) {
+            设置玩家委托任务信息("mobid8", mob);
+            设置玩家委托任务信息("mob8", 0);
+            }
+            设置委托任务信息("maxcishu", maxcishu - 1, 编号);
+            成功设置 = true;
+        } else if (renwu9 == 0) {
+            设置玩家委托任务信息("renwu9", 编号);
+            if (mob > 0) {
+            设置玩家委托任务信息("mobid9", mob);
+            设置玩家委托任务信息("mob9", 0);
+            }
+            设置委托任务信息("maxcishu", maxcishu - 1, 编号);
+            成功设置 = true;
+        }
+        
+        if (成功设置 = true) {
+        return 委托详细信息(编号, 2);
+        } else {
+            return "设置委托任务失败";
+        }
+        
+    }
+    
+    public boolean 检察玩家是否已经领取所选择委托任务(int 编号) {
+        int renwu1 = 取得玩家委托任务信息("renwu1");
+        int renwu2 = 取得玩家委托任务信息("renwu2");
+        int renwu3 = 取得玩家委托任务信息("renwu3");
+        int renwu4 = 取得玩家委托任务信息("renwu4");
+        int renwu5 = 取得玩家委托任务信息("renwu5");
+        int renwu6 = 取得玩家委托任务信息("renwu6");
+        int renwu7 = 取得玩家委托任务信息("renwu7");
+        int renwu8 = 取得玩家委托任务信息("renwu8");
+        int renwu9 = 取得玩家委托任务信息("renwu9");
+        
+        if ((renwu1 == 编号) || (renwu2 == 编号) || (renwu3 == 编号) || (renwu4 == 编号) || (renwu5 == 编号) || (renwu6 == 编号) || (renwu7 == 编号) || (renwu8 == 编号) || (renwu9 == 编号)) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
+    public int 检察玩家已领取委托任务编号(int 编号) {
+        int renwu1 = 取得玩家委托任务信息("renwu1");
+        int renwu2 = 取得玩家委托任务信息("renwu2");
+        int renwu3 = 取得玩家委托任务信息("renwu3");
+        int renwu4 = 取得玩家委托任务信息("renwu4");
+        int renwu5 = 取得玩家委托任务信息("renwu5");
+        int renwu6 = 取得玩家委托任务信息("renwu6");
+        int renwu7 = 取得玩家委托任务信息("renwu7");
+        int renwu8 = 取得玩家委托任务信息("renwu8");
+        int renwu9 = 取得玩家委托任务信息("renwu9");
+        
+        int mm = 0;
+        
+        if (renwu1 == 编号) {
+            mm = 1;
+        } else if (renwu2 == 编号) {
+            mm = 2;
+        } else if (renwu3 == 编号) {
+            mm = 3;
+        } else if (renwu4 == 编号) {
+            mm = 4;
+        } else if (renwu5 == 编号) {
+            mm = 5;
+        } else if (renwu6 == 编号) {
+            mm = 6;
+        } else if (renwu7 == 编号) {
+            mm = 7;
+        } else if (renwu8 == 编号) {
+            mm = 8;
+        } else if (renwu9 == 编号) {
+            mm = 9;
+        }
+
+
+        return mm;
+        
+    }
+      
+     
+     public String 委托详细信息(int 编号, int 模式) {
+         StringBuilder ms = new StringBuilder().append("#r┈┈┈━═☆#i4251202##r  委托详细信息  #i4251202# #r☆═━┈┈┈\r\n#r");
+         if (模式 == 1) {
+         ms.append(getVipname()).append(" 您好！ #d现在时间是 #r").append(FileoutputUtil.CurrentReadable_Time()).append("#k\r\n").append("以下是您选择的委托任务：\r\n");
+         } else {
+             ms.append(getVipname()).append(" ， #d现在时间是 #r").append(FileoutputUtil.CurrentReadable_Time());
+         }
+         
+         if (取得委托任务信息("id", 编号) != -2) {
+                 
+         String name = 取得委托任务名称(1, 编号);
+         String neirong = 取得委托任务名称(2, 编号);
+         int fnpc = 取得委托任务信息("fnpc", 编号);
+         int npc = 取得委托任务信息("npc", 编号);
+         int maple = 取得委托任务信息("reward1maple", 编号);
+         int mapley = 取得委托任务信息("reward2mapley", 编号);
+         int wmose = 取得委托任务信息("reward3wmose", 编号);
+         int emose = 取得委托任务信息("reward4emose", 编号);
+         int nx = 取得委托任务信息("reward5nx", 编号);
+         int rewarditem = 取得委托任务信息("rewarditem", 编号);
+         int itemsl = 取得委托任务信息("itemsl", 编号);
+         int exp = 取得委托任务信息("exp", 编号);
+         int meso = 取得委托任务信息("meso", 编号);
+         
+         int map  = 取得委托任务信息("map", 编号);
+         int mob = 取得委托任务信息("mob", 编号);
+         int nmob = 取得委托任务信息("nmob", 编号);
+         
+         int item = 取得委托任务信息("item", 编号);
+         int nitem = 取得委托任务信息("nitem", 编号);
+         int hitem = c.getPlayer().getItemQuantity(item);
+         
+         int nlevel = 取得委托任务信息("nlevel", 编号);
+         int nid = 取得委托任务信息("nid", 编号);
+         int njob = 取得委托任务信息("njob", 编号);
+         int nchongxiu = 取得委托任务信息("nchongxiu", 编号);
+         int nguild = 取得委托任务信息("nguild", 编号);
+         
+         int maxcishu = 取得委托任务信息("maxcishu", 编号);
+         
+         if (模式 != 1) {
+             ms.append("#d\r\n您已经成功领取委托任务：").append(" #g☆ #r").append(name).append(" #g☆\r\n");
+         }
+         
+         ms.append("#b委托任务编号：#e#r").append(编号).append("#n  #b委托任务名称： #g☆ #r").append(name).append(" #g☆\r\n");
+         ms.append("#b任务发布").append((fnpc < 1000000) ? "玩家": "NPC").append("：#r").append((fnpc < 1000000) ? 取得委托玩家名称(fnpc): "#p" + fnpc + "#").append("#b  委托任务交付NPC：#r").append("#p").append(npc).append("#\r\n");
+         ms.append("#g☆#b任务简介#g☆  \r\n#d").append(neirong).append("\r\n");
+         ms.append("#b需要物品：  #r").append(((item > 1000000) ? "#i" + item + ":#  #b数量：#r" + nitem + "    #b已拥有数量：#r" + hitem :" 无")).append("\r\n");
+         ms.append("#b目标怪物：  #r").append(((mob >= 100000) ? "#o" + mob + ":#  #b数量：#r" + nmob :" 无")).append("\r\n");
+         ms.append("#b执行地点：  #r").append((map > 0 ? "#m" + map + "#":" 任意地点")).append("    #b地点编号：#r").append(map).append("\r\n");
+         if (模式 == 1) {
+             
+             int viplv = 取得委托任务信息("level", 编号);
+         ms.append("#g☆#b任务要求#g☆  \r\n#d").append("要求等级：#r").append(nlevel).append(" 以上    #d要求重修等级：#r").append(nchongxiu).append(" 以上\r\n");
+         ms.append((viplv > 0? "#d要求岛民等级：#r" + viplv + "    #d当前等级：#r" + getMaplewing("cardlevel") + "\r\n":""));
+         ms.append((nid > 0? "要求角色编号：#r" + nid + "    #d当前编号：#r" + c.getPlayer().getId() + "\r\n": ""));
+         ms.append((njob > 0? "要求职业：#r" + getJobNameByIds(njob) + "    #d当前职业：#r" + getJobNameByIds(c.getPlayer().getJob()) + "\r\n" : ""));
+         ms.append((nguild > 0? "要求家族编号：#r" + nguild + "    #d当前家族编号：#r" + c.getPlayer().getGuildId() + "\r\n" : ""));
+         ms.append("#g☆#b任务可接次数#g☆  #r还剩  #e#r").append(maxcishu).append("#n  次！\r\n");
+         }
+         
+         ms.append("#g☆#b任务奖励#g☆  \r\n#d贡献点：").append((maple > 0 ? " #r#e" + maple + "#n": " 无")).append("  #d活跃点：").append((mapley > 0 ? " #e#r" + mapley + "#n": " 无")).append("  #d万级余额：").append((wmose > 0 ? " #e#r" + wmose + "#n": " 无")).append("\r\n#d亿级余额：").append((emose > 0 ? " #e#r" + emose + "#n" : " 无")).append("  #d点卷：").append((nx > 0 ? " #e#r" + nx + "#n" : " 无")).append("  #d奖励物品：").append((rewarditem > 0 ? " #i" + rewarditem + ":# 数量 #e#r" + itemsl + "#n": " 无")).append("\r\n#d经验：#r#e").append(exp).append("#n  #d金币：#e#r").append(meso).append("#n\r\n");
+         
+         ms.append("#b目前您可以领取的委托任务数量为：#e#r").append(取得玩家可接委托任务数量()).append("#n  \r\n").append("#b最大可接委托任务数量为：#e#r").append(取得玩家可接委托任务最大数量()).append("#n \r\n");
+         
+         if (模式 == 1) {
+             
+             if (maxcishu > 0) {
+                 
+                 if (检察玩家是否已经领取所选择委托任务(编号) == false) {
+
+             if (取得玩家可接委托任务数量() > 0) {
+                 
+                 if ((nid > 0? c.getPlayer().getId() == nid: true) && (c.getPlayer().getLevel() >= nlevel) &&
+                         (njob > 0? c.getPlayer().getJob() == njob : true) && (c.getPlayer().getReborns() >= nchongxiu) &&
+                         (nguild > 0? c.getPlayer().getGuildId() == nguild : true)) {
+                 ms.append("#b#L").append(编号).append("#领取委托任务 #g☆ #r").append(name).append(" #g☆ #l\r\n");
+                 } else {
+                     ms.append("#b对不起，您不符合该委托任务的要求！\r\n无法领取委托任务 #g☆ #r").append(name).append(" #g☆\r\n");
+                 }
+                 
+             } else {
+                 ms.append("#r对不起哦！您已经无法继续领取委托任务！\r\n");
+             }
+                 } else {
+                     ms.append("#r对不起哦！您已经领取过该委托任务委托任务！\r\n").append("#b你可以输入 #e#r@wt ").append(检察玩家已领取委托任务编号(编号)).append("#n  #b查看已领取委托任务 #g☆ #r").append(name).append(" #g☆ #b的详细信息！");
+                 }
+             
+             } else {
+                 
+                 ms.append("#r对不起哦！该任务已经无法继续领取，请更换其他委托任务吧！当然您也可以等待委托任务的刷新！\r\n");
+                 
+             }
+             
+             
+             
+         }
+         
+         ms.append("#b#L9998#返回主页面查看其他委托任务#l \r\n#L9999#结束对话#l\r\n");
+         
+         } else {
+              ms.append("#r 该委托任务数据出现错误，编号有问题！该委托任务的编号为：#e#r").append(编号).append("#n \r\n#b请联系 MapleWing 进行修复！");
+         }
+             
+         return ms.toString();
+     }
+     
+     
+
+     public void 发布玩家的委托任务(int ids, String names, String neirong, int mob, int nmob, int item, int nitem, int reward1wmose, int level) {
+         addMaplewing("wmose", -reward1wmose);
+        // addMaplewing("wmose", -reward1wmose);
+         int exps = 0;
+         int vips = getMaplewing("cardlevel");
+         if (reward1wmose < 100) {
+             exps = vips*10000;
+         } else if (reward1wmose < 1000) {
+             exps = vips*100000;
+         } else if (reward1wmose < 10000) {
+             exps = vips*1000000;
+         } else if (reward1wmose < 100000) {
+             exps = vips*10000000;
+         } else if (reward1wmose < 1000000) {
+             exps = vips*20000000;
+         } else if (reward1wmose < 10000000) {
+             exps = vips*50000000;
+         } else if (reward1wmose < 100000000) {
+             exps = vips*80000000;
+         } else if (reward1wmose < 1000000000) {
+             exps = vips*100000000;
+         } else if (reward1wmose < 2100000000) {
+             exps = vips*150000000;
+         }
+         
+         this.c.getPlayer().发布玩家的委托任务(ids, names, neirong, mob, nmob, item, nitem, reward1wmose, exps, level);
+         
+     }
+     
+     public void 发布玩家的委托任务打猎怪物(int ids, String names, String neirong, int mob, int nmob, int reward1wmose, int level) {
+         addMaplewing("wmose", -reward1wmose);
+        // addMaplewing("wmose", -reward1wmose);
+         int exps = 0;
+         int vips = getMaplewing("cardlevel");
+         if (reward1wmose < 100) {
+             exps = vips*10000;
+         } else if (reward1wmose < 1000) {
+             exps = vips*100000;
+         } else if (reward1wmose < 10000) {
+             exps = vips*1000000;
+         } else if (reward1wmose < 100000) {
+             exps = vips*10000000;
+         } else if (reward1wmose < 1000000) {
+             exps = vips*20000000;
+         } else if (reward1wmose < 10000000) {
+             exps = vips*50000000;
+         } else if (reward1wmose < 100000000) {
+             exps = vips*80000000;
+         } else if (reward1wmose < 1000000000) {
+             exps = vips*100000000;
+         } else if (reward1wmose < 2100000000) {
+             exps = vips*150000000;
+         }
+         
+         this.c.getPlayer().发布玩家的委托任务(ids, names, neirong, mob, nmob, 0, 0, reward1wmose, exps, level);
+     }
+     
+     public void 发布玩家的委托任务收集物品(int ids, String names, String neirong, int item, int nitem, int reward1wmose, int level) {
+         addMaplewing("wmose", -reward1wmose);
+        // addMaplewing("wmose", -reward1wmose);
+         int exps = 0;
+         int vips = getMaplewing("cardlevel");
+         if (reward1wmose < 100) {
+             exps = vips*10000;
+         } else if (reward1wmose < 1000) {
+             exps = vips*100000;
+         } else if (reward1wmose < 10000) {
+             exps = vips*1000000;
+         } else if (reward1wmose < 100000) {
+             exps = vips*10000000;
+         } else if (reward1wmose < 1000000) {
+             exps = vips*20000000;
+         } else if (reward1wmose < 10000000) {
+             exps = vips*50000000;
+         } else if (reward1wmose < 100000000) {
+             exps = vips*80000000;
+         } else if (reward1wmose < 1000000000) {
+             exps = vips*100000000;
+         } else if (reward1wmose < 2100000000) {
+             exps = vips*150000000;
+         }
+         
+         this.c.getPlayer().发布玩家的委托任务(ids, names, neirong, 0, 0, item, nitem, reward1wmose, exps, level);
+     }
+     
+     public String 取得可领取奖励的委托任务() {
+         
+         StringBuilder ms = new StringBuilder().append("#r┈┈┈━═☆#i4251202##r  领取委托奖励  #i4251202# #r☆═━┈┈┈\r\n#r");
+         ms.append(getVipname()).append("  ，#d我是 #p").append(this.id).append("# 以下是您可以想我提交的委托任务：\r\n");
+         int renwu1 = 取得玩家委托任务信息("renwu1");
+         int renwu2 = 取得玩家委托任务信息("renwu2");
+         int renwu3 = 取得玩家委托任务信息("renwu3");
+         int renwu4 = 取得玩家委托任务信息("renwu4");
+         int renwu5 = 取得玩家委托任务信息("renwu5");
+         int renwu6 = 取得玩家委托任务信息("renwu6");
+         int renwu7 = 取得玩家委托任务信息("renwu7");
+         int renwu8 = 取得玩家委托任务信息("renwu8");
+         int renwu9 = 取得玩家委托任务信息("renwu9");
+         
+         
+         if (renwu1 > 0) {
+             int mob1 = 取得玩家委托任务信息("mob1");
+             int nmob = 取得委托任务信息("nmob", renwu1);
+             int item = 取得委托任务信息("item", renwu1);
+             int nitem = 取得委托任务信息("nitem", renwu1);
+             int hitem = c.getPlayer().getItemQuantity(item);
+             int npcs = 取得委托任务信息("npc", renwu1);
+             if ((mob1 >= nmob) && (nitem <= hitem) && (this.id == npcs)) {
+                 String names = 取得委托任务名称(1, renwu1);
+                 ms.append("#b#L").append(renwu1).append("#").append(names).append("#l\r\n");
+             }
+         }
+         if (renwu2 > 0) {
+             int mob1 = 取得玩家委托任务信息("mob2");
+             int nmob = 取得委托任务信息("nmob", renwu2);
+             int item = 取得委托任务信息("item", renwu2);
+             int nitem = 取得委托任务信息("nitem", renwu2);
+             int hitem = c.getPlayer().getItemQuantity(item);
+             int npcs = 取得委托任务信息("npc", renwu2);
+             if ((mob1 >= nmob) && (nitem <= hitem) && (this.id == npcs)) {
+                 String names = 取得委托任务名称(1, renwu2);
+                 ms.append("#b#L").append(renwu2).append("#").append(names).append("#l\r\n");
+             }
+         }
+         if (renwu3 > 0) {
+             int mob1 = 取得玩家委托任务信息("mob3");
+             int nmob = 取得委托任务信息("nmob", renwu3);
+             int item = 取得委托任务信息("item", renwu3);
+             int nitem = 取得委托任务信息("nitem", renwu3);
+             int hitem = c.getPlayer().getItemQuantity(item);
+             int npcs = 取得委托任务信息("npc", renwu3);
+             if ((mob1 >= nmob) && (nitem <= hitem) && (this.id == npcs)) {
+                 String names = 取得委托任务名称(1, renwu3);
+                 ms.append("#b#L").append(renwu3).append("#").append(names).append("#l\r\n");
+             }
+         }
+         if (renwu4 > 0) {
+             int mob1 = 取得玩家委托任务信息("mob4");
+             int nmob = 取得委托任务信息("nmob", renwu4);
+             int item = 取得委托任务信息("item", renwu4);
+             int nitem = 取得委托任务信息("nitem", renwu4);
+             int hitem = c.getPlayer().getItemQuantity(item);
+             int npcs = 取得委托任务信息("npc", renwu4);
+             if ((mob1 >= nmob) && (nitem <= hitem) && (this.id == npcs)) {
+                 String names = 取得委托任务名称(1, renwu4);
+                 ms.append("#b#L").append(renwu4).append("#").append(names).append("#l\r\n");
+             }
+         }
+         if (renwu5 > 0) {
+             int mob1 = 取得玩家委托任务信息("mob5");
+             int nmob = 取得委托任务信息("nmob", renwu5);
+             int item = 取得委托任务信息("item", renwu5);
+             int nitem = 取得委托任务信息("nitem", renwu5);
+             int hitem = c.getPlayer().getItemQuantity(item);
+             int npcs = 取得委托任务信息("npc", renwu5);
+             if ((mob1 >= nmob) && (nitem <= hitem) && (this.id == npcs)) {
+                 String names = 取得委托任务名称(1, renwu5);
+                 ms.append("#b#L").append(renwu5).append("#").append(names).append("#l\r\n");
+             }
+         }
+         if (renwu6 > 0) {
+             int mob1 = 取得玩家委托任务信息("mob6");
+             int nmob = 取得委托任务信息("nmob", renwu6);
+             int item = 取得委托任务信息("item", renwu6);
+             int nitem = 取得委托任务信息("nitem", renwu6);
+             int hitem = c.getPlayer().getItemQuantity(item);
+             int npcs = 取得委托任务信息("npc", renwu6);
+             if ((mob1 >= nmob) && (nitem <= hitem) && (this.id == npcs)) {
+                 String names = 取得委托任务名称(1, renwu6);
+                 ms.append("#b#L").append(renwu6).append("#").append(names).append("#l\r\n");
+             }
+         }
+         if (renwu7 > 0) {
+             int mob1 = 取得玩家委托任务信息("mob7");
+             int nmob = 取得委托任务信息("nmob", renwu7);
+             int item = 取得委托任务信息("item", renwu7);
+             int nitem = 取得委托任务信息("nitem", renwu7);
+             int hitem = c.getPlayer().getItemQuantity(item);
+             int npcs = 取得委托任务信息("npc", renwu7);
+             if ((mob1 >= nmob) && (nitem <= hitem) && (this.id == npcs)) {
+                 String names = 取得委托任务名称(1, renwu7);
+                 ms.append("#b#L").append(renwu7).append("#").append(names).append("#l\r\n");
+             }
+         }
+         if (renwu8 > 0) {
+             int mob1 = 取得玩家委托任务信息("mob8");
+             int nmob = 取得委托任务信息("nmob", renwu8);
+             int item = 取得委托任务信息("item", renwu8);
+             int nitem = 取得委托任务信息("nitem", renwu8);
+             int hitem = c.getPlayer().getItemQuantity(item);
+             int npcs = 取得委托任务信息("npc", renwu8);
+             if ((mob1 >= nmob) && (nitem <= hitem) && (this.id == npcs)) {
+                 String names = 取得委托任务名称(1, renwu8);
+                 ms.append("#b#L").append(renwu8).append("#").append(names).append("#l\r\n");
+             }
+         }
+         if (renwu9 > 0) {
+             int mob1 = 取得玩家委托任务信息("mob9");
+             int nmob = 取得委托任务信息("nmob", renwu9);
+             int item = 取得委托任务信息("item", renwu9);
+             int nitem = 取得委托任务信息("nitem", renwu9);
+             int hitem = c.getPlayer().getItemQuantity(item);
+             int npcs = 取得委托任务信息("npc", renwu9);
+             if ((mob1 >= nmob) && (nitem <= hitem) && (this.id == npcs)) {
+                 String names = 取得委托任务名称(1, renwu9);
+                 ms.append("#b#L").append(renwu9).append("#").append(names).append("#l\r\n");
+             }
+         }
+         
+         if (ms.length() > 1) {
+             return ms.toString();
+         } else {
+             return "#你没有可以领取奖励的委托任务哦！你可以输入@wt 数字0-9查看你已经领取的委托任务完成进度。";
+         }
+         
+     }
+     
+     public boolean 重置玩家委托任务(int 编号) {
+         boolean 重置 = false;
+         int renwu1 = 取得玩家委托任务信息("renwu1");
+         int renwu2 = 取得玩家委托任务信息("renwu2");
+         int renwu3 = 取得玩家委托任务信息("renwu3");
+         int renwu4 = 取得玩家委托任务信息("renwu4");
+         int renwu5 = 取得玩家委托任务信息("renwu5");
+         int renwu6 = 取得玩家委托任务信息("renwu6");
+         int renwu7 = 取得玩家委托任务信息("renwu7");
+         int renwu8 = 取得玩家委托任务信息("renwu8");
+         int renwu9 = 取得玩家委托任务信息("renwu9");
+         if (renwu1 == 编号) {
+             设置玩家委托任务信息("renwu1", 0);
+             重置 = true;
+         } else if (renwu2 == 编号) {
+             设置玩家委托任务信息("renwu2", 0);
+             重置 = true;
+         } else if (renwu3 == 编号) {
+             设置玩家委托任务信息("renwu3", 0);
+             重置 = true;
+         } else if (renwu4 == 编号) {
+             设置玩家委托任务信息("renwu4", 0);
+             重置 = true;
+         } else if (renwu5 == 编号) {
+             设置玩家委托任务信息("renwu5", 0);
+             重置 = true;
+         } else if (renwu6 == 编号) {
+             设置玩家委托任务信息("renwu6", 0);
+             重置 = true;
+         } else if (renwu7 == 编号) {
+             设置玩家委托任务信息("renwu7", 0);
+             重置 = true;
+         } else if (renwu8 == 编号) {
+             设置玩家委托任务信息("renwu8", 0);
+             重置 = true;
+         } else if (renwu9 == 编号) {
+             设置玩家委托任务信息("renwu9", 0);
+             重置 = true;
+         }
+         
+         return 重置;
+     }
+     
+     
+     public String 领取系统委托任务奖励(int 编号) {
+         
+         StringBuilder ms = new StringBuilder().append("#r┈┈┈━═☆#i4251202##r  领取委托奖励  #i4251202# #r☆═━┈┈┈\r\n#r");
+         
+         String names = 取得委托任务名称(1, 编号);
+         
+         int npcs = 取得委托任务信息("npc", 编号);
+         
+         if (this.id == npcs) {
+         
+         if (重置玩家委托任务(编号) == true) {
+         
+         ms.append(getVipname()).append(" #b你成功提交委托任务：#g☆ #r").append(names).append(" #g☆\r\n#b获得以下奖励：\r\n");
+         
+         int maple = 取得委托任务信息("reward1maple", 编号);
+         int mapley = 取得委托任务信息("reward2mapley", 编号);
+         int wmose = 取得委托任务信息("reward3wmose", 编号);
+         int emose = 取得委托任务信息("reward4emose", 编号);
+         int nx = 取得委托任务信息("reward5nx", 编号);
+         int rewarditem = 取得委托任务信息("rewarditem", 编号);
+         int itemsl = 取得委托任务信息("itemsl", 编号);
+         int exp = 取得委托任务信息("exp", 编号);
+         int meso = 取得委托任务信息("meso", 编号);
+         
+         if (maple > 0) {
+             addMaplewing("maple", maple);
+             ms.append("#d贡献点：#r#e").append(maple).append("#n\r\n");
+         }
+         if (mapley > 0) {
+             addMaplewing("mapley", mapley);
+             ms.append("#d活跃点：#r#e").append(mapley).append("#n\r\n");
+         }
+         if (wmose > 0) {
+             addMaplewing("wmose", wmose);
+             ms.append("#d万级余额：#r#e").append(wmose).append("#n\r\n");
+         }
+         if (emose > 0) {
+             addMaplewing("emose", emose);
+             ms.append("#d亿级余额：#r#e").append(emose).append("#n\r\n");
+         }
+         if (nx > 0) {
+             gainNX(1, nx);
+             ms.append("#d点卷：#r#e").append(nx).append("#n\r\n");
+         }
+         if (rewarditem > 1000000) {
+            gainItem(rewarditem, itemsl);
+            ms.append("#d物品：#r#i").append(rewarditem).append(":#    #d数量：#e#r").append(itemsl).append("#n\r\n");
+         }
+         if (exp > 0) {
+             gainExp(exp);
+             ms.append("#d经验：#r#e").append(exp).append("#n\r\n");
+         }
+         if ((meso > 0) && (c.getPlayer().getMeso() + meso < 2100000000)) {
+             gainMeso(meso);
+             ms.append("#d金币：#r#e").append(meso).append("#n\r\n");
+         }
+         
+         } else {
+             ms.append("#r领取任务奖励失败，原因：重置玩家委托任务 失败！请联系MapleWing 修复！\r\n领取任务编号：#e#r ").append(编号);
+         }
+         
+         } else {
+             ms.append("\r\n#b领取奖励失败！原因：所领取奖励找的 NPC 不正确！\r\n您应该是寻找 NPC ： #r#p").append(npcs).append("# #b领取 委托任务： #r").append(names).append("  #b的奖励！");
+         }
+         
+         
+         return ms.toString();
+     }
+     
+     
+
+
+
+
+
+---------------------分割线----------------------------------------
+
+
+到这儿需要添加一个 玩家命令 让玩家可以 随时的查看 委托任务的进程！ 这里我是适用NPC的方式来进行！
+
+找到  PlayerCommand.java 找个合适的位置加上下面的代码 ：
+
+
+
+    
+    public static class 委托 extends PlayerCommand.wt {
+       
+   }
+    
+    public static class wt extends CommandExecute {
+
+        @Override
+        public int execute(MapleClient c, String[] splitted) {
+            
+            MapleItemInformationProvider iis = MapleItemInformationProvider.getInstance();
+
+            if (splitted.length < 2) {
+                c.getPlayer().dropMessage(5, "用法：@wt <数字0--9> 查看指定委托任务的信息");
+                return 0;
+            }
+            int s输入 = Integer.parseInt(splitted[1]);
+            
+           if (s输入 <= 0 || s输入 >= 10) {
+                s输入 = 1;
+            } 
+           switch (s输入) {
+               case 0:
+                   NPCScriptManager.getInstance().start(c, 9000086, 2200);
+                   break;
+               case 1:
+                   NPCScriptManager.getInstance().start(c, 9000086, 2201);
+                   break;
+               case 2:
+                   NPCScriptManager.getInstance().start(c, 9000086, 2202);
+                   break;
+               case 3:
+                   NPCScriptManager.getInstance().start(c, 9000086, 2203);
+                   break;
+               case 4:
+                   NPCScriptManager.getInstance().start(c, 9000086, 2204);
+                   break;
+               case 5:
+                   NPCScriptManager.getInstance().start(c, 9000086, 2205);
+                   break;
+               case 6:
+                   NPCScriptManager.getInstance().start(c, 9000086, 2206);
+                   break;
+               case 7:
+                   NPCScriptManager.getInstance().start(c, 9000086, 2207);
+                   break;
+               case 8:
+                   NPCScriptManager.getInstance().start(c, 9000086, 2208);
+                   break;
+               case 9:
+                   NPCScriptManager.getInstance().start(c, 9000086, 2209);
+                   break;
+           }
+           return 1;
+        }
+        
+    }
+    
+
+
+
+---------------------分割线----------------------------------------
+
+
+
+
+
+
+
+
+
+最后源码部分全部添加完成！
+
+现在 可以导入 数据表到数据库！
+
+把 maplewingplayerwt.sql  和 maplewingwt.sql  这2个数据表 导入到你的数据库！
+
+再把 NPC脚本 放进你的 端里面就OK了 
+最后的那个编写我就不解释了！
+
+添加委托任务可以 在 数据库里面的这个表 maplewingwt 这里添加！
+
+
+

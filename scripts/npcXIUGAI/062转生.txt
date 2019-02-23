@@ -1,0 +1,46 @@
+if (selection == 2001) {
+cm.sendOk("普通玩家限制转生次数为70次,转生后你能保留100点+转生次数*100点属性\r\n\r\n初级VIP限制转生次数为120次,转生后你能保留200点+转生次数*200点属性\r\n\r\n高级VIP限制转生次数为180次,转生后你能保留300点+转生次数*300点属性\r\n\r\n超级VIP限制转生次数为245次,转生后你能保留400点+转生次数*400点属性\r\n\r\n至尊VIP限制转生次数为300次,转生后你能保留500点+转生次数*500点属性\r\n\r\n\r\n         #r#e请注意:如有剩下的属性,请先把它加了.否则,转生后将会回收!");
+
+}else if (selection == 2002) {
+if (cm.getChar().getLevel() < 200) {
+cm.sendOk("#e很抱歉,您是选择普通玩家转生,您的等级不够200级,所以我无法为你转生!");
+cm.dispose(); 
+}else if (cm.getMeso() < 500000000) {
+cm.sendOk("#e很抱歉,你没有5亿金币,所以我不能帮你的忙哦.");
+cm.dispose();
+}else if (cm.getChar().getReborns() > 70) {
+cm.sendOk("你是普通玩家,转生次数已超过70,所以不能再转了.");
+cm.dispose();
+}else if (cm.haveItem(4001129) == false){ 
+cm.sendOk("#e抱歉你没有#v4001129#.所以无法进行转生\r\n#b请去兑换或购买  #b(或者去做任务获得)"); 
+cm.dispose();
+}else{      
+wui = 1;
+var statup = new java.util.ArrayList();
+var p = cm.c.getPlayer();
+cm.getChar().setLevel(2);
+cm.changeJob(net.sf.odinms.client.MapleJob.BEGINNER);
+cm.gainItem(4001129,-1);
+cm.gainReborns(1);
+cm.gainMeso(-500000000);
+p.setStr(4);
+p.setDex(4);
+p.setInt(4);
+p.setLuk(4);  
+var totAp = (cm.getChar().getReborns()+1)*100;
+p.setRemainingAp (totAp+100);
+cm.serverNotice("『转生信息』：恭喜普通玩家 "+ cm.getChar().getName() +" ,转生了,大家祝贺一起他吧!");
+cm.sendOk("#e您做得非常好,★你已经成功#e转生#n了★.高兴吧!");
+cm.dispose();
+		statup.add (new net.sf.odinms.tools.Pair(net.sf.odinms.client.MapleStat.LEVEL, java.lang.Integer.valueOf(1)));
+        statup.add (new net.sf.odinms.tools.Pair(net.sf.odinms.client.MapleStat.EXP, java.lang.Integer.valueOf(0))); 
+		statup.add (new net.sf.odinms.tools.Pair(net.sf.odinms.client.MapleStat.STR, java.lang.Integer.valueOf(4)));
+		statup.add (new net.sf.odinms.tools.Pair(net.sf.odinms.client.MapleStat.DEX, java.lang.Integer.valueOf(4)));
+		statup.add (new net.sf.odinms.tools.Pair(net.sf.odinms.client.MapleStat.LUK, java.lang.Integer.valueOf(4)));
+		statup.add (new net.sf.odinms.tools.Pair(net.sf.odinms.client.MapleStat.INT, java.lang.Integer.valueOf(4)));
+		statup.add (new net.sf.odinms.tools.Pair(net.sf.odinms.client.MapleStat.EXP, java.lang.Integer.valueOf(0)));
+		statup.add (new net.sf.odinms.tools.Pair(net.sf.odinms.client.MapleStat.AVAILABLEAP, java.lang.Integer.valueOf(p.getRemainingAp())));
+		p.getClient().getSession().write (net.sf.odinms.tools.MaplePacketCreator.updatePlayerStats(statup));
+cm.dispose();  
+
+}

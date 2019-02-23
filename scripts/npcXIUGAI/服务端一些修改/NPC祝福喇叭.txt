@@ -1,0 +1,86 @@
+ 
+
+
+
+typed=4070;
+cm.sendSimple("#r#e┈┈┈━═☆请选择你想要发超级喇巴的类型☆═━┈┈┈\r\n#L0##v5120008##l#L1##v5120003##l#L2##v5120005##l#L3##v5120009#l#L4##v5121009#l");
+
+} else if(typed==4070){
+if(selection==0){
+typedd=5120008;
+}else if(selection==1){
+typedd=5120003;
+}else if(selection==2){
+typedd=5120005;
+}else if(selection==3){
+typedd=5120009;
+}else if(selection==4){
+typedd=5121009;
+}
+typed=4071;
+cm.sendGetText("#r#r#e\r\n┈┈┈┈┈┈━═☆超级喇叭(祝福)☆═━┈┈┈┈┈┈\r\n开心的一天又开始呢!~~~\r\n#b我是本服#r超级喇巴使者#b,此喇巴非一般之喇巴,发送后全服的人都能以祝福的形式显示,比滚动喇巴更振汗,来一句?\r\n手续费嘛，哼哼,1个羽翼币1次..."); 
+
+
+} else if(typed==4071){
+if(cm.getDonatorPoints()>=1){
+selected = cm.getText();
+cm.superlaba(selected,typedd);
+cm.gainDonatorPoints(-1);
+cm.dispose();
+}else{
+cm.sendOk("#r对不起,你目前没有足够的羽翼币.");
+cm.dispose();
+}
+
+
+
+
+
+
+
+
+java 
+
+
+
+   	public void superlaba(String Text)
+	{
+		if (Text.isEmpty())
+		{
+			chr.dropMessage("[注意]文字过长，不能发送，最长为20个字！");
+			return;
+		}
+		for (Iterator n$ = ChannelServer.getAllInstances().iterator(); n$.hasNext();)
+		{
+			ChannelServer cservs = (ChannelServer)n$.next();
+			Iterator i$ = cservs.getPlayerStorage().getAllCharacters().iterator();
+			while (i$.hasNext())
+			{
+				MapleCharacter players = (MapleCharacter)i$.next();
+				if (players.getGMLevel() < 10)
+					players.getClient().getSession().write(MaplePacketCreator.startMapEffect((new StringBuilder()).append("ら超级喇巴ら玩家[").append(c.getPlayer().getName()).append("] 吼道:").append(Text).toString(), 0x4e2006, true));
+			}
+		}
+
+	}
+
+	public void superlaba(String Text, int idk)
+	{
+		if (Text.isEmpty())
+		{
+			chr.dropMessage("[注意]文字过长，不能发送，最长为20个字！");
+			return;
+		}
+		for (Iterator n$ = ChannelServer.getAllInstances().iterator(); n$.hasNext();)
+		{
+			ChannelServer cservs = (ChannelServer)n$.next();
+			Iterator i$ = cservs.getPlayerStorage().getAllCharacters().iterator();
+			while (i$.hasNext())
+			{
+				MapleCharacter players = (MapleCharacter)i$.next();
+				if (players.getGMLevel() < 10)
+					players.getClient().getSession().write(MaplePacketCreator.startMapEffect((new StringBuilder()).append("ら超级喇巴ら玩家[").append(c.getPlayer().getName()).append("] 吼道:").append(Text).toString(), idk, true));
+			}
+		}
+
+	}

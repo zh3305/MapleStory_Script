@@ -1,0 +1,144 @@
+   public int getDollars() {
+        return this.dollars;
+    }
+
+    public int getShareLots() {
+        return this.shareLots;
+    }
+
+    public void addDollars(int n) {
+        this.dollars += n;
+    }
+
+    public void addShareLots(int n) {
+        this.shareLots += n;
+    }
+
+    public int getReborns() {
+        return this.reborns;
+    }
+
+    public void gainReborns(int i) {
+        reborns += i;
+    }
+
+    public int getAPS() {
+        return this.apstorage;
+    }
+
+    public void gainAPS(int aps) {
+        this.apstorage += aps;
+    }
+
+
+
+
+    /**
+     * 转身1
+     */
+    public void doReborn1() {
+        Map stat = new EnumMap(MapleStat.class);
+        this.reborns += 1;//转身次数加1
+        setLevel((short) 1);
+        setExp(0);
+        setRemainingAp((short) 0);
+
+        stat.put(MapleStat.力量, str);
+        stat.put(MapleStat.敏捷, dex);
+        stat.put(MapleStat.智力, int_);
+        stat.put(MapleStat.运气, luk);
+        stat.put(MapleStat.AVAILABLEAP, 0);
+        updateSingleStat(MapleStat.等级, 1);
+        updateSingleStat(MapleStat.职业, 0);
+        updateSingleStat(MapleStat.经验, 0);
+        this.client.getSession().write(MaplePacketCreator.updatePlayerStats(stat, false, this));
+    }
+
+
+
+
+
+
+
+
+    /**
+     * 转身
+     */
+    public void doReborn() {
+        Map stat = new EnumMap(MapleStat.class);
+        this.reborns += 1;//转身次数加1
+        setLevel((short) 1);
+        setExp(0);
+        setRemainingAp((short) 0);
+
+        int oriStats = this.stats.getStr() + this.stats.getDex() + this.stats.getLuk() + this.stats.getInt();
+
+        int str = Randomizer.rand(25, this.stats.getStr());
+        int dex = Randomizer.rand(25, this.stats.getDex());
+        int int_ = Randomizer.rand(25, this.stats.getInt());
+        int luk = Randomizer.rand(25, this.stats.getLuk());
+
+        int afterStats = str + dex + int_ + luk;
+
+        int MAS = oriStats - afterStats + getRemainingAp();
+        this.client.getPlayer().gainAPS(MAS);
+
+        this.stats.recalcLocalStats(this);
+        this.stats.setStr((short) str, this.client.getPlayer());
+        this.stats.setDex((short) dex, this.client.getPlayer());
+        this.stats.setInt((short) int_, this.client.getPlayer());
+        this.stats.setLuk((short) luk, this.client.getPlayer());
+        stat.put(MapleStat.力量, str);
+        stat.put(MapleStat.敏捷, dex);
+        stat.put(MapleStat.智力, int_);
+        stat.put(MapleStat.运气, luk);
+        stat.put(MapleStat.AVAILABLEAP, 0);
+        updateSingleStat(MapleStat.等级, 1);
+        updateSingleStat(MapleStat.职业, 0);
+        updateSingleStat(MapleStat.经验, 0);
+        this.client.getSession().write(MaplePacketCreator.updatePlayerStats(stat, false, this));
+    }
+
+
+public void setMaxhp2(int maxhp) {
+        this.stats.maxhp = ((int) maxhp);
+    }
+    
+    public void setMaxmp2(int maxmp) {
+        this.stats.maxmp = ((int) maxmp);
+    }
+
+
+
+
+
+
+    /**
+     * 刷新人物属性
+     */
+    public void updatePlayerStats() {
+        Map stat = new EnumMap(MapleStat.class);
+        stat.put(MapleStat.力量, stats.getStr());
+        stat.put(MapleStat.敏捷, stats.getDex());
+        stat.put(MapleStat.智力, stats.getInt());
+        stat.put(MapleStat.运气, stats.getLuk());
+        stat.put(MapleStat.AVAILABLEAP, getRemainingAp());
+        stat.put(MapleStat.等级, getLevel());
+        stat.put(MapleStat.职业, getJob());
+        stat.put(MapleStat.经验, getExp());
+        client.getSession().write(MaplePacketCreator.updatePlayerStats(stat,this));
+    }
+
+
+
+
+
+
+
+public void setMaxhp1(int maxhp) {
+        this.stats.maxhp = (int)  (maxhp - 1);
+    }
+    
+    public void setMaxmp1(int maxmp) {
+        this.stats.maxmp = (int)  (maxmp - 1);
+    }

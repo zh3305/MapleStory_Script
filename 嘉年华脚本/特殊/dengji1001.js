@@ -1,0 +1,199 @@
+﻿/*  This is mada by Kent    
+ *  This source is made by Funms Team
+ *  功能：等级送礼
+ *  @Author Kent 
+ */
+
+var status = 0;
+var bossid = "等级礼包";
+var giftLevel = Array(10, 50, 100, 150, 180, 200, 220, 250,230,240);
+var giftContent = Array(
+        Array(4001713, 2, 0), //定居金100W
+        //Array(4001713, 1, 0), //定居金100W
+        Array(5062000, 20, 0), //神奇魔方
+        //50级
+        Array(5150040, 5, 1), //皇家理发卷
+        Array(5152053, 5, 1), //皇家整容卷
+        Array(5062000, 5, 1), //神奇魔方
+        //100级
+        Array(5062000, 10, 2),//神奇魔方
+        Array(2049122, 2, 2), //正向
+        Array(2049135, 2, 2), //惊人正义20%
+        Array(2431741, 1, 2), //抵用券3000
+		Array(1003946, 1, 2), //革命帽子
+		Array(1102612, 1, 2), //革命披风
+		Array(1082540, 1, 2), //革命手套
+		Array(1052647, 1, 2), //革命战斗服
+		Array(1072853, 1, 2), //革命鞋子
+		Array(1132242, 1, 2),
+		Array(1122262, 1, 2),
+        //150级
+		Array(2431941, 1, 3), //140武器箱子
+        Array(5062002, 5, 3), //高级魔方
+        Array(5064000, 5, 3), //防爆
+		Array(1190400, 1, 3), //BOSS竞技场徽章
+        //Array(1132243, 1, 3),//低级贝勒德刻印腰带
+        //Array(1032220, 1, 3),//低级贝勒德耳环
+        Array(2049116, 5, 3), //惊人正义20%
+        Array(2049122, 5, 3), //正向
+        Array(2431741, 1, 3), //抵用券3000
+        //180级
+        Array(2431945, 1, 4), //140防具箱子
+        
+		//Array(1132243, 1, 4),//低级贝勒德刻印腰带
+       // Array(1032220, 1, 4),//低级贝勒德耳环
+        Array(2049752, 3, 4), //S 潜能 30%
+        Array(2049116, 5, 4), //惊人正义20%
+        Array(5062500, 5, 4),//大师附加神奇魔方
+        Array(5062000, 5, 4),//神奇魔方
+        Array(5062002, 5, 4),//高级神奇魔方
+        Array(2049122, 5, 4), //正向
+        //200
+		Array(2431944, 1, 4), //140武器箱子
+		//Array(2431945, 1, 5), //140防具箱子
+		//Array(1122264, 1, 5),//低级贝勒德刻印吊坠
+        //Array(1113072, 1, 5),//低级贝勒德戒指
+        Array(2431741, 1, 5), //抵用券3000
+        Array(2049122, 10, 5), //正向
+        Array(2049752, 3, 5), //S 潜能 30%
+        Array(2049116, 5, 5), //惊人正义20%
+        Array(5062500, 20, 5),//大师附加神奇魔方
+        Array(5062000, 100, 5),//神奇魔方
+        Array(5062002, 30, 5),//高级神奇魔方
+        Array(2049122, 5, 5), //正向
+        //220
+        Array(5062500, 50, 6),//大师附加神奇魔方
+        Array(5062000, 15, 6),//神奇魔方
+        Array(5062002, 50, 6),//高级神奇魔方
+        Array(2049122, 15, 6), //正向
+        Array(2431945, 2, 6), //140防具箱子
+        Array(2431741, 1, 6), //抵用券3000
+        Array(2046074, 1, 6),//祥龙单手武器攻击力卷轴99%
+        Array(2046075, 1, 6),//祥龙单手武器魔法力卷轴99%
+        Array(2046149, 1, 6),//祥龙双手武器攻击力卷轴99%
+        Array(2612060, 1, 6),//祥龙双手武器魔法力卷轴99%
+        //250
+        Array(2431938, 1, 7),//FFN箱子
+        Array(1022195, 1, 7),//超越证明眼饰
+        Array(1032201, 1, 7),//超越证明耳环
+        Array(1122259, 1, 7),//超越证明吊坠
+        Array(1012414, 1, 7),//超越证明脸饰
+        Array(1113056, 1, 7),//超越证明戒指
+        Array(2048723, 5, 7),//永远的涅槃火焰
+        Array(2046996, 1, 7),//惊人的单手武器攻击力卷轴100%
+        Array(2046997, 1, 7),//惊人的单手武器魔力卷轴100%
+        Array(2047818, 1, 7),//惊人的双手武器攻击力卷轴100%
+        Array(2612059, 1, 7),//惊人的双手武器魔力卷轴100%
+        Array(5062024, 20, 7),//闪炫魔方
+        Array(5062501, 20, 7), //
+		//230
+		Array(2049122, 10, 8), //正向
+		 Array(2340000, 10, 8), //祝福卷轴
+		 Array(2049116, 10, 8), //强化混沌卷轴
+		 Array(5062024, 5, 8),//闪炫魔方
+		 Array(2048721, 3, 8),//永远的涅槃火焰
+		 Array(2049752, 3, 8),//S级潜能卷轴 30%
+		 
+		 //240
+		 Array(2049153, 5, 9),//惊人正义混沌卷轴60%
+		 Array(5062024, 10, 9),//闪炫魔方
+		 Array(2048721, 5, 9),//永远的涅槃火焰
+		 Array(2340000, 20, 9),//祝福卷轴
+		 Array(2049124, 20, 9),//正向混沌卷轴20个
+		 Array(2049752 , 5, 9),//S级潜能卷轴 30%
+		 Array(5062501, 20, 9)//[MS特价]潜能变化魔方
+        /*
+         2046996 - 惊人的单手武器攻击力卷轴100%
+         2046997 - 惊人的单手武器魔力卷轴100%
+         2047818 - 惊人的双手武器攻击力卷轴100%
+         2612059 - 惊人的双手武器魔力卷轴100% 
+         */
+        );
+var giftId = -1;
+var giftToken = Array();
+var gifts = null;
+function start() {
+    status = -1;
+    action(1, 0, 0);
+}
+
+function action(mode, type, selection) {
+    if (status == 0 && mode == 0) {
+        cm.dispose();
+        return;
+    }
+    if (mode == 1) {
+        status++;
+    } else {
+        status--;
+    }
+    if (status == 0) {
+        var text = "";
+        text += "嘿，我为你准备了许多宝贝，等你达到相应等级的时候就可以领取了，另外点击可以查看礼包内容呢，快抢先看看吧！\r\n";
+        for (var key in giftLevel) {
+            var tips = "";
+            giftToken[key] = false;
+            if (cm.getChar().getLevel() >= giftLevel[key]) {
+                if (cm.getPQLog(bossid + key, 1) == 0) {
+                    tips = "(可领取)";
+                    giftToken[key] = true;
+                } else {
+                    tips = "#g(已领取)#b";
+                }
+            } else {
+                tips = "#r(等级不足)#b";
+            }
+            text += "#b#L" + (parseInt(key)) + "#领取#r#e" + giftLevel[key] + "#n#b级等级礼包 " + tips + "#l#k\r\n";
+        }
+        cm.sendSimple(text);
+    } else if (status == 1) {
+        giftId = parseInt(selection);
+        var text = "#r#e" + giftLevel[giftId] + "#n#b级礼包内容：\r\n";
+        gifts = getGift(giftId);
+        for (var key in gifts) {
+            var itemId = gifts[key][0];
+            var itemQuantity = gifts[key][1];
+            text += "#v" + itemId + "##b#t" + itemId + "##k #rx " + itemQuantity + "#k\r\n";
+        }
+        text += "\r\n#d是否现在就领取该礼包？#k";
+        cm.sendYesNo(text);
+    } else if (status == 2) {
+        if (giftId != -1 && gifts != null) {
+            if (cm.getSpace(1) < 8 || cm.getSpace(2) < 8 || cm.getSpace(3) < 8 || cm.getSpace(4) < 8 || cm.getSpace(5) < 8) {
+                cm.sendOk("您的背包空间不足，请保证每个栏位至少8格的空间，以避免领取失败。");
+                cm.dispose();
+                return;
+            }
+            var job = cm.getChar().getJob();
+            if ((job == 10000 || job == 10100 || job == 10110 || job == 10111 || job == 10112) && cm.getChar().getLevel() < 140) {
+                cm.sendOk("神之子需要到140才能领取！");
+                cm.dispose();
+                return;
+            }
+            if (giftToken[giftId] && cm.getPQLog(bossid + key, 1) == 0) {
+                cm.setPQLog(bossid + (giftId), 1, 1);
+                for (var key in gifts) {
+                    var itemId = gifts[key][0];
+                    var itemQuantity = gifts[key][1];
+                    cm.gainItem(itemId, itemQuantity);
+                }
+                cm.sendOk("恭喜您，领取成功！快打开包裹看看吧！");
+                cm.dispose();
+            } else {
+                status = -1;
+                cm.sendSimple("您已经领过了该礼包或者等级未达到要求，无法领取。");
+            }
+        } else {
+            cm.sendOk("领取错误！请联系管理员！");
+            cm.dispose();
+        }
+    }
+}
+function getGift(id) {
+    var lastGiftContent = Array();
+    for (var key in giftContent) {
+        if (giftContent[key][2] == id)
+            lastGiftContent.push(giftContent[key]);
+    }
+    return lastGiftContent;
+}

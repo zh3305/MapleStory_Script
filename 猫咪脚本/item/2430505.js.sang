@@ -1,0 +1,12 @@
+function start() {
+		im.gainItem(3994417, 100);// HP椅子
+		im.gainItem(3994418, 100);// 爱心椅子
+		im.gainItem(3994419, 100);// 爱情椅子
+		im.gainItem(3994420, 100);// 超级药水
+		im.gainItem(3994421, 100);// HELLO喵喵拖
+		im.gainItem(3994422, 100);// 粉色电子表
+		im.gainNX(1,399999999);
+		im.sendOk("恭喜您获得 #r管理员送出的礼物#k 。");
+		//im.worldSpouseMessage(0x20,"『新手驾到』：恭喜玩家 "+ im.getChar().getName() +" 来到了猫咪冒险岛。热烈祝贺他(她)吧。");
+		im.dispose(); 
+}

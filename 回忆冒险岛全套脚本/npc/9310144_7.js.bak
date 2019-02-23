@@ -1,0 +1,265 @@
+
+var status = -1;
+var text;
+var sel;
+var rmb;
+var aaa ="#fUI/UIWindow.img/PvP/Scroll/enabled/next2#";
+
+// 每个礼包所需的充值金额
+var condition = new Array(1, 10, 30, 50, 100, 200, 300, 500, 800, 1000, 1200, 1500, 2000);
+var reward = new Array(// 礼包编号、道具id、数量
+					// 礼包1
+					Array(1, 1113077, 1),
+					Array(1, 3010118, 1),
+					Array(1, 2340000, 1),
+					Array(1, 2049116, 1),
+
+					// 礼包2
+					Array(2, 5062002, 30),
+					Array(2, 5064000, 10),
+					Array(2, 2340000, 5),
+					Array(2, 2049124, 3),
+					Array(2, 4001785, 5),
+
+					// 礼包3
+					Array(3, 5062002, 50),
+					Array(3, 5064000, 15),
+					Array(3, 2340000, 10),
+					Array(3, 2049124, 4),
+					Array(3, 3010535, 1),
+					Array(3, 5073000, 50),
+					Array(3, 5390004, 50),
+					Array(3, 4001785, 10),
+
+					// 礼包4
+					Array(4, 5062002, 70),
+					Array(4, 5064000, 20),
+					Array(4, 2340000, 15),
+					Array(4, 3010678, 1),
+					Array(4, 2049124, 5),
+					Array(4, 5073000, 80),
+					Array(4, 5390004, 80),
+					Array(4, 4001715, 1),
+
+					// 礼包5
+					Array(5, 3994417, 1),
+					Array(5, 5062002, 80),
+					Array(5, 5064000, 25),
+					Array(5, 2340000, 20),
+					Array(5, 2049124, 5),
+					Array(5, 5073000, 100),
+					Array(5, 5390004, 80),
+					Array(5, 5390018, 20),
+					Array(5, 4001715, 2),
+
+					// 礼包6
+					Array(6, 3994418, 1),
+					Array(6, 5062002, 100),	
+					Array(6, 5062500, 50),
+					Array(6, 5064000, 30),
+					Array(6, 2048307, 1),
+					Array(6, 2340000, 30),
+					Array(6, 2049124, 5),
+					Array(6, 5390004, 100),	
+					Array(6, 5390018, 30),
+					Array(6, 4001715, 2),
+					Array(6, 4310036, 7500),
+
+					// 礼包7
+					Array(7, 3994419, 1),
+					Array(7, 5062002, 100),
+					Array(7, 5062500, 80),
+					Array(7, 5064000, 35),
+					Array(7, 2048307, 1),
+					Array(7, 2340000, 35),
+					Array(7, 2049124, 5),
+					Array(7, 5390004, 100),
+					Array(7, 5390018, 40),
+					Array(7, 4310036, 7500),
+					
+					// 礼包8
+					Array(8, 1162012, 1),
+					Array(8, 2432069, 1),
+					//Array(8, 2430226, 1),
+					Array(8, 3994417, 1),
+					//Array(8, 3994418, 1),
+					//Array(8, 3994419, 1),
+					Array(8, 5062002, 100),
+					Array(8, 5062500, 100),
+					Array(8, 5064000, 40),
+					Array(8, 2048307, 1),
+					Array(8, 2340000, 40),
+					Array(8, 2049124, 10),
+					Array(8, 5390004, 100),
+					Array(8, 5390018, 50),
+					
+					// 礼包9
+					Array(9, 2431988, 1),
+					Array(9, 3994417, 1),
+					Array(9, 3994418, 1),
+					Array(9, 3994419, 1),
+					//Array(9, 3994420, 1),
+					//Array(9, 3994421, 1),
+					Array(9, 5062002, 200),
+					Array(9, 5062500, 200),
+					Array(9, 2048307, 1),
+					Array(9, 2049750, 5),
+					Array(9, 2340000, 50),
+					Array(9, 5064000, 50),
+					Array(9, 2049124, 20),
+					Array(9, 5390018, 100),
+					Array(9, 4001716, 1),
+					Array(9, 2431938, 1),
+
+					
+					// 礼包10
+					Array(10, 2431988, 1),
+					Array(10, 2049405, 1),
+					Array(10, 3994417, 1),
+					Array(10, 3994418, 1),
+					Array(10, 3994419, 1),
+					Array(10, 3994420, 1),
+					Array(10, 3994421, 1),
+					Array(10, 3994422, 1),
+					Array(10, 5062002, 300),
+					Array(10, 5062500, 300),
+					Array(10, 5064000, 60),
+					Array(10, 2340000, 60),
+					Array(10, 2049116, 50),
+					Array(10, 5390018, 150),
+					Array(10, 2049124, 30),
+					Array(10, 3010788, 1),
+					Array(10, 2431938, 1),
+
+
+                    /// 礼包11
+					Array(11, 2431988, 2),
+					Array(11, 2049405, 2),
+					Array(11, 3994417, 2),
+					Array(11, 3994418, 2),
+					Array(11, 3994419, 2),
+					Array(11, 3994420, 2),
+					Array(11, 3994421, 2),
+					Array(11, 3994422, 2),
+					Array(11, 5062002, 400),
+					Array(11, 5062500, 400),
+					Array(11, 5064000, 70),
+					Array(11, 2340000, 70),
+					Array(11, 2049124, 40),
+					Array(11, 5390018, 200),
+					Array(11, 4001716, 2),
+					Array(11, 3014000, 1),
+					Array(11, 2431938, 2),
+
+				    /// 礼包12
+					Array(12, 2431988, 3),
+					Array(12, 2049405, 3),
+					Array(12, 3994417, 3),
+					Array(12, 3994418, 3),
+					Array(12, 3994419, 3),
+					Array(12, 3994420, 3),
+					Array(12, 3994421, 3),
+					Array(12, 3994422, 3),
+					Array(12, 5062002, 500),
+					Array(12, 5062500, 500),
+					Array(12, 5064000, 80),
+					Array(12, 2340000, 80),
+					Array(12, 2049124, 50),
+					Array(12, 5390018, 250),
+					Array(12, 4001716, 3),
+					Array(12, 3014004, 1),
+					Array(12, 2431938, 3),
+
+                    /// 礼包13
+					Array(13, 1662033, 1),
+					Array(13, 2431988, 4),
+					Array(13, 2049405, 4),
+					Array(13, 3994417, 4),
+					Array(13, 3994418, 4),
+					Array(13, 3994419, 4),
+					Array(13, 3994420, 4),
+					Array(13, 3994421, 4),
+					Array(13, 3994422, 4),
+					Array(13, 5062002, 600),
+					Array(13, 5062500, 600),
+					Array(13, 5064000, 100),
+					Array(13, 2340000, 100),
+					Array(13, 2049124, 60),
+					Array(13, 5390018, 400),
+					Array(13, 4001716, 4),
+					Array(13, 3010832, 1),
+					Array(13, 2431938, 4)
+					);
+
+function start() {
+	action(1, 0, 0);
+}
+
+function action(mode, type, selection) {
+	if (status == 0 && mode == 0)
+	{
+		cm.dispose();
+		return;
+	}
+	if (mode == 1)
+	{
+		status++;
+	} else {
+		status--;
+	}
+
+	rmb = cm.getRMB();
+	var curlevel = -1;
+
+	if (status == 0) {
+		text = "您累计充值金额为： #r" + rmb + "#k 元\r\n\r\n";
+		for (var i = 1; i <= condition.length; i++) {
+			text += "#b#L" + i + "#"+aaa+" 累计充值 #r" + condition[i-1] + " #b元奖励";
+			if (cm.getBossLogAcc("累计充值礼包" + i) == -1) {
+				text += "(已领取)";
+				curlevel = curlevel == -1 ? i : curlevel;
+			}
+			text += "#l\r\n";
+		}
+		text += "#k";
+		cm.sendSimple(text);
+	} else if (status == 1) {
+		sel = selection;
+		text = "\t\t\t\t#e#r- 累计充值" + condition[selection - 1] + "元奖励 -#k#n\r\n\r\n";
+		for (var i = 0; i < reward.length; i++) {
+			if (reward[i][0] == selection) {
+				text += "\t\t\t#i" + reward[i][1] + "# #z" + reward[i][1] + "#[" + reward[i][2] + "个]\r\n";
+			}
+		}
+		cm.sendYesNo(text);
+	} else if (status == 2) {
+		if (cm.getBossLogAcc("累计充值礼包" + sel) == -1) {
+			cm.sendOk("这个礼包您已经领取过了");
+			cm.dispose();
+			return;
+		}
+		if (rmb < condition[sel-1]) {
+			cm.sendOk("累计充值金额不足，无法领取。");
+			cm.dispose();
+			return;
+		}
+		var rewardlist = new Array();
+		for (var i = 0; i < reward.length; i++) {
+			if (reward[i][0] == sel) {
+				rewardlist.push(new Array(reward[i][1], reward[i][2]));
+			}
+		}
+		if (!cm.canHoldSlots(rewardlist.length)) {
+			cm.sendOk("包裹空间不足，请确保包裹每个栏位有至少 " + rewardlist.length + " 格空间");
+			cm.dispose();
+			return;
+		}
+		for (var i = 0; i < rewardlist.length; i++) {
+			cm.gainItem(rewardlist[i][0], rewardlist[i][1]);
+		}
+		cm.setBossLogAcc("累计充值礼包" + sel, -2);
+		cm.playerMessage(1, "领取成功！");
+		cm.channelMessage(0x18, "『累计充值奖励』" + " : " + "玩家 " + cm.getChar().getName() + " 领取了累计充值 " + condition[sel-1] + " 元奖励。");
+		cm.dispose();
+	}
+}

@@ -1,0 +1,31 @@
+
+
+消耗代码：2430370
+消耗名称：秘密配方
+消耗介绍：含有神秘力量的秘密配方。可以获得多个专业技术配方。\r\n#c没有学习专业技术时，出现所有技术的配方。#
+
+
+ case 2430370:
+                    if (!MapleInventoryManipulator.checkSpace(c, 2028062, 1, "")) {
+                        break;
+                    }
+                    MapleInventoryManipulator.addById(c, 2028062, (short) 1, new StringBuilder().append("Reward item: ").append(toUse.getItemId()).append(" on ").append(FileoutputUtil.CurrentReadable_Date()).toString());
+                    MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, (short) slot, (short) 1, false);
+                    break;
+
+
+
+
+消耗代码：2430611
+消耗名称：神秘特殊能手册
+消耗介绍：不知道什么内容的神秘能手册。双击可以在特殊能手册中选择1个。\n#c冒险骑士团无法使用#
+
+
+消耗代码：2430606
+消耗名称：安迪的能手册
+消耗介绍：时间旅行者安迪送的小礼物。可以获得自己可以使用的能手册。
+
+
+消耗代码：2430559
+消耗名称：鲁丹的能手册
+消耗介绍：是忠于狮子王的骑士鲁丹给的礼物。可以找到适合自己的能手册。

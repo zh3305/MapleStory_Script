@@ -1,0 +1,42 @@
+
+怪物代码：9300303
+怪物名称：阿卡伊勒
+
+怪物代码：9300304
+怪物名称：阿卡伊勒
+
+怪物代码：8860000
+怪物名称：阿卡伊勒
+
+
+怪物代码：8860001
+怪物名称：阿卡伊勒（分身）
+
+怪物代码：8860004
+怪物名称：阿卡伊勒完成检查用Dummy
+
+怪物代码：8860010
+怪物名称：阿卡伊勒
+
+怪物代码：9600136
+怪物名称：阿卡伊勒
+
+//执行远征任务ID和地图
+case 272020200:
+questID = 160110;
+break;
+
+
+MapleMap.java   //参照扎昆召唤的方法
+
+public void spawnAkayile(int x, int y) {
+        Point pos = new Point(x, y);
+        MapleMonster mainb = MapleLifeFactory.getMonster(9400900);
+        Point spos = calcPointBelow(new Point(pos.x, pos.y - 1));
+        mainb.setPosition(spos);
+        mainb.setFake(true);
+        spawnFakeMonster(mainb);
+        if (this.squadSchedule != null) {
+            cancelSquadSchedule(false);
+        }
+    }

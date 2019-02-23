@@ -1,0 +1,23 @@
+var itemList = Array(
+	Array(1112748, 1),
+	Array(1022149, 1),
+    Array(1152099, 1),
+	Array(1132161, 1),
+	Array(1032148, 1),
+	Array(3700049, 1),
+	Array(1122200, 1)
+);
+function start() {
+    if (im.getSpace(1) >= 7) {
+        im.gainItem(2430917, -1);
+		for(var key in itemList) {
+			im.gainItem(itemList[key][0],itemList[key][1]);
+		}
+        im.playerMessage(-1, "恭喜您获得7件风暴系列首饰");
+        im.worldSpouseMessage(0x15, "『充值奖励』 : 恭喜 " + im.getPlayer().getName() + " 从 <风暴首饰箱> 中获得7件风暴系列首饰，离超神更近了一步！");
+	im.dispose();
+    } else {
+        im.sendOk("请将装备栏预留7个空位以上，我将给您7件风暴系列首饰！");
+	im.dispose();
+    }
+}

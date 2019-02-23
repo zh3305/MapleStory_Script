@@ -1,0 +1,82 @@
+var status = 0;
+
+var eff = "#fEffect/CharacterEff/1112905/0/1#"; //
+var epp = "#fEffect/CharacterEff/1082312/0/0#";  //彩光
+var epp1 = "#fEffect/CharacterEff/1082312/2/0#"; //彩光1
+var axx = "#fEffect/CharacterEff/1051294/0/0#";  //爱心
+var xxx = "#fEffect/CharacterEff/1082565/2/0#"; //星系
+var ppp = "#fEffect/CharacterEff/1112907/4/0#"; //泡炮 
+var epp3 = "#fEffect/CharacterEff/1112908/0/1#";  //彩光3
+var axx1 = "#fEffect/CharacterEff/1062114/1/0#";  //爱心
+var zs = "#fEffect/CharacterEff/1112946/2/0#";  //砖石粉
+var zs1 = "#fEffect/CharacterEff/1112946/1/1#";  //砖石蓝
+var dxxx = "#fEffect/CharacterEff/1102232/2/0#"; //星系
+var tz = "#fEffect/CharacterEff/1082565/2/0#";  //兔子蓝
+var tz1 = "#fEffect/CharacterEff/1082565/4/0#";  //兔子粉
+var tz5 = "#fUI/UIWindow2.img/QuestAlarm/BtQ/normal/0#";
+var iconEvent = "#fUI/UIToolTip.img/Item/Equip/Star/Star#";
+var ttt2 ="#fUI/UIWindow/Quest/icon6/7#";////美化2
+
+function start() {
+    status = -1;
+    action(1, 0, 0);
+}
+
+function action(mode, type, selection) {
+    if (status == 0 && mode == 0) {
+        cm.dispose();
+        return;
+    }
+    if (mode == 1) {
+        status++;
+    } else {
+        status--;
+    }
+    if (cm.getMapId() == 180000001) {
+            cm.sendOk("很遗憾，您因为违反用户守则被禁止游戏活动，如有异议请联系管理员.")
+            cm.dispose();
+        } 
+    else if (status == 0) {
+        var selStr = "         欢迎来到猫岛时装店,猫猫爱我,我爱猫猫!\r\n"+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+"\r\n              #L1##e#r"+tz1+"武器"+tz1+"#l #L2##e#r"+tz1+"披风"+tz1+"#l\r\n            #L3##e#r"+tz1+"帽子"+tz1+"#l #L4##e#r"+tz1+"衣服"+tz1+"#l\r\n            #L5##e#r"+tz1+"裤子"+tz1+"#l #L6##e#r"+tz1+"鞋子"+tz1+"#l\r\n            #L7##e#r"+tz1+"手套"+tz1+"#l #L8##e#r"+tz1+"效果"+tz1+"#l\r\n            #L9##e#r"+tz1+"戒指"+tz1+"#l\r\n\r\n"+dxxx+"        #g 本周时装推荐#v1702567#           "+dxxx+"\r\n"+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+""+eff+"";
+        cm.sendSimple(selStr);
+    } else if (status == 1) {
+        switch (selection) {
+			        case 1:
+            cm.dispose();
+            cm.openNpc(9310376,1);
+            break;
+			        case 2:
+            cm.dispose();
+            cm.openNpc(9310376,2);
+            break;
+			        case 3:
+            cm.dispose();
+            cm.openNpc(9310376,4);
+            break;
+			        case 4:
+            cm.dispose();
+            cm.openNpc(9310376,5);
+            break;
+			        case 5:
+            cm.dispose();
+            cm.openNpc(9310376,6);
+            break;
+			        case 6:
+            cm.dispose();
+            cm.openNpc(9310376,3);
+            break;
+			        case 7:
+            cm.dispose();
+            cm.openNpc(9310376,7);
+            break;
+			        case 8:
+            cm.dispose();
+            cm.openNpc(9310376,8);
+            break;
+			        case 9:
+            cm.dispose();
+            cm.openNpc(9310376,9);
+            break;
+		}
+    }
+}

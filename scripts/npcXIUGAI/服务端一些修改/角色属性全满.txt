@@ -1,0 +1,29 @@
+    public void Chongxiusx(int level, int str, int dex, int int_, int luk, int Maxhp, int HP, int Maxmp, int MP) {
+        Map statup = new EnumMap(MapleStat.class);
+
+        this.c.getPlayer().getStat().str = (short) str;
+        this.c.getPlayer().getStat().dex = (short) dex;
+        this.c.getPlayer().getStat().int_ = (short) int_;
+        this.c.getPlayer().getStat().luk = (short) luk;
+
+        this.c.getPlayer().getStat().maxhp = Maxhp;
+        this.c.getPlayer().getStat().maxmp = Maxmp;
+        this.c.getPlayer().getStat().setHp(HP, this.c.getPlayer());
+        this.c.getPlayer().getStat().setMp(MP, this.c.getPlayer());
+
+        statup.put(MapleStat.等级, level);
+        statup.put(MapleStat.力量, str);
+        statup.put(MapleStat.敏捷, dex);
+        statup.put(MapleStat.运气, luk);
+        statup.put(MapleStat.智力, int_);
+        statup.put(MapleStat.HP, HP);
+        statup.put(MapleStat.MAXHP, Maxhp);
+        statup.put(MapleStat.MP, MP);
+        statup.put(MapleStat.MAXMP, Maxmp);
+        this.c.getPlayer().resetChongxiusx1(level, str, dex, int_, luk, Maxhp, HP, Maxmp, MP);
+        this.c.getSession().write(MaplePacketCreator.updatePlayerStats(statup, this.c.getPlayer()));
+    }
+
+public void resetChongxiusx1(int level, int str, int dex, int z, int luk, int maxhp, int HP, int maxmp, int MP) {
+        this.c.getPlayer().resetChongxiusx1(level, str, dex, z, luk, maxhp, HP, maxmp, MP);
+    }

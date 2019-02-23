@@ -1,0 +1,110 @@
+function enter(pi) {
+    pi.openNpc(2140004, 1);
+}
+
+function enter(pi) {
+    pi.warp(272000600);
+    return true;
+}
+
+
+
+public boolean haveMonster(int mobid) {
+        for (MapleMapObject obj : this.c.getPlayer().getMap().getAllMonstersThreadsafe()) {
+            MapleMonster mob = (MapleMonster) obj;
+            if (mob.getId() == mobid) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+cm.ZreHylvl()； //等级排行 >  
+   
+cm.ZreHyfame()； //人气排行  
+
+cm.ZreHymeso()； //金钱排行
+
+cm.ZreHyzs()；  //转生排行
+
+cm.ZreHykills()； //PK点值排行
+
+cm.ZreHypvpdeaths()； //PVP被杀数目
+
+
+    public int getChongxiu() {
+        return chongxiu;
+    }
+
+public void gainChongxiu(int amount) {
+        this.chongxiu += amount;
+    }
+
+NPCCaonversationManager.java  :
+
+public void gainChongxiu(int amount) {
+        getPlayer().gainChongxiu(amount);
+    }
+
+public int getChongxiu() {
+        return getPlayer().getChongxiu();
+    }
+
+//排行榜
+public void Maplewingcx() {
+        MapleGuild.Maplewingcx(getClient(), npc);
+    }
+
+
+//MapleGuild.java
+
+    public static void Maplewingcx(MapleClient c, int npcid)
+ {
+  try
+  {
+   Connection con = DatabaseConnection.getConnection();
+   PreparedStatement ps = con.prepareStatement(
+     "SELECT `name`, `chongxiu`, `str`, `dex`, " +
+     "`int`, `luk` FROM characters ORDER BY `chongxiu` DESC LIMIT 10");
+
+   ResultSet rs = ps.executeQuery();
+   c.getSession().write(MaplePacketCreator.Maplewingcx(npcid, rs));
+
+   ps.close();
+   rs.close();
+  }
+  catch (Exception e) {log.error("查看重修境界排行出错.", e);}
+ }
+
+
+//MaplePacketCreator.java
+
+public static MaplePacket Maplewingcx(int npcid, ResultSet rs) throws SQLException
+ {
+  MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
+
+  mplew.writeShort(SendPacketOpcode.GUILD_OPERATION.getValue());
+  mplew.write(0x49);
+  mplew.writeInt(npcid);
+  if (!rs.last())
+  {
+   mplew.writeInt(0);
+   return mplew.getPacket();
+  }
+
+  mplew.writeInt(rs.getRow());
+
+  rs.beforeFirst();
+  while (rs.next())
+  {
+   mplew.writeMapleAsciiString(rs.getString("name"));
+   mplew.writeInt(rs.getInt("chongxiu"));
+   mplew.writeInt(rs.getInt("str"));
+   mplew.writeInt(rs.getInt("dex"));
+   mplew.writeInt(rs.getInt("int"));
+   mplew.writeInt(rs.getInt("luk"));
+  }
+
+  return mplew.getPacket();
+ }

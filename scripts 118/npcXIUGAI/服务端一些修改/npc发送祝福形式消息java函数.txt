@@ -1,0 +1,44 @@
+NPCConversationManager.java
+
+
+    public void Maplewingzf(String Text)
+	{
+		if (Text.isEmpty())
+		{
+			chr.dropMessage("[注意]文字过长，不能发送，最长为20个字！");
+			return;
+		}
+		for (Iterator n$ = ChannelServer.getAllInstances().iterator(); n$.hasNext();)
+		{
+			ChannelServer cservs = (ChannelServer)n$.next();
+			Iterator i$ = cservs.getPlayerStorage().getAllCharacters().iterator();
+			while (i$.hasNext())
+			{
+				MapleCharacter players = (MapleCharacter)i$.next();
+				if (players.getGMLevel() < 1000000)
+					players.getClient().getSession().write(MaplePacketCreator.startMapEffect((new StringBuilder()).append("MapleWing管理员： ").append(Text).toString(), 0x4e2006, true));
+			}
+		}
+
+	}
+
+	public void Maplewingzf(String Text, int typedd)
+	{
+		if (Text.isEmpty())
+		{
+			chr.dropMessage("[注意]文字过长，不能发送，最长为20个字！");
+			return;
+		}
+		for (Iterator n$ = ChannelServer.getAllInstances().iterator(); n$.hasNext();)
+		{
+			ChannelServer cservs = (ChannelServer)n$.next();
+			Iterator i$ = cservs.getPlayerStorage().getAllCharacters().iterator();
+			while (i$.hasNext())
+			{
+				MapleCharacter players = (MapleCharacter)i$.next();
+				if (players.getGMLevel() < 1000000)
+					players.getClient().getSession().write(MaplePacketCreator.startMapEffect((new StringBuilder()).append("MapleWing管理员： ").append(Text).toString(), typedd, true));
+			}
+		}
+
+	}

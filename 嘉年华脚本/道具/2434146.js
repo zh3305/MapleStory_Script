@@ -1,0 +1,6 @@
+function start() {
+    im.gainItem(2431174, -1);
+    im.getPlayer().gainHonorExp(Math.floor(Math.random() * 100) + 50);
+    //im.worldMessage(0x18, "『内在能力』 : 恭喜 " + im.getChar().getName() + " 使用 <荣誉勋章> 成功提高了声望.");
+    im.dispose();
+}

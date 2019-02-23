@@ -1,0 +1,23 @@
+ public void setCXSX(int job, short level, short str, short dex, short int_, short luk, int hp, int mp){
+        Map statup = new EnumMap(MapleStat.class);
+        switch (job) {
+            case 100:
+            case 110:
+            case 120:
+            case 130:
+            case 111:
+            case 112:
+            case 121:
+            case 122:
+            case 131:
+            case 132:
+                this.c.getPlayer().getStat().str = (short) str;
+                this.c.getPlayer().getStat().dex = (short) dex;
+                this.c.getPlayer().getStat().int_ = (short) int_;
+                this.c.getPlayer().getStat().luk = (short) luk;
+                
+            
+        }
+        
+        
+    } 

@@ -1,0 +1,122 @@
+﻿
+var status = -1;
+var text;
+var sel;
+var time;
+var aaa ="#fUI/UIWindow.img/PvP/Scroll/enabled/next2#";
+var ca = java.util.Calendar.getInstance();
+var hour = ca.get(java.util.Calendar.HOUR_OF_DAY); //获得小时
+var minute = ca.get(java.util.Calendar.MINUTE);//获得分钟
+var second = ca.get(java.util.Calendar.SECOND); //获得秒
+
+// 每个礼包所需的在线时长
+var condition = new Array(200, 400,600,800,900);
+var reward = new Array(// 礼包编号、道具id、数量
+					// 礼包30
+					Array(1, 3000, 1),
+					Array(1, 4000, 2),
+					Array(2, 4000, 1),
+					Array(2, 5000, 2),
+					Array(3, 5000, 1),
+					Array(3, 6000, 2),
+					Array(4, 6000, 2),
+					Array(4, 7000, 1),
+					Array(5, 10000, 1),
+					Array(5, 12000, 2)
+					//Array(6, 10, 3)
+
+					);
+
+function start() {
+	action(1, 0, 0);
+}
+
+function action(mode, type, selection) {
+	if (status == 0 && mode == 0)
+	{
+		cm.dispose();
+		return;
+	}
+	if (mode == 1)
+	{
+		status++;
+	} else {
+		status--;
+	}
+if (cm.haveItem(4001443,1)){
+		var A = 20;
+	}else{
+		var A = 0;
+	}
+	if (cm.haveItem(4034496,1)){
+		//A = A+420;
+	}
+	var time = cm.getOnlineTime()+A;
+	var curlevel = -1;
+
+	if (status == 0) {
+		text = "#e#d#e#d提示#n#k：#e#r23：50#n #b至#r #e00：10#n #b时无法领取在线奖励。#k\r\n#b请在 #e#r23：50#n#b 分前领取当天未领取的奖励。以免造成损失。#k\r\n";
+		for (var i = 1; i <= condition.length; i++) {
+			text +="#e#b#L" + i + "#"+aaa+"领取在线" + condition[i-1] + "分钟奖励";
+			if (cm.getEventCount("在线点卷礼包" + i) > 0) {
+				text += "(已领取)";
+				curlevel = curlevel == -1 ? i : curlevel;
+			}
+			text += "#l\r\n";
+		}
+		text += "#k";
+		cm.sendSimple(text);
+	} else if (status == 1) {
+		// 23:50 ~ 23: 59 前一天不领取的时间  00:00 ~ 00:10 第二天不领取的时间  
+		if ((hour == 23 && (minute >= 50 && minute <= 59)) || (hour == 0 && (minute >= 0 && minute <= 10))){
+			cm.sendOk("#d服务器当前时间： #r" + hour +" 时 " + minute + " 分 " + second + " 秒#k\r\n\r\n#e#d提示#n#k：#r23 ： 50 #b至#r 00 ： 10 #b时无法领取在线奖励。#k");
+			cm.dispose();
+			return;
+		}
+		if (cm.getEventCount("在线点卷礼包" + selection) > 0) {
+			cm.sendOk("这个礼包您已经领取过了");
+			cm.dispose();
+			return;
+		}
+		sel = selection;
+		text = "\t\t\t\t#e#r- 在线 " + condition[selection - 1] + " 分钟奖励 -#k#n\r\n\r\n";
+		for (var i = 0; i < reward.length; i++) {
+			if (reward[i][0] == selection) {
+				if (reward[i][2]==1){
+					var A = "点卷";
+				}else if(reward[i][2]==2){
+					var A = "抵用卷";
+				}else if(reward[i][2]==3){
+					var A = "余额";
+				}
+				text += "\t奖励 "+reward[i][1]+" "+A+"\r\n";
+			}
+		}
+		cm.sendYesNo(text);
+	} else if (status == 2) {
+		if (time < condition[sel-1]) {
+			cm.sendOk("在线时间不足，无法领取。");
+			cm.dispose();
+			return;
+		}
+		var rewardlist = new Array();
+		for (var i = 0; i < reward.length; i++) {
+			if (reward[i][0] == sel) {
+				rewardlist.push(new Array(reward[i][1], reward[i][2]));
+			}
+		}
+		for (var i = 0; i < rewardlist.length; i++) {
+			if (rewardlist[i][1]==3){
+				cm.addHyPay(-rewardlist[i][0]);
+			}else{
+				cm.gainNX(rewardlist[i][1], rewardlist[i][0]);
+			}
+		}
+		cm.setEventCount("在线点卷礼包" + sel);
+		cm.playerMessage(1, "领取成功！");
+		cm.worldSpouseMessage(0x20,"『在线时间奖励』" + " : " + "玩家 " + cm.getChar().getName() + " 领取了在线 " + condition[sel-1] + " 分钟奖励。");
+		//cm.worldMessageYellow("『在线时间奖励』" + " : " + "玩家 " + cm.getChar().getName() + " 领取了在线 " + condition[sel-1] + " 分钟奖励。");
+		cm.dispose();
+	}
+}
+

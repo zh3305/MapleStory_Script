@@ -1,0 +1,122 @@
+status = -1;
+var head = "#fUI/UIWindow2.img/Quest/quest_info/summary_icon/summary#\r\n";
+var icon = "#fUI/UIWindow2.img/QuestAlarm/BtQ/normal/0#";
+var Star = "#fEffect/CharacterEff/1112904/2/1#";
+/***************************************/
+var cost = 100;  //每次消耗的HyPay额度
+var itemList = Array(
+Array(1003797, 30, 1, 3), //高贵战士头盔 - (无描述)
+Array(1003798, 100, 1, 3), //高贵流丹维奇帽 - (无描述)
+Array(1003799, 100, 1, 3), //高贵游侠贝雷帽 - (无描述)
+Array(1003800, 100, 1, 3), //高贵刺客软帽 - (无描述)
+Array(1003801, 300, 1, 3), //高贵流浪者帽 - (无描述)
+Array(1042254, 30, 1, 3), //鹰眼战士盔甲 - (无描述)
+Array(1042255, 100, 1, 3), //鹰眼丹维奇长袍 - (无描述)
+Array(1042256, 100, 1, 3), //鹰眼游侠斗篷 - (无描述)
+Array(1042257, 100, 1, 3), //鹰眼刺客衬衣 - (无描述)
+Array(1042258, 300, 1, 3), //鹰眼流浪者外衣 - (无描述)
+Array(1062165, 30, 1, 3), //魔术师战士短裤 - (无描述)
+Array(1062166, 100, 1, 3), //魔术师丹维奇短裤 - (无描述)
+Array(1062167, 100, 1, 3), //魔术师游侠短裤 - (无描述)
+Array(1062168, 100, 1, 3), //魔术师刺客短裤 - (无描述)
+Array(1062169, 300, 1, 3)  //魔术师流浪者短裤 - (无描述)
+);
+
+var itemList2 = Array(
+Array(1212063, 90, 1, 3), // 法弗纳魔力源泉杖 // (无描述)
+Array(1222058, 250, 1, 3), // 法弗纳天使手铳 // (无描述)
+Array(1232057, 90, 1, 3), // 法弗纳死亡使者 // (无描述)
+Array(1242060, 90, 1, 3), // 法弗纳精神之刃 // (无描述)
+Array(1242061, 90, 1, 3), // 法弗纳精神之刃 // (无描述)
+Array(1252015, 500, 1, 3), // 法弗纳北极星魔法棒 // (无描述)
+Array(1262016, 500, 1, 3), // 法弗纳ESP限制器 // (无描述)
+Array(1302275, 90, 1, 3), // 法弗纳银槲之剑 // (无描述)
+Array(1312153, 10, 1, 3), // 法弗纳双刃切肉斧 // (无描述)
+Array(1322203, 10, 1, 3), // 法弗纳戈耳迪锤 // (无描述)
+Array(1332225, 90, 1, 3), // 法弗纳大马士革剑 // (无描述)
+Array(1342082, 90, 1, 3), // 法弗纳急速之刃 // (无描述)
+Array(1362090, 90, 1, 3), // 法弗纳洞察手杖 // (无描述)
+Array(1372177, 90, 1, 3), // 法弗纳魔力夺取者 // (无描述)
+Array(1382208, 90, 1, 3), // 法弗纳魔冠之杖 // (无描述)
+Array(1402196, 90, 1, 3), // 法弗纳忏悔之剑 // (无描述)
+Array(1412135, 90, 1, 3), // 法弗纳战斗切肉斧 // (无描述)
+Array(1422140, 90, 1, 3), // 法弗纳闪电锤 // (无描述)
+Array(1432167, 90, 1, 3), // 法弗纳贯雷枪 // (无描述)
+Array(1442223, 500, 1, 3), // 法弗纳半月宽刃斧 // (无描述)
+Array(1452205, 90, 1, 3), // 法弗纳追风者 // (无描述)
+Array(1462193, 90, 1, 3), // 法弗纳风翼弩 // (无描述)
+Array(1472214, 90, 1, 3), // 法弗纳危险之手 // (无描述)
+Array(1482168, 250, 1, 3), // 法弗纳巨狼之爪 // (无描述)
+Array(1492179, 250, 1, 3), // 法弗纳左轮枪 // (无描述)
+Array(1522094, 90, 1, 3), // 法弗纳双风翼弩 // (无描述)
+Array(1532098, 250, 1, 3), // 法弗纳荣耀炮 // (无描述)
+Array(1542063, 250, 1, 3), // 法弗纳皇刀正宗 // (无描述)
+Array(1552063, 250, 1, 3) // 法弗纳煌扇蓝姬 // (无描述)
+);
+function start() {
+    action(1, 0, 0);
+}
+
+function action(mode, type, selection) {
+    if (mode == 1) {
+        status++;
+    } else {
+        if (status == 0) {
+            im.sendOk("不想使用吗？…我的肚子里有各类#b奇特座椅或卷轴、装备、新奇道具#k哦！");
+            im.dispose();
+        }
+        status--;
+
+    }
+    if (status == 0) {
+	var txt = "#d六一儿童节来啦!\r\n";
+        txt += "魔方 卷轴  FFN 随即装备 等道具 [ #r还在等待吗#d ]\r\n\r\n#k";
+		txt +="#L0#我要开礼包啦!#l";
+        im.sendSimple(txt);
+    } else if (status == 1) {
+        if (selection == 0) {
+            var chance = Math.floor(Math.random() * 500);
+            var finalitem = Array();
+        for (var i = 0; i < itemList.length; i++) {
+            if (itemList[i][1] >= chance) {
+                finalitem.push(itemList[i]);
+            }
+        }
+        for (var i = 0; i < itemList2.length; i++) {
+            if (itemList2[i][1] >= chance) {
+                finalitem.push(itemList2[i]);
+            }
+        }
+			if (finalitem.length != 0) {
+				if(im.getSpace(2)>=4&&im.getSpace(5)>=3&&im.getSpace(4)>=1&&im.getSpace(1)>=1){
+                var item;
+                var random = new java.util.Random();
+                var finalchance = random.nextInt(finalitem.length);
+                var itemId = finalitem[finalchance][0];
+                var quantity = finalitem[finalchance][2];
+                var notice = finalitem[finalchance][3];
+                item = im.gainGachaponItem(itemId, quantity, "[6.1直充抽奖宝箱]", notice);
+                if (item != -1) {
+						im.sendOk("你获得了 #b#z" + item + "##k " + quantity + "个。");
+						im.gainItem(2049124,30);
+						im.gainItem(2340000,30);
+						im.gainItem(2430068,2);
+						im.gainItem(4001839,5000);
+						im.gainItem(5064000,30);
+						im.gainItem(5062009,100);
+						im.gainItem(5062500,100);
+						im.gainItem(5062024,50);
+						im.gainItem(2432011,-1);
+					im.safeDispose();
+				} else {
+					im.sendOk("请你确认在背包的装备，消耗，其他窗口中是否有一格以上的空间。");
+					im.safeDispose();
+				}	
+			} else {
+                    im.sendOk("请你确认在背包的装备(1格)，消耗(4格)，其他(1格)，特殊(1格)窗口中是否有一格以上的空间。");
+					im.safeDispose();
+            }
+		}
+    }
+}
+}

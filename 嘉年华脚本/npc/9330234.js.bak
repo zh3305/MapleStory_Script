@@ -1,0 +1,295 @@
+﻿/*      
+
+ NPC类型:	装备回收、删除
+
+ */
+
+var status = 0;
+var typede = 0;
+var slot = Array();
+var dsa = "";
+var weapen = Array();
+var Resolve = Array();//分解的特定武器、给的特定材料
+var RecoveryA = Array(/*Array(1003159,1000),
+					  Array(1302152,1000),//狮心弯刀
+					  Array(1312065,1000),//狮心勇士斧
+					  Array(1322096,1000),//狮心震雷钉
+					  Array(1402095,1000),//狮心战斗弯刀
+					  Array(1412065,1000),//狮心战斗斧
+					  Array(1422066,1000),//狮心巨锤
+					  Array(1432086,1000),//狮心长枪
+					  Array(1442116,1000),//狮心矛
+					  Array(1542015,1000),//狮心 狮子王丸
+					  Array(1102277,1000),//鹰翼哨兵披风
+					  Array(1152111,1000),//鹰翼哨兵护肩
+					  Array(1003174,1000),//鹰翼哨兵便帽
+					  Array(1082297,1000),//鹰翼哨兵手套
+					  Array(1052316,1000),//鹰翼哨兵服
+					  Array(1072487,1000),//鹰翼哨兵鞋
+					  Array(1232014,1000),//狮心痛苦命运*/
+					  Array(1212063,80000),//法弗纳魔力源泉杖
+					  Array(1222058,80000),//法弗纳天使手铳
+					  Array(1232057,80000),//法弗纳死亡使者
+					  Array(1242060,80000),//法弗纳精神之刃
+					  Array(1242061,80000),//法弗纳精神之刃
+					  Array(1302275,80000),//法弗纳银槲之剑
+					  Array(1312153,80000),//法弗纳双刃切肉斧
+					  Array(1322203,80000),//法弗纳戈耳迪锤
+					  Array(1332225,80000),//法弗纳大马士革剑
+					  Array(1342082,80000),//法弗纳急速之刃
+					  Array(1362090,80000),//法弗纳洞察手杖
+					  Array(1372177,80000),//法弗纳魔力夺取者
+					  Array(1382208,80000),//法弗纳魔冠之杖
+					  Array(1402196,80000),//法弗纳忏悔之剑
+					  Array(1412135,80000),//法弗纳战斗切肉斧
+					  Array(1422140,80000),//法弗纳闪电锤
+					  Array(1432167,80000),//法弗纳贯雷枪
+					  Array(1442223,80000),//法弗纳半月宽刃斧
+					  Array(1452205,80000),//法弗纳追风者
+					  Array(1462193,80000),//法弗纳风翼弩
+					  Array(1472214,80000),//法弗纳危险之手
+					  Array(1482168,80000),//法弗纳巨狼之爪
+					  Array(1492179,80000),//法弗纳左轮枪
+					  Array(1522094,80000),//法弗纳双风翼弩
+					  Array(1532098,80000),//法弗纳荣耀炮
+					  Array(1252015,80000),//法弗纳北极星魔法棒
+					  Array(1542063,80000),//法弗纳皇刀正宗
+					  Array(1552063,80000),//法弗纳煌扇蓝姬
+					  Array(1062165,50000),//魔术师战士短裤
+					  Array(1062166,50000),//魔术师丹维奇短裤
+					  Array(1062167,50000),//魔术师游侠短裤
+					  Array(1062168,50000),//魔术师刺客短裤
+					  Array(1062169,50000),//魔术师流浪者短裤
+					  Array(1042254,50000),//鹰眼战士盔甲
+					  Array(1042255,50000),//鹰眼丹维奇长袍
+					  Array(1042256,50000),//鹰眼游侠斗篷
+					  Array(1042257,50000),//鹰眼刺客衬衣
+					  Array(1042258,50000),//鹰眼流浪者外衣
+					  Array(1003797,50000),//高贵战士头盔
+					  Array(1003798,50000),//高贵流丹维奇帽
+					  Array(1003799,50000),//高贵游侠贝雷帽
+					  Array(1003800,50000),//高贵刺客软帽
+					  Array(1003801,50000)//高贵流浪者帽
+
+);//回收的装备
+var MaterialC =Array(Array(4001840,70),//心愿珠
+					 Array(4030008,30),//俄罗斯方块
+					 Array(4030006,20),//俄罗斯方块
+					 Array(4030007,10),//俄罗斯方块
+					 Array(4009296,50)//野生植物毒液
+					 );//可交易稀有度1级材料+获得几率(总样本为100)
+
+var MaterialD =Array(Array(4009295,70),//野生动物油
+					 Array(4009298,50),//燃料混合物
+					 Array(4001867,10)//金香蕉
+					 );//可交易稀有度2级材料
+
+var MaterialE =Array(Array(4009297,10),//海洋生物粘液
+					 Array(4030002,20)//俄罗斯方块
+					 );//可交易稀有度3级材料
+
+var MaterialA = Array(Array(4310119,0,2,140,160),//11周年纪念币
+					  Array(4310079,0,2,140,160),//10周年纪念币
+					  Array(4310196,0,2,140,160),//2016春节纪念币
+					  Array(4310158,0,5,140,160),//春节纪念币
+					  Array(4310174,0,5,140,160),//黑门币
+					  Array(4310149,0,5,140,160),//游戏币
+					  Array(4310180,0,5,140,160),//疯人院币
+					  Array(4310148,0,5,140,160),//星之大陆钱币
+					  Array(4310022,0,5,140,160),//樱花节纪念币
+					  Array(4310021,0,5,130,160),//海豚岛纪念币
+					  Array(4310019,0,5,100,130),//旅行者纪念币
+					  Array(4310071,0,5,100,130),//放风筝春节硬币
+					  Array(4310027,0,5,70,100)//传说币
+);//分解后的【不可交易】材料+最低数量+最高数量+S级~X级装备可分解获得
+var MaterialB = Array(Array(4001867),//金香蕉
+					  Array(4140000),//爱情巧克力棒
+					  Array(4140100),//情人节爱心巧克力
+					  Array(4140101),//白色情人节凤梨糖果
+					  Array(4140102),//白色情人节草莓糖果
+					  Array(4009342),//甜蜜之水
+					  Array(4021043),//匠人之心
+					  Array(4000038),//金杯
+					  Array(4030002)
+);//分解后的【可交易】材料
+function start() {
+    status = -1;
+    action(1, 0, 0);
+}
+
+function action(mode, type, selection) {
+    if (mode == -1) {
+        cm.dispose();
+    } else {
+        if (mode == 0) {
+            cm.dispose();
+            return;
+        }
+        if (mode == 1)
+            status++;
+        if (status == 0) {
+			//if (cm.getChar().isGM()){
+			
+            var zyms = "";
+            zyms = "#e				枫之谷冒险岛锻造中心\r\n#b #k\r\n";
+			//zyms += "            #L6##b>>>打开一键删除界面<<<#k#l\r\n\r\n";
+            zyms += "            #L1##b装备回收#k#l\r\n\r\n";
+            zyms += "            #L20##b装备分解（暂时关闭）#k#l\r\n\r\n";
+			zyms += "            #L3##b查看说明#k#l\r\n\r\n";
+            cm.sendSimple(zyms);
+			//}
+        } else if (selection == 1) { //装备回收
+            dsd = 100;
+            var avail = "";
+            for (var i = 0; i < 96; i++) {
+                if (cm.getInventory(1).getItem(i) != null&&!cm.isCash(cm.getInventory(1).getItem(i).getItemId()) ) {
+					avail += "#L" + cm.getInventory(1).getItem(i).getItemId() + "# #z" + cm.getInventory(1).getItem(i).getItemId() + "# #i" + cm.getInventory(1).getItem(i).getItemId() + ":##l\r\n";
+                }
+                slot.push(i);
+            }
+            cm.sendSimple(dsa + "#b请选择需要回收的道具:\r\n#b" + avail);
+
+        } else if (selection == 2) { //装备分解
+            dsd = 400;
+            var avail = "";
+            for (var i = 0; i < 96; i++) {
+                if (cm.getInventory(1).getItem(i) != null&&!cm.isCash(cm.getInventory(1).getItem(i).getItemId())) {
+					avail += "#L" + cm.getInventory(1).getItem(i).getItemId() + "# #z" + cm.getInventory(1).getItem(i).getItemId() + "# #i" + cm.getInventory(1).getItem(i).getItemId() + ":##l\r\n";
+                }
+                slot.push(i);
+            }
+            cm.sendSimple(dsa + "#b请选择需要分解的道具:\r\n#b" + avail);
+		} else if (selection == 3) {
+			var TXT = "       装备回收说明\r\n\r\n";
+				TXT+= "1.法弗纳武器回收可获得8W点卷,防具可获得5W(暂时没添加埃苏和漩涡,请不要回收,否则不补!)\r\n";
+				//TXT+= "2.所有110~134装备回收随即给0~250电卷\r\n";
+				TXT+= "3.所有大于等于135装备回收点卷规则如下\r\n\r\n";
+				TXT+= "  -50%几率获得1~2000点\r\n";
+				TXT+= "  -25%几率获得2000~3000点\r\n";
+				TXT+= "  -15%几率获得3000~4000点\r\n";
+				TXT+= "  -10%几率获得4000~5000点\r\n\r\n";
+				TXT+= "  -特定装备不遵循以上规则(如法弗纳)\r\n\r\n";
+				TXT+= "注:装备分解系统暂时关闭.";
+
+			cm.sendSimple(TXT);
+			cm.dispose();
+        } else if (status == 2) {//回收处
+            itemss = selection;
+            if (dsd == 100) {
+				var NX = 0;
+                var shul = cm.getPlayer().getItemQuantity(itemss);
+                if (cm.getMeso() < 500000) {
+                    cm.sendOk("你没有足够的金币,删除道具需要收取手续费50万金币。");
+                } else {
+					var chance = Math.floor(Math.random() * 99);
+					if (cm.getReqLevel(itemss)>=150){
+						if (chance<=79){//判断几率
+							NX = Math.floor(Math.random() * 2000)+1;
+						}else if(chance>79&&chance<=89){
+							NX = Math.floor(Math.random() * 1000)+2000;
+						}else if(chance>89&&chance<=94){
+							NX = Math.floor(Math.random() * 1000)+3000;
+						}else if(chance>94&&chance<=99){
+							NX = Math.floor(Math.random() * 1000)+4000;
+						}
+						
+					}//else if (cm.getReqLevel(itemss)>=110&&cm.getReqLevel(itemss)<135){
+						//NX = Math.floor(Math.random() * 250);
+					//}
+					for (var a = 0;a<RecoveryA.length ;a++ ){
+						if(itemss==RecoveryA[a][0]){
+							NX = RecoveryA[a][1];
+						}
+					}
+                    cm.gainMeso(-500000);
+                    cm.gainItem(itemss, -1);
+					cm.gainNX(1,NX);
+                    cm.sendOk(dsa + "我已经将您背包里的 #i" + itemss + ":#从你的背包清理！");
+					if (NX>0){
+						cm.worldSpouseMessage(0x0D," [紫河仙人] ："+ cm.getChar().getName() +"回收装备获得点卷"+NX);
+					}
+                }
+              status = 1;
+            }
+            if (dsd == 400) {//分解处
+				var A = cm.getReqLevel(itemss);//+cm.getTotalStat(itemss);
+				var B = Math.floor(Math.random()*99);//这里为获得的基础概率取值
+				var C = cm.getTotalStat(itemss)*0.01;//取装备的总属性的百分比
+				var D = C+B;//取装备总属性的1%+B所取的百分比
+				var A1 = Array();
+				var A2 = Array();
+				var Meso;
+				if (cm.getMeso()<1000000){
+					cm.sendOk("不用拿100W辛苦费我怎么帮你分解？");
+					cm.dispose();
+					return;
+				}
+				for(var i =0;i<MaterialA.length;i++){//遍历符合装备等级的材料塞进来
+					if ((A>=MaterialA[i][3]&&A<=MaterialA[i][4])){
+						//cm.gainItem(MaterialA[i][0],Math.floor(Math.random()*MaterialA[i][2])+MaterialA[i][1]);
+						A1.push(MaterialA[i]);// = Array(MaterialA[i][0],MaterialA[i][1],MaterialA[i][2]);//符合材料的送进来
+					}
+				}
+				//cm.sendOk(""+A1[0][0]);
+				//cm.dispose();
+				if (A1.length==0){
+					cm.sendOk("分解的装备不符合等级");
+					cm.dispose();
+					return;
+				}
+				var M = Math.floor(Math.random()*A1.length);
+				var M1 = Math.floor(Math.random()*A1[M][2])+A1[M][1];
+				cm.gainItem(A1[M][0],M1);//给角色基础材料
+				var chance =  Math.floor(Math.random()*100)+1;//设置上面材料概率加入新数组
+				if (B>=60&&A>=110){//判断是否能获得稀有材料的概率
+					for (var i=0;i<MaterialC.length ;i++ ){
+						if (chance <=MaterialC[i][1]){
+							A2.push(MaterialC[i]);
+						}
+					}
+					if (A2.length!=0){
+					var M2 = Math.floor(Math.random()*A2.length);
+					var M3 = Math.floor(Math.random()*5);
+					cm.gainItem(A2[M2][0],M3);//给角色基础材料
+					cm.playerMessage(5,A2[M2][0]+"分解获得额外1级材料"+M3);
+					}
+				}else if (B>=20&&B<=30&&A>=120){
+					for (var i=0;i<MaterialD.length ;i++ ){
+						if (chance <=MaterialC[i][1]){
+							A2.push(MaterialD[i]);
+						}
+					}
+					if (A2.length!=0){
+					var M4 = Math.floor(Math.random()*A2.length);
+					var M5 = Math.floor(Math.random()*3);
+					cm.gainItem(A2[M4][0],M5);//给角色基础材料
+					cm.playerMessage(5,A2[M4][0]+"分解获得额外2级材料"+M5);
+					}
+				}else if (B>=0&&B<=9&&A>=140){
+					for (var i=0;i<MaterialE.length ;i++ ){
+						if (chance <=MaterialC[i][1]){
+							A2.push(MaterialE[i]);
+						}
+					}
+					if (A2.length!=0){
+					var M6 = Math.floor(Math.random()*A2.length);
+					var M7 = Math.floor(Math.random()*3);
+					cm.gainItem(A2[M6][0],M7);//给角色基础材料
+					cm.playerMessage(5,A2[M6][0]+"分解获得额外3级材料"+M7);
+					}
+				}
+                //var shul = cm.getPlayer().getItemQuantity(itemss);
+				cm.gainMeso(-1000000);
+                cm.gainItem(itemss, -1);
+				cm.sendOk(M1+"分解"+A1.length+"成功！"+M);
+				cm.dispose();
+            }
+            status = -1;
+        } else {
+            cm.dispose();
+
+
+        }
+    }
+}
+

@@ -1,0 +1,119 @@
+/* 
+ * 测试脚本
+ */
+var BOSS = Array(
+				  Array(9300304,300000000000,"SS"),//SS级怪物ID、怪物血量
+
+				  Array(9300293,100000000000,"S"),//S级怪物ID、怪物血量
+				  Array(9300294,100000000000,"S"),//S级怪物ID、怪物血量
+
+				  Array(9300291,30000000000,"A"),//A级怪物ID、怪物血量
+				  Array(9300292,30000000000,"A"),//A级怪物ID、怪物血量
+				  Array(9300291,30000000000,"A"),//A级怪物ID、怪物血量
+
+				  Array(9801002,2000000000,"B"),//B级怪物ID、怪物血量
+				  Array(9801003,2000000000,"B"),//B级怪物ID、怪物血量
+				  Array(9801004,2000000000,"B"),//B级怪物ID、怪物血量
+				  Array(9801005,2000000000,"B")//B级怪物ID、怪物血量
+);
+var BOSSMAP = Array(325023000,1850,-393);//乱入出现的地图、X坐标、Y坐标
+var BOSSChance = 25;//（数字÷500）×100%
+function init() {
+    em.setProperty("state", "0");//state = 为1代表有没有人，2代表是否有BOSS乱入,3代表有没有通行证
+    em.setProperty("leader", "false");
+}
+
+function setup(level, leaderid) {
+    em.setProperty("state", "1");
+    var eim = em.newInstance("NewEvent19");
+    eim.setInstanceMap(325020000).resetPQ(level);
+    eim.setInstanceMap(325021000).resetPQ(level);
+    eim.setInstanceMap(325022000).resetPQ(level);
+    eim.setInstanceMap(325023000).resetPQ(level);
+    eim.setInstanceMap(325024000).resetPQ(level);
+    eim.setInstanceMap(325025000).resetPQ(level);
+    eim.setInstanceMap(325026000).resetPQ(level);
+    var map = eim.setInstanceMap(325026000);
+    map.resetFully();
+    var mob = em.getMonster(8220001);
+    mob.changeLevel(level);
+	mob.getChangedStats().setOHp(1250000000);
+    mob.setHp(1250000000);
+    eim.registerMonster(mob);
+    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(1616,-573));
+	//----以下为BOSS乱入召唤
+	var A =  Math.floor(Math.random()*BOSS.length);
+	var C = BOSS[A];//取到怪物行
+	var chance = Math.floor(Math.random() * 500);
+	if (chance<BOSSChance||em.getProperty("leader")=="true"){
+		var map1 = eim.setInstanceMap(BOSSMAP[0]);
+		var mob1 = em.getMonster(C[0]);
+		mob1.changeLevel(level);
+		mob1.getChangedStats().setOHp(C[1]);
+		mob1.setHp(C[1]);
+		eim.registerMonster(mob1);
+		map1.spawnMonsterOnGroundBelow(mob1, new java.awt.Point(BOSSMAP[1], BOSSMAP[2]));
+		em.broadcastServerMsg(5121027, "注意：陡峭的岩山 "+C[2]+" 级BOSS乱入" ,true);
+	}
+    eim.startEventTimer(1000 * 60 * 30); //60 min
+    return eim;
+}
+
+function playerEntry(eim, player) {
+    var map = eim.getMapInstance(0);
+    player.changeMap(map, map.getPortal(0));
+}
+
+function playerRevive(eim, player) {
+    return false;
+}
+
+function changedMap(eim, player, mapid) {
+    if (mapid < 325020000 || mapid > 325026000) {
+        eim.unregisterPlayer(player);
+        if (eim.disposeIfPlayerBelow(0, 0)) {
+            em.setProperty("state", "0");
+            em.setProperty("leader", "false");
+        }
+    }
+}
+
+function playerDisconnected(eim, player) {
+    eim.disposeIfPlayerBelow(100, 910340700);
+    em.setProperty("state", "0");
+    em.setProperty("leader", "false");
+    return 0;
+}
+
+function monsterValue(eim, mobId) {
+    return 1;
+}
+
+function playerExit(eim, player) {
+    eim.unregisterPlayer(player);
+    if (eim.disposeIfPlayerBelow(0, 0)) {
+        em.setProperty("state", "0");
+        em.setProperty("leader", "false");
+    }
+}
+function scheduledTimeout(eim) {
+    eim.disposeIfPlayerBelow(100, 910340700);
+    em.setProperty("state", "0");
+    em.setProperty("leader", "false");
+}
+
+function clearPQ(eim) {
+    scheduledTimeout(eim);
+}
+
+function allMonstersDead(eim) {
+	em.broadcastServerMsg(5121027, "恭喜玩家通关陡峭的岩山，请在10秒内狂点NPC获取奖励！" ,true);
+    eim.startEventTimer(1000 * 10); //10 min
+    eim.getMapInstance(325026000).spawnNpc(9390445, new java.awt.Point(1616,-573));
+}
+
+function leftParty(eim, player) {}
+function disbandParty(eim) {}
+function playerDead(eim, player) {}
+function cancelSchedule() {}
+function monsterDrop(eim, player, mob) {}

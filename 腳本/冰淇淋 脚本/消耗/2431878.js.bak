@@ -1,0 +1,98 @@
+var status = 0;
+
+function start() {
+    status = -1;
+    action(1, 0, 0);
+}
+
+function action(mode, type, selection) {
+    if (status == 0 && mode == 0) {
+        im.dispose();
+        return;
+    }
+    if (mode == 1) {
+        status++;
+    } else {
+        status--;
+    }
+    if (status == 0) {
+        var selStr = "#fUI/UIWindow2.img/Quest/quest_info/summary_icon/summary#\r\n#fUI/UIWindow2.img/QuestAlarm/BtQ/normal/0#亲爱的#r#h ##k您好，请选择要兑换的魔方数量:\r\n#b#L0#兑换#v4000463##z4000463# x1\r\n#L1#兑换#v4000463##z4000463# x2\r\n#L2#兑换#v4000463##z4000463# x3\r\n#L3#兑换#v4000463##z4000463# x4\r\n#L4#兑换#v4000463##z4000463# x5\r\n#L5#兑换#v4000463##z4000463# x6\r\n#L6#兑换#v4000463##z4000463# x3\r\n#L7#兑换#v4000463##z4000463# x4";
+        im.sendSimple(selStr);
+    } else if (status == 1) {
+        switch (selection) {
+        case 0:
+            if (im.haveItem(4000019,30)) {
+		        im.gainItem(4000019, -30);
+                im.gainItem(4000463,1);
+                im.sendOk("兑换成功\r\n祝你游戏愉快!");
+            } else {
+                im.sendOk("你没有#v4000019##z4000019# x30,我不能与你兑换。");
+            }
+            break;
+        case 1:
+             if (im.haveItem(4000019,66)) {
+		        im.gainItem(4000019, -66);
+                im.gainItem(4000463,2);
+                im.sendOk("兑换成功\r\n祝你游戏愉快!");
+            } else {
+                im.sendOk("你没有#v4000019##z4000019# x66,我不能与你兑换。");
+            }
+            break;
+        case 2:
+             if (im.haveItem(4000019,188)) {
+		        im.gainItem(4000019, -188);
+                im.gainItem(40000463,3);
+                im.sendOk("兑换成功\r\n祝你游戏愉快!");
+            } else {
+                im.sendOk("你没有#v4000019##z4000019# x188,我不能与你兑换。");
+            }
+            break;
+        case 3:
+             if (im.haveItem(4000019,300)) {
+		        im.gainItem(4000019, -300);
+                im.gainItem(4000463,4);
+                im.sendOk("兑换成功\r\n祝你游戏愉快!");
+            } else {
+                im.sendOk("你没有#v4000019##z4000019# x300,我不能与你兑换。");
+            }
+            break;
+        case 4:
+             if (im.haveItem(4000019,500)) {
+		        im.gainItem(4000019, -500);
+                im.gainItem(4000463,5);
+                im.sendOk("兑换成功\r\n祝你游戏愉快!");
+            } else {
+                im.sendOk("你没有#v4000019##z4000019# x500,我不能与你兑换。");
+            }
+            break;
+        case 5:
+             if (im.haveItem(4000037,100)) {
+		        im.gainItem(4000037, -100);
+                im.gainItem(4000463,1);
+                im.sendOk("兑换成功\r\n祝你游戏愉快!");
+            } else {
+                im.sendOk("你没有#v4000037##z4000037# x100,我不能与你兑换。");
+            }
+            break;
+        case 6:
+             if (im.haveItem(4000037,200)) {
+		        im.gainItem(4000037, -200);
+                im.gainItem(4000463,2);
+                im.sendOk("兑换成功\r\n祝你游戏愉快!");
+            } else {
+                im.sendOk("你没有#v4000037##z4000037# x200,我不能与你兑换。");
+            }
+            break;
+        case 7:
+             if (im.haveItem(4000037,300)) {
+		        im.gainItem(4000037, -300);
+                im.gainItem(4000463,3);
+                im.sendOk("兑换成功\r\n祝你游戏愉快!");
+            } else {
+                im.sendOk("你没有#v4000037##z4000037# x300,我不能与你兑换。");
+            }
+            break;
+        }
+        im.dispose();
+    }
+}

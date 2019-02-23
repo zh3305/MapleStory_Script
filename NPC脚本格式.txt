@@ -1,0 +1,101 @@
+
+
+
+cm.getChar().getCSPoints(1) //查询电卷数量
+cm.getChar().modifyCSPoints(1电卷/2抵用卷 ,数量) 修改
+
+格式：cm.[Commands]
+dispose
+对话结束
+示例：cm.dispose();
+sendNext
+显示一个带“继续”按钮的对话窗口
+示例：cm.sendNext("[text]");
+sendPrev
+显示一个带“返回”按钮的对话窗口
+示例：cm.sendPrev("[text]");
+sendNextPrev
+显示一个带“继续”和“返回”按钮的对话窗口
+示例：cm.sendNextPrev("[text]");
+sendOk
+显示一个带“好”按钮的对话窗口
+示例：cm.sendOk("[text]");
+sendYesNo
+显示一个带“是”和“否”按钮的对话窗口，选“否”结束对话，否则做相反处理。
+示例：cm.sendYesNo("[text]");
+sendAcceptDecline
+显示一个带“接受”和“拒绝”按钮的对话窗口，选“拒绝”结束对话，否则做相反处理。
+示例：cm.sendAcceptDecline("[text]");
+sendSimple
+显示一个无按钮的对话窗口
+示例：cm.sendAcceptSimple("[text]");
+sendStyle
+显示一个选择性的对话窗口
+示例：cm.sendStyle("[Text]", [variable]); //需要声明一个变量
+warp
+传送玩家到指定地图  
+示例：cm.warp([mapid], [portal]); //[portal]位置值，默认为0
+openShop
+打开一个商店窗口
+示例：cm.openShop([shopid]);
+haveItem
+检查玩家是否具有指定物品
+示例：cm.haveItem([itemid]); //物品栏和装备栏
+gainItem
+给予或取走玩家指定物品
+示例：cm.gainItem([itemid],[ammount]); //-[ammount]表示取走数量
+changeJob
+改变玩家职业
+示例：cm.changeJob([jobid]);
+getJob
+取得玩家职业值
+示例：cm.getJob();
+startQuest
+开始任务
+示例：cm.startQuest([questid]);
+completeQuest
+完成任务
+示例：cm.completeQuest([questid]);
+forfeitQuest
+解除任务
+示例：cm.forfeitQuest([questid]);
+getMeso
+取得玩家金币数量值
+示例：cm.getMeso();
+gainMeso
+给予或取走玩家指定数量金币
+示例：cm.gainMeso([ammount]); //-[ammount]表示取走数量
+gainExp
+给予或取走玩家指定数量经验值
+示例：cm.gainExp([ammount]); //-[ammount]表示取走数量
+getLevel
+取得玩家等级值
+示例：cm.getLevel();
+
+***********奇幻工作室整理***********
+**		 作用：NPC字符串格式	  **
+************************************
+
+#e            		= 加粗字体
+#n					= 正常字体/移除加粗
+#b					= 蓝色字体
+#g					= 绿色字体
+#d					= 紫色字体
+#r					= 红色字体
+#k              	= 黑色字体
+#c[itemid]#         = 显示玩家背包[itemid]的道具数量
+#l					= #L#的结束符
+#m[mapid]#			= 显示地图名称
+#o[mobid]#			= 显示怪物名称
+#p[npcid]#			= 显示NPC名称
+#q[skillid]#		= 显示技能名称
+#t[itemid]#			= 显示道具名称
+#z[itemid]#			= 显示道具名称与详细信息
+#h #				= 显示玩家名称，空格键不可忽略
+#f[imagelocation]#	= 显示在.wz文件文件夹里的图案
+#i[itemid]#			= 显示道具图片
+#s[skillid]#		= 显示技能图片
+#v[itemid]#			= 显示道具图片与详细信息
+#x					= 显示当前经验百分比
+#B[%]#				= Shows a 'progress' bar.[不知道]
+\r\n				= 換行

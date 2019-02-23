@@ -1,0 +1,90 @@
+
+MapleCharacter.java部分：
+
+public void resetChongxiusx(int level, int str, int dex, int int_, int luk, int MaxHp, int HP, int MaxMp, int MP) {
+        Map stat = new EnumMap(MapleStat.class);
+        int total = this.stats.getLevel() + this.stats.getStr() + this.stats.getDex() + this.stats.getLuk() + this.stats.getInt() + getRemainingAp() + this.stats.getMaxHp() + this.stats.getHP() + this.stats.getMaxMp() + this.stats.getMP();
+
+        total -= level;
+        this.stats.level = (short) level;
+
+        total -= str;
+        this.stats.str = (short) str;
+
+        total -= dex;
+        this.stats.dex = (short) dex;
+
+        total -= int_;
+        this.stats.int_ = (short) int_;
+
+        total -= luk;
+        this.stats.luk = (short) luk;
+
+        total -= MaxHp;
+        this.stats.maxhp = (int) MaxHp;
+
+        total -= HP;
+        this.stats.hp = (int) HP;
+
+        total -= MaxMp;
+        this.stats.maxmp = (int) MaxMp;
+
+        total -= MP;
+        this.stats.mp = (int) MP;
+
+        setRemainingAp((short) total);
+        this.stats.recalcLocalStats(this);
+        stat.put(MapleStat.等级, level);
+        stat.put(MapleStat.力量, str);
+        stat.put(MapleStat.敏捷, dex);
+        stat.put(MapleStat.智力, int_);
+        stat.put(MapleStat.运气, luk);
+        stat.put(MapleStat.MAXHP, MaxHp);
+        stat.put(MapleStat.HP, HP);
+        stat.put(MapleStat.MAXMP, MaxMp);
+        stat.put(MapleStat.MP, MP);
+        stat.put(MapleStat.AVAILABLEAP, total);
+        this.client.getSession().write(MaplePacketCreator.updatePlayerStats(stat, false, this));
+    }
+
+
+
+playerStatas.java部分：
+
+public short level;
+
+public short getLevel() {
+        return this.level;
+    }
+
+
+    public int getHP() {
+        return this.hp;
+    }
+    
+    public int getMP() {
+        return this.mp;
+    }
+
+
+public void setLevel(short level, MapleCharacter chra) {
+        this.level = level;
+        recalcLocalStats(chra);
+    }
+
+NPCConversationManager.java部分：
+
+     /**
+     * 修改设置重修角色属性
+     */
+
+   public void resetChongxiusx(int level, int str, int dex, int z, int luk, int MaxHp, int HP, int MaxMp, int MP) {
+        this.c.getPlayer().resetChongxiusx(level, str, dex, z, luk, MaxHp, HP, MaxMp, MP);
+    }
+
+
+
+
+
+
+
